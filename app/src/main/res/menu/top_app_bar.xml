@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/timerpicker"
+        android:title="@string/timer_picker"
+        android:icon="@drawable/baseline_access_time_24"
+        android:iconTint="@color/white"
+        app:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/favorite"
+        android:title="@string/favorite"
+        android:icon="@drawable/baseline_favorite_24"
+        app:showAsAction="ifRoom"
+        />
+
+    <item
+        android:id="@+id/search"
+        android:title="@string/search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:iconTint="@color/white"
+        app:showAsAction="ifRoom"
+        />
+
+<!--    <item-->
+<!--        android:id="@+id/more"-->
+<!--        android:title="@string/more"-->
+<!--        android:icon="@drawable/baseline_more_vert_24"-->
+<!--        app:showAsAction="ifRoom"-->
+<!--        />-->
+
+
+</menu>

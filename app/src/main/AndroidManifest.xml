@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.UserInformation"
+        tools:targetApi="31">
+        <activity
+            android:name=".timepicker.TimePicker"
+            android:exported="false" />
+        <activity
+            android:name=".Groceries.Groceries"
+            android:exported="false" />
+        <activity
+            android:name=".pharmacy.Pharmacy"
+            android:exported="false" />
+        <activity
+            android:name=".beauty.Beauty"
+            android:exported="false" />
+        <activity
+            android:name=".home.Home"
+            android:exported="false" />
+        <activity
+            android:name=".electronics.Electronics"
+            android:exported="false" />
+        <activity
+            android:name=".cloth.Cloth"
+            android:exported="false" />
+        <activity
+            android:name=".userdetails.Registration"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".userdetails.Login"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

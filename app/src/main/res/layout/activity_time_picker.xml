@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".timepicker.TimePicker">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/time_picker_dialog"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="#D81383"
+        android:gravity="center"
+        android:layout_marginTop="150dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/time"
+        android:id="@+id/selectTime"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#D81383"
+        android:gravity="center"
+        android:layout_marginTop="200dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/pickme"
+        android:gravity="center"
+        android:layout_marginTop="250dp"
+        android:layout_marginStart="140dp"
+        android:text="@string/pick_me"
+        />
+
+
+
+</RelativeLayout>

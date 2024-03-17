@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:background="@drawable/strock_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".userdetails.Login">
+    
+    <FrameLayout
+        style="@style/box"
+        android:layout_width="350dp"
+        android:layout_height="400dp"
+
+        android:layout_centerInParent="true"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#00246B"
+            android:textColorHint="#A2B3D5"
+            android:layout_marginTop="18dp"
+            android:hint="username"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:hint="password"
+            android:inputType="textPassword"
+            android:textColor="#00246B"
+            android:textColorHint="#A2B3D5"
+            android:textSize="20dp" />
+
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/digitalbutton"
+            android:id="@+id/loginbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/sign_in"
+            android:textColor="@color/white"
+            android:onClick="onLogin"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/new_user"
+            android:gravity="center"
+            android:layout_marginEnd="60dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="140dp"
+            android:textColor="#00246B"
+            />
+        <TextView
+            android:id="@+id/link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/registrationlink"
+            android:gravity="center"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="140dp"
+            android:layout_marginStart="180dp"
+            android:textStyle="bold"
+            android:onClick="onLink"
+            />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/loginimg"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="95dp"
+        android:layout_marginStart="150dp"
+        android:src="@drawable/ic_launcher_foreground"
+
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/user_login"
+        android:gravity="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="#00246B"
+        android:layout_marginTop="55dp" />
+
+
+
+
+
+</RelativeLayout>

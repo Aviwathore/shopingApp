@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".userdetails.Registration"
+    android:background="@drawable/strock_bg">
+
+    <FrameLayout
+        android:layout_width="350dp"
+        android:layout_height="500dp"
+        android:layout_centerInParent="true"
+        android:background="@color/white">
+
+        <EditText
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textColorHint="#A2B3D5"
+            android:hint="Full Name"
+            android:textColor="#00246B" />
+
+        <EditText
+            android:id="@+id/mail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:textColorHint="#A2B3D5"
+            android:hint="Email"
+            android:textColor="#00246B" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:layout_marginTop="145dp"
+            android:textColorHint="#A2B3D5"
+            android:textColor="#00246B" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="City"
+            android:textColor="#00246B"
+            android:textColorHint="#A2B3D5"
+            android:layout_marginTop="210dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gender :"
+            android:textColor="#00246B"
+            android:textSize="18dp"
+            android:layout_marginTop="280dp" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="270dp"
+            >
+
+            <RadioButton
+                android:id="@+id/male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Male"
+                android:layout_marginLeft="85dp"
+                android:textColor="#00246B"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Female"
+                android:textColor="#00246B"
+                android:layout_marginLeft="60dp" />
+
+
+        </RadioGroup>
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/digitalbutton"
+            android:id="@+id/signup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="110dp"
+            android:layout_gravity="center"
+            android:text="Sign Up"
+            android:textColor="@color/white"
+            android:onClick="onRegistration"
+            />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/ic_launcher_foreground"
+        android:layout_marginLeft="150dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registration"
+        android:textStyle="bold"
+        android:textSize="35dp"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:textColor="#00246B" />
+
+</RelativeLayout>

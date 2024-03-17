@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="210sp"
+            android:layout_height="100sp"
+            android:id="@+id/amazon"
+            android:text="@string/amazon"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="#D81383"
+            android:background="@color/white"
+            android:layout_marginTop="64dp"
+            android:onClick="onPickMe"
+            />
+
+        <ImageView
+            android:layout_width="210dp"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            android:layout_marginStart="200dp"
+            android:layout_marginTop="64dp"
+            android:src="@drawable/amazon_logo"
+            />
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/app_bar"
+            style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#D81383"
+            app:menu="@menu/top_app_bar"
+            app:navigationIcon="@android:drawable/menu_frame"
+            app:navigationIconTint="@color/white"
+            app:title="Shop"
+            app:titleMarginStart="60dp"
+            app:titleTextColor="@color/white" />
+
+    </FrameLayout>
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/card"
+        android:layout_marginTop="200dp"
+        app:cardCornerRadius="800dp">
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <LinearLayout
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="190dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_anchor="@+id/card"
+        >
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/cloth"
+            android:layout_gravity="center"
+            android:scaleType="fitStart"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clothing"
+                android:text="@string/clothing"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="50sp"
+                android:onClick="onCloth"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginStart="200dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_anchor="@+id/card">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/elect"
+            android:layout_gravity="center"
+            android:scaleType="fitStart"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/electronics"
+                android:text="@string/electronics"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="11dp"
+                android:layout_marginStart="40sp"
+                android:onClick="onElectronics"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="380dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_anchor="@+id/card">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/home"
+            android:layout_gravity="center"
+            android:scaleType="fitStart"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/home"
+                android:text="@string/home"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="60sp"
+                android:onClick="onHome"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="380dp"
+        android:background="@color/white"
+        android:layout_marginStart="200dp"
+        android:orientation="vertical"
+        app:layout_anchor="@+id/card">
+
+        <ImageView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/beauty"
+            android:layout_gravity="center"
+            android:scaleType="fitStart"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/beauty"
+                android:text="@string/beauty"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginStart="50sp"
+                android:onClick="onBeauty"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="570dp"
+        android:background="@color/white"
+        android:orientation="vertical"
+        app:layout_anchor="@+id/card">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/pharmacy"
+            android:layout_gravity="center"
+            android:scaleType="fitStart"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pharmacy"
+                android:text="@string/pharmacy"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="50sp"
+                android:onClick="onPharmacy"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="570dp"
+        android:background="@color/white"
+        android:layout_marginStart="200dp"
+        android:orientation="vertical"
+        app:layout_anchor="@+id/card">
+
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/groceries"
+            android:layout_gravity="center"
+            android:scaleType="fitStart"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/groceries"
+                android:text="@string/groceries"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="40sp"
+                android:onClick="onGroceries"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
