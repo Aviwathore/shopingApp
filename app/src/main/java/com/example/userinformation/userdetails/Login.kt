@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.userinformation.MainActivity
+import com.example.userinformation.dashboard.DashBoard
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityLoginBinding
 
@@ -65,7 +65,7 @@ class Login : AppCompatActivity() {
 
              */
 
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, DashBoard::class.java))
 
         }
 

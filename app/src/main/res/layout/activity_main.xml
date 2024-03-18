@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".dashboard.DashBoard"
     >
 
     <FrameLayout
@@ -68,10 +68,12 @@
 
 
     <LinearLayout
+        android:id="@+id/btnCloths"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="190dp"
         android:background="@color/white"
+        android:onClick="onCloth"
         android:orientation="vertical"
         app:layout_anchor="@+id/card"
         >
@@ -96,19 +98,20 @@
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 android:layout_marginStart="50sp"
-                android:onClick="onCloth"
                 />
 
         </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/btn_ele"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="190dp"
         android:layout_marginStart="200dp"
         android:background="@color/white"
         android:orientation="vertical"
+        android:onClick="onElectronics"
         app:layout_anchor="@+id/card">
 
         <ImageView
@@ -132,18 +135,19 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="11dp"
                 android:layout_marginStart="40sp"
-                android:onClick="onElectronics"
                 />
 
         </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/btn_home"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="380dp"
         android:background="@color/white"
         android:orientation="vertical"
+        android:onClick="onHome"
         app:layout_anchor="@+id/card">
 
         <ImageView
@@ -167,18 +171,20 @@
                 android:layout_marginTop="10dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="60sp"
-                android:onClick="onHome"/>
+               />
 
         </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/btn_beauty"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="380dp"
         android:background="@color/white"
         android:layout_marginStart="200dp"
         android:orientation="vertical"
+        android:onClick="onBeauty"
         app:layout_anchor="@+id/card">
 
         <ImageView
@@ -201,18 +207,21 @@
                 android:textSize="20sp"
                 android:layout_gravity="center"
                 android:layout_marginStart="50sp"
-                android:onClick="onBeauty"/>
+                />
 
         </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/btn_pharmacy"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="570dp"
         android:background="@color/white"
         android:orientation="vertical"
-        app:layout_anchor="@+id/card">
+        app:layout_anchor="@+id/card"
+        android:onClick="onPharmacy"
+        >
 
         <ImageView
             android:layout_width="70dp"
@@ -235,19 +244,21 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="50sp"
-                android:onClick="onPharmacy"/>
+                />
 
         </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
+        android:id="@+id/btn_groceries"
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="570dp"
         android:background="@color/white"
         android:layout_marginStart="200dp"
         android:orientation="vertical"
-        app:layout_anchor="@+id/card">
+        app:layout_anchor="@+id/card"
+        android:onClick="onGroceries">
 
         <ImageView
             android:layout_width="70dp"
@@ -270,7 +281,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="40sp"
-                android:onClick="onGroceries"/>
+                />
 
         </LinearLayout>
 

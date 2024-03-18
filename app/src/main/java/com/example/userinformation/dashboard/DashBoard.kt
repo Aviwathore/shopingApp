@@ -1,4 +1,4 @@
-package com.example.userinformation
+package com.example.userinformation.dashboard
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.Groceries.Groceries
+import com.example.userinformation.R
 import com.example.userinformation.beauty.Beauty
 import com.example.userinformation.cloth.Cloth
 import com.example.userinformation.databinding.ActivityMainBinding
@@ -19,7 +20,7 @@ import com.example.userinformation.timepicker.TimePicker
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 
-class MainActivity : AppCompatActivity() {
+class DashBoard : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding;
     private lateinit var topAppBar :MaterialToolbar
 
@@ -42,15 +43,15 @@ class MainActivity : AppCompatActivity() {
 
             topAppBar.setOnMenuItemClickListener{item->
                 when(item.itemId){
-                    R.id.favorite->{
+                    R.id.favorite ->{
                         Toast.makeText(this,"Favorite Click!", Toast.LENGTH_SHORT).show()
                         true
                     }
-                    R.id.search->{
+                    R.id.search ->{
                         Toast.makeText(this, "Search Click !", Toast.LENGTH_SHORT).show()
                         true
                     }
-                    R.id.timerpicker->{
+                    R.id.timerpicker ->{
                         onTimeClicker(it)
                         true
                     }
@@ -72,7 +73,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onTimeClicker(view: View) {
-        if (view.id==R.id.timerpicker){
+        if (view.id== R.id.timerpicker){
             startActivity(Intent(this, TimePicker::class.java))
         }
     }
@@ -84,38 +85,38 @@ class MainActivity : AppCompatActivity() {
 //    }
 
     fun onCloth(view: View) {
-        if (view.id==R.id.clothing) {
+        if (view.id== R.id.btnCloths) {
             startActivity(Intent(this, Cloth::class.java))
         }
     }
     fun onElectronics(view: View) {
-        if (view.id==R.id.electronics){
+        if (view.id== R.id.btn_ele){
             startActivity(Intent(this, Electronics::class.java))
         }
     }
     fun onHome(view: View) {
-        if (view.id==R.id.home){
+        if (view.id== R.id.btn_home){
             startActivity(Intent(this, Home::class.java))
         }
     }
     fun onBeauty(view: View) {
-        if (view.id==R.id.beauty){
+        if (view.id== R.id.btn_beauty){
             startActivity(Intent(this, Beauty::class.java))
         }
     }
     fun onPharmacy(view: View) {
-        if (view.id==R.id.pharmacy){
+        if (view.id== R.id.btn_pharmacy){
             startActivity(Intent(this, Pharmacy::class.java))
         }
     }
     fun onGroceries(view: View) {
-        if (view.id==R.id.groceries){
+        if (view.id== R.id.btn_groceries){
             startActivity(Intent(this, Groceries::class.java))
         }
     }
 
     fun onPickMe(view: View) {
-        if (view.id==R.id.amazon){
+        if (view.id== R.id.amazon){
             startActivity(Intent(this, TimePicker::class.java))
 
         }

@@ -1,51 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cloth.Cloth">
+    tools:context=".cloth.Cloth"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/clothtimepicker"
-        android:text="@string/clothing_section"
-        android:textSize="30sp"
+        android:id="@+id/commentList"
+        android:text="Comment List"
         android:textStyle="bold"
-        android:gravity="center"
         android:textColor="#E91E63"
-        android:layout_marginTop="70dp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:textStyle="bold"
-        android:textColor="#2036B3"
-        android:textSize="22sp"
-        android:layout_marginStart="10sp"
-        android:layout_marginTop="140dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/price"
-        android:textColor="#2036B3"
-        android:textStyle="bold"
-        android:layout_marginTop="140dp"
-        android:textSize="22sp"
-        android:layout_marginStart="240dp"/>
-
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginTop="30dp"/>
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listview"
-        android:layout_marginTop="180dp"
-        android:gravity="center"
+        android:id="@+id/listComment"
+        android:layout_marginTop="70dp"
         />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>
