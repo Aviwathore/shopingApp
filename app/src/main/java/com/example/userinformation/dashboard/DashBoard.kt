@@ -16,6 +16,7 @@ import com.example.userinformation.databinding.ActivityMainBinding
 import com.example.userinformation.electronics.Electronics
 import com.example.userinformation.home.Home
 import com.example.userinformation.pharmacy.Pharmacy
+//import com.example.userinformation.pharmacy.Pharmacy
 import com.example.userinformation.timepicker.TimePicker
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar

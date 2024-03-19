@@ -50,6 +50,7 @@ dependencies {
 //    implementation (libs.converter.gson)
 //    implementation (libs.gson)
     implementation (libs.converter.gson)
+    implementation (libs.androidx.recyclerview)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

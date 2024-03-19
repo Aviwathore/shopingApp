@@ -2,6 +2,7 @@ package com.example.userinformation.beauty
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.activity.enableEdgeToEdge
@@ -9,9 +10,23 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.userinformation.R
+import com.example.userinformation.beauty.recycleview.adapter.BeautyAdaptor
+import com.example.userinformation.beauty.recycleview.api.BeautyInterface
+import com.example.userinformation.home.recycleviewapi.adapter.HomeAdaptor
+import com.example.userinformation.home.recycleviewapi.api.HomeInterface
+import com.example.userinformation.home.recycleviewapi.model.ToDo
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
+const val BASE_URL ="https://jsonplaceholder.typicode.com/"
 class Beauty : AppCompatActivity() {
+    var modelListView :ArrayList<ToDo> = ArrayList<ToDo>()
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,31 +38,52 @@ class Beauty : AppCompatActivity() {
         val alertDialog : AlertDialog =builder.create()
         alertDialog.show()
 
-        val beauty = findViewById<ListView>(R.id.beautylist)
-
-        val beautyList = arrayListOf<BeautyList>()
-
-        beautyList.add(BeautyList("Foundation",178.0))
-        beautyList.add(BeautyList("Foundation",808.0))
-        beautyList.add(BeautyList("Foundation",490.0))
-        beautyList.add(BeautyList("Foundation",978.0))
-        beautyList.add(BeautyList("Foundation",333.0))
-        beautyList.add(BeautyList("Foundation",767.0))
-        beautyList.add(BeautyList("Foundation",264.0))
-        beautyList.add(BeautyList("Foundation",989.0))
-        beautyList.add(BeautyList("Foundation",356.0))
-        beautyList.add(BeautyList("Foundation",800.0))
-        beautyList.add(BeautyList("Foundation",450.0))
-
-        val listAdapter :ArrayAdapter<BeautyList> =ArrayAdapter<BeautyList>(
-            this,android.R.layout.simple_list_item_1, beautyList
-        )
-        beauty.adapter = listAdapter
+        loadToDoListData()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    private fun loadToDoListData() {
+        // object of retrofit
+        val retrofitBuilder =
+            Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(BASE_URL).build().create(
+                BeautyInterface::class.java)
+
+        val retrofitData = retrofitBuilder.getData(2)
+        retrofitData.enqueue(object : Callback<List<ToDo>?> {
+            @SuppressLint("NotifyDataSetChanged")
+            override fun onResponse(call: Call<List<ToDo>?>, response: Response<List<ToDo>?>) {
+                modelListView = (response.body() as ArrayList<ToDo>?)!!
+
+                val beautyList =  ArrayList<String>()
+
+                for (list in modelListView){
+                    val formatData="User_Id: ${list.userId}\n"+
+                            "Id: ${list.id}\n"+
+                            "Title: ${list.title}\n"+
+                            "Completed: ${list.completed}\n"
+
+                    beautyList.add(formatData)
+                }
+
+                val recyclerview = findViewById<RecyclerView>(R.id.beauty_recycle)
+                recyclerview.layoutManager = LinearLayoutManager(this@Beauty)
+
+                val beautyAdaptor = BeautyAdaptor(beautyList)
+
+                recyclerview.adapter=beautyAdaptor
+
+                beautyAdaptor.notifyDataSetChanged()
+            }
+
+            override fun onFailure(call: Call<List<ToDo>?>, t: Throwable) {
+                Log.d("MainActivity","onFailure "+t.message)
+            }
+
+        })
     }
 }

@@ -1,51 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Groceries.Groceries">
+    tools:context=".Groceries.Groceries"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Groceries Section"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:gravity="center"
+        android:textSize="25sp"
         android:textColor="#E91E63"
-        android:layout_marginTop="70dp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Name"
         android:textStyle="bold"
-        android:textColor="#2036B3"
-        android:textSize="22sp"
-        android:layout_marginStart="10sp"
-        android:layout_marginTop="140dp"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/price"
-        android:textColor="#2036B3"
-        android:textStyle="bold"
-        android:layout_marginTop="140dp"
-        android:textSize="22sp"
-        android:layout_marginStart="240dp"/>
-
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/grocerieslist"
-        android:layout_marginTop="180dp"
         android:gravity="center"
+        android:layout_marginTop="15dp" />
+
+    <EditText
+        android:id="@+id/user_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter User name"
+        android:layout_marginTop="70dp"
         />
 
+    <EditText
+        android:id="@+id/j_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter user job"
+        android:layout_marginTop="140dp"
+        />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <Button
+        android:id="@+id/btn_send_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
+        android:layout_marginStart="160dp"
+        android:text="Send Data" />
+
+    <TextView
+        android:id="@+id/response_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="270dp"
+        android:gravity="center_horizontal"
+        android:text="Response : "
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+</RelativeLayout>

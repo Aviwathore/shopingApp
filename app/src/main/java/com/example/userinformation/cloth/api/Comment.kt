@@ -1,4 +1,4 @@
-package com.example.userinformation.api
+package com.example.userinformation.cloth.api
 
 data class Comment(
     val postId: Int,
