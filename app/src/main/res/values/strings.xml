@@ -29,4 +29,17 @@
     <string name="time_picker_dialog">Time Picker Dialog</string>
     <string name="pick_me">Pick Me</string>
     <string name="time">Time</string>
+
+
+<!--    spinner code-->
+
+    <string name="img_url">Images</string>
+    <string name="select_image">Selected Image </string>
+
+    <string-array name="Images">
+        <item>https://cdn.dummyjson.com/product-images/28/1.jpg</item>
+        <item>https://cdn.dummyjson.com/product-images/28/2.jpg</item>
+        <item>https://cdn.dummyjson.com/product-images/28/3.png</item>
+        <item>https://cdn.dummyjson.com/product-images/28/4.jpg</item>
+    </string-array>
 </resources>

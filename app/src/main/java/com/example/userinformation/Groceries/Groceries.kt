@@ -32,6 +32,7 @@ class Groceries : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContentView(R.layout.activity_groceries)
         nameEdt= (findViewById(R.id.user_id) as? EditText)!!
         jobEdt= (findViewById(R.id.j_id) as? EditText)!!
@@ -52,6 +53,7 @@ class Groceries : AppCompatActivity() {
             insets
         }
     }
+
 
     private fun createToDo(name: String, job: String) {
         val retrofitBuilder = Retrofit.Builder()

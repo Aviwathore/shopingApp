@@ -16,6 +16,7 @@ import com.example.userinformation.databinding.ActivityMainBinding
 import com.example.userinformation.electronics.Electronics
 import com.example.userinformation.home.Home
 import com.example.userinformation.pharmacy.Pharmacy
+import com.example.userinformation.shoes.Shoes
 //import com.example.userinformation.pharmacy.Pharmacy
 import com.example.userinformation.timepicker.TimePicker
 import com.google.android.material.appbar.MaterialToolbar
@@ -56,7 +57,6 @@ class DashBoard : AppCompatActivity() {
                         onTimeClicker(it)
                         true
                     }
-
                     else -> {false
                     }
                 }
@@ -122,4 +122,11 @@ class DashBoard : AppCompatActivity() {
 
         }
     }
+
+    fun onShoes(view: View) {
+        if (view.id==R.id.shoes){
+            startActivity(Intent(this, Shoes::class.java))
+        }
+    }
+
 }

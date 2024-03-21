@@ -72,13 +72,13 @@ class Pharmacy : AppCompatActivity() {
                             val email = user.email
                             val avtar = user.avatar
 
-                            val formatData1 = "Id: $id\n" +
+                            val formatData = "Id: $id\n" +
                                     "firstName :$first\n" +
                                     "lastName :$last\n" +
                                     "Email :$email\n" +
                                     "avtar :$avtar"
 
-                            pharmacyList.add(formatData1)
+                            pharmacyList.add(formatData)
 
                         }
 

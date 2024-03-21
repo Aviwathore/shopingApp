@@ -26,13 +26,27 @@
             android:onClick="onPickMe"
             />
 
-        <ImageView
-            android:layout_width="210dp"
-            android:layout_height="100dp"
-            android:background="@color/white"
-            android:layout_marginStart="200dp"
-            android:layout_marginTop="64dp"
-            android:src="@drawable/amazon_logo"
+<!--        <ImageView-->
+<!--            android:layout_width="210dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:background="@color/white"-->
+<!--            android:layout_marginStart="200dp"-->
+<!--            android:layout_marginTop="64dp"-->
+<!--            android:src="@drawable/amazon_logo"-->
+<!--            />-->
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/shoes"
+            android:text="Shoes"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="40sp"
+            android:onClick="onShoes"
             />
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -284,8 +298,6 @@
                 />
 
         </LinearLayout>
-
     </LinearLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
