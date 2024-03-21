@@ -18,6 +18,10 @@ import com.example.userinformation.beauty.recycleview.api.BeautyInterface
 import com.example.userinformation.home.recycleviewapi.adapter.HomeAdaptor
 import com.example.userinformation.home.recycleviewapi.api.HomeInterface
 import com.example.userinformation.home.recycleviewapi.model.ToDo
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -27,6 +31,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 const val BASE_URL ="https://jsonplaceholder.typicode.com/"
 class Beauty : AppCompatActivity() {
     var modelListView :ArrayList<ToDo> = ArrayList<ToDo>()
+
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,23 +58,32 @@ class Beauty : AppCompatActivity() {
             Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(BASE_URL).build().create(
                 BeautyInterface::class.java)
 
-        val retrofitData = retrofitBuilder.getData(2)
-        retrofitData.enqueue(object : Callback<List<ToDo>?> {
+        val retrofitData = retrofitBuilder.getData(4)
+       Log.d("TAG", "loadToDoListData: "+ retrofitData.request())
+
+        retrofitData.enqueue(object : Callback<ToDo>{
             @SuppressLint("NotifyDataSetChanged")
-            override fun onResponse(call: Call<List<ToDo>?>, response: Response<List<ToDo>?>) {
-                modelListView = (response.body() as ArrayList<ToDo>?)!!
+            override fun onResponse(call: Call<ToDo>, response: Response<ToDo>) {
+//                Log.d("TAG", "onResponse: "+ response.body().toString())
 
-                val beautyList =  ArrayList<String>()
+                val beautyList = ArrayList<String>()
 
-                for (list in modelListView){
-                    val formatData="User_Id: ${list.userId}\n"+
-                            "Id: ${list.id}\n"+
-                            "Title: ${list.title}\n"+
-                            "Completed: ${list.completed}\n"
+                if(response.isSuccessful){
+                    val item =response.body()
 
-                    beautyList.add(formatData)
+                    if (item!==null){
+                        val userIdd= item.userId
+                        val idd =item.id
+                        val titlee = item.title
+                        val completedd = item.completed
+
+                        val formatData= "User Id: $idd\n" +
+                                        "Id : $userIdd\n" +
+                                        "Title : $titlee\n" +
+                                        "Completed : $completedd"
+                        beautyList.add(formatData)
+                    }
                 }
-
                 val recyclerview = findViewById<RecyclerView>(R.id.beauty_recycle)
                 recyclerview.layoutManager = LinearLayoutManager(this@Beauty)
 
@@ -78,12 +92,14 @@ class Beauty : AppCompatActivity() {
                 recyclerview.adapter=beautyAdaptor
 
                 beautyAdaptor.notifyDataSetChanged()
+
             }
 
-            override fun onFailure(call: Call<List<ToDo>?>, t: Throwable) {
+            override fun onFailure(call: Call<ToDo>, t: Throwable) {
                 Log.d("MainActivity","onFailure "+t.message)
             }
 
         })
+
     }
 }

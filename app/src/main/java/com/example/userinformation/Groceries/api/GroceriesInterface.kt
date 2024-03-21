@@ -1,7 +1,7 @@
 package com.example.userinformation.Groceries.api
 
 import com.example.userinformation.Groceries.model.GroceriesData
-import com.example.userinformation.pharmacy.model.PharmacyProduct
+//import com.example.userinformation.pharmacy.model.PharmacyProduct
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

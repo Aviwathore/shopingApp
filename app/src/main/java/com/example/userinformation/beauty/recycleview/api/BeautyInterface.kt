@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface BeautyInterface {
-    @GET("todos/{userId}")
-    fun getData(@Path("userId") userId: Int): Call<List<ToDo>>
+    @GET("todos/{id}")
+    fun getData(@Path("id") id: Int?): Call<ToDo>
 }

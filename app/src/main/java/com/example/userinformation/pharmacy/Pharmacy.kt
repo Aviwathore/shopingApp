@@ -2,70 +2,32 @@ package com.example.userinformation.pharmacy
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.userinformation.R
-import com.example.userinformation.pharmacy.api.PharmacyInterface
-import com.example.userinformation.pharmacy.model.PharmacyProduct
+import com.example.userinformation.pharmacy.adapter.JSONAdapter
+import com.example.userinformation.pharmacy.api.JSONInterface
+import com.example.userinformation.pharmacy.model.Users
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-const val BASE_URL="https://jsonplaceholder.typicode.com/"
+const val BASE_URL="https://reqres.in/"
 class Pharmacy : AppCompatActivity() {
-
-    private lateinit var userIdEdt: EditText
-    private lateinit var idEdt: EditText
-    private lateinit var titleEdt: EditText
-    private lateinit var completedEdt: EditText
-
-    private lateinit var responseA: TextView
-    private lateinit var text: TextView
-    private lateinit var button: Button
-
     @SuppressLint("MissingInflatedId", "WrongViewCast")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_pharmacy)
 
-        userIdEdt = (findViewById(R.id.userId_id) as?EditText)!!
-//        idEdt = findViewById(R.id.id) as? EditText as EditText  this is also one syntax
-        idEdt = (findViewById(R.id.id_id) as? EditText)!!
-        titleEdt = (findViewById(R.id.title_id) as? EditText) !!
-        completedEdt = (findViewById(R.id.completed_id) as? EditText)!!
-
-        text = (findViewById(R.id.text) as? TextView)!!
-        button =(findViewById(R.id.btn_send_data) as? Button)!!
-        responseA= (findViewById(R.id.response_id) as? TextView)!!
-
-//        postData(name.text.toString(), price.text.toString())
-//        CreateToDo(
-//            userIdEdt.text.toString(),
-//            idEdt.text.toString(),
-//            titleEdt.toString(),
-//            completedEdt.text.toString()
-//        )
-
-        button.setOnClickListener {
-            // Call the CreateToDo function with the text from EditText fields
-            createToDo(
-                userIdEdt.text.toString(),
-                idEdt.text.toString(),
-                titleEdt.text.toString(),
-                completedEdt.text.toString()
-            )
-        }
-
+        jasonPars()
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -73,33 +35,71 @@ class Pharmacy : AppCompatActivity() {
         }
     }
 
-private fun createToDo(userId: String, id: String, title: String, completed: String) {
-    val retrofitBuilder = Retrofit.Builder()
-        .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl(BASE_URL)
-        .build()
-        .create(PharmacyInterface::class.java)
+    private fun jasonPars() {
+        val retrofitBuilder =Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(BASE_URL).build().create(JSONInterface::class.java)
+        val retrofitData = retrofitBuilder.getUserNested()
 
-    val retrofitData = retrofitBuilder.createPost(userId, id, title, completed)
+        retrofitData.enqueue(object : Callback<Users>{
+            override fun onResponse(call: Call<Users>, response: Response<Users>) {
+                val pharmacyList = ArrayList<String>()
+                if (response.isSuccessful){
+                    val pharmacyResponse = response.body()
 
-    retrofitData.enqueue(object : Callback<PharmacyProduct> {
-        override fun onResponse(call: Call<PharmacyProduct>, response: Response<PharmacyProduct>) {
-            Toast.makeText(this@Pharmacy, "ADD DATA TO API", Toast.LENGTH_LONG).show()
-            val responseApi: PharmacyProduct? = response.body()
+                    if (pharmacyResponse !==null){
 
-            val responseString =
-                "Response Code:${response.code()}\n UserId: ${responseApi?.userId}\n Id: ${responseApi?.id}\n Title: ${responseApi?.title}\n Completed: ${responseApi?.completed}"
+                            val page = pharmacyResponse.page
+                            val perPage = pharmacyResponse.per_page
+                            val total = pharmacyResponse.total
+                            val totalPages = pharmacyResponse.total_pages
+                            val url = pharmacyResponse.support.url
+                            val text = pharmacyResponse.support.text
 
-//            val responseString= "yes done"
-            responseA.text = responseString
-        }
 
-        @SuppressLint("SetTextI18n")
-        override fun onFailure(call: Call<PharmacyProduct>, t: Throwable) {
-            responseA.text = "Error Found: " + t.message
-        }
-    })
-}
+                            val formatData = "page :$page\n" +
+                                    "perPage :$perPage\n" +
+                                    "total : $total\n" +
+                                    "totalPages : $totalPages\n" +
+                                    "url :$url\n" +
+                                    "text : $text\n"
+
+                            pharmacyList.add(formatData)
+
+
+                        pharmacyResponse.data.forEach{user->
+                            val id = user.user_id
+                            val first = user.firstName
+                            val last = user.last_name
+                            val email = user.email
+                            val avtar = user.avatar
+
+                            val formatData1 = "Id: $id\n" +
+                                    "firstName :$first\n" +
+                                    "lastName :$last\n" +
+                                    "Email :$email\n" +
+                                    "avtar :$avtar"
+
+                            pharmacyList.add(formatData1)
+
+                        }
+
+                    }
+
+                    val recycleView = findViewById<RecyclerView>(R.id.recycle_Pharmacy_view)
+
+                    recycleView.layoutManager = LinearLayoutManager(this@Pharmacy)
+                    val pharAdaptor = JSONAdapter(pharmacyList)
+
+                    recycleView.adapter=pharAdaptor
+
+                }
+            }
+
+            override fun onFailure(call: Call<Users>, t: Throwable) {
+                Log.d("PHARMACYACTIVITY","ONFAILURE"+t.message)
+            }
+
+        })
+    }
 
 }
 
