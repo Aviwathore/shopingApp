@@ -31,7 +31,7 @@
     <string name="time">Time</string>
 
 
-<!--    spinner code-->
+    <!--    spinner code-->
 
     <string name="img_url">Images</string>
     <string name="select_image">Selected Image </string>
@@ -41,5 +41,14 @@
         <item>https://cdn.dummyjson.com/product-images/28/2.jpg</item>
         <item>https://cdn.dummyjson.com/product-images/28/3.png</item>
         <item>https://cdn.dummyjson.com/product-images/28/4.jpg</item>
+    </string-array>
+
+    <!--    employee spinner-->
+
+    <string name="emp_status">Status</string>
+
+    <string-array name="Status">
+        <item>Success</item>
+        <item>Failure</item>
     </string-array>
 </resources>

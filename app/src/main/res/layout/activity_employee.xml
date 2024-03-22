@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".employee.Employee">
+
+    <TextView
+        android:id="@+id/employee_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Employee Details"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#E91E63"
+        android:gravity="center"
+        android:layout_marginTop="20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Name"
+        android:id="@+id/emp_name"
+        android:layout_marginTop="80dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Salary"
+        android:id="@+id/emp_salary"
+        android:layout_marginTop="160dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter Age"
+        android:id="@+id/emp_age"
+        android:layout_marginTop="240dp"
+        />
+    <TextView
+        android:id="@+id/emp_response"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="430dp"
+        android:gravity="center"
+        android:text="Response :"
+        android:textColor="#2196F3"
+        android:textSize="25sp"
+        android:textStyle="bold" />
+
+<!--    <EditText-->
+<!--        android:layout_width="180dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:hint="Profile Image"-->
+<!--        android:id="@+id/emp_img"-->
+<!--        android:layout_marginTop="240dp"-->
+<!--        />-->
+<!--    <EditText-->
+<!--        android:layout_width="180dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:hint="Write Your Message"-->
+<!--        android:id="@+id/emp_massage"-->
+<!--        android:layout_marginTop="240dp"-->
+<!--        android:layout_marginLeft="220dp"-->
+<!--        />-->
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
+        android:id="@+id/spinner_id" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_emp"
+        android:text="SUBMIT"
+        android:layout_marginTop="370dp"
+        android:layout_marginLeft="145dp" />
+
+
+</RelativeLayout>

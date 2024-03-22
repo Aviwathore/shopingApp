@@ -14,11 +14,13 @@ import com.example.userinformation.beauty.Beauty
 import com.example.userinformation.cloth.Cloth
 import com.example.userinformation.databinding.ActivityMainBinding
 import com.example.userinformation.electronics.Electronics
+import com.example.userinformation.employee.Employee
 import com.example.userinformation.home.Home
 import com.example.userinformation.pharmacy.Pharmacy
 import com.example.userinformation.shoes.Shoes
 //import com.example.userinformation.pharmacy.Pharmacy
 import com.example.userinformation.timepicker.TimePicker
+import com.example.userinformation.user.UserDetails
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 
@@ -126,6 +128,18 @@ class DashBoard : AppCompatActivity() {
     fun onShoes(view: View) {
         if (view.id==R.id.shoes){
             startActivity(Intent(this, Shoes::class.java))
+        }
+    }
+
+    fun onEmployee(view: View) {
+        if (view.id==R.id.Employee){
+            startActivity(Intent(this, Employee::class.java))
+        }
+    }
+
+    fun onUser(view: View) {
+        if(view.id==R.id.users){
+            startActivity(Intent(this, UserDetails::class.java))
         }
     }
 
