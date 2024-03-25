@@ -1,5 +1,6 @@
 package com.example.userinformation.user
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -59,6 +60,7 @@ class UserDetails : AppCompatActivity() {
 
         Log.d("Create", "User Created")
         call!!.enqueue(object :Callback<User?>{
+            @SuppressLint("SetTextI18n")
             override fun onResponse(call: Call<User?>, response: Response<User?>) {
 
                 val res =response.body()
@@ -66,12 +68,16 @@ class UserDetails : AppCompatActivity() {
                 if (res!=null){
 
 //                    Log.d("Success", "Response Pass")
-                    var resp = binding.userResponse.text.toString()
+//                    var resp = binding.userResponse.text.toString()
+//
+//                    val responseString ="Response Code: ${response.code()}\n" +
+//                            "Name : $name\n" +
+//                            "Job :$job"
+//                    resp=responseString
 
-                    val responseString ="Response Code: ${response.code()}\n" +
-                            "Name : $name\n" +
-                            "Job :$job"
-                    resp=responseString
+                    binding.userResponse.text="Response Code :${response.code()}\n" +
+                            "User Name :$name\n" +
+                            "User Role: $job"
                 }else{
                     Log.d("Not Response", "Not Response Pass!!")
                 }

@@ -8,7 +8,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.userinformation.customAdapter.CustomListView
 import com.example.userinformation.Groceries.Groceries
+import com.example.userinformation.InputField.Field
 import com.example.userinformation.R
 import com.example.userinformation.beauty.Beauty
 import com.example.userinformation.cloth.Cloth
@@ -17,6 +19,7 @@ import com.example.userinformation.electronics.Electronics
 import com.example.userinformation.employee.Employee
 import com.example.userinformation.home.Home
 import com.example.userinformation.pharmacy.Pharmacy
+import com.example.userinformation.productdata.Product
 import com.example.userinformation.shoes.Shoes
 //import com.example.userinformation.pharmacy.Pharmacy
 import com.example.userinformation.timepicker.TimePicker
@@ -140,6 +143,24 @@ class DashBoard : AppCompatActivity() {
     fun onUser(view: View) {
         if(view.id==R.id.users){
             startActivity(Intent(this, UserDetails::class.java))
+        }
+    }
+
+    fun onTextField(view: View) {
+        if(view.id==R.id.textField){
+            startActivity(Intent(this, Field::class.java))
+        }
+    }
+
+    fun onCustomAdaptor(view: View) {
+        if (view.id==R.id.customAdaptor){
+            startActivity(Intent(this, CustomListView::class.java))
+        }
+    }
+
+    fun onProduct(view: View) {
+        if (view.id==R.id.products){
+            startActivity(Intent(this, Product::class.java))
         }
     }
 

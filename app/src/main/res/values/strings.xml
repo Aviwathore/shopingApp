@@ -37,10 +37,10 @@
     <string name="select_image">Selected Image </string>
 
     <string-array name="Images">
-        <item>https://cdn.dummyjson.com/product-images/28/1.jpg</item>
-        <item>https://cdn.dummyjson.com/product-images/28/2.jpg</item>
-        <item>https://cdn.dummyjson.com/product-images/28/3.png</item>
-        <item>https://cdn.dummyjson.com/product-images/28/4.jpg</item>
+        <item>Img1</item>
+        <item>Img2</item>
+        <item>Img3</item>
+        <item>Img4</item>
     </string-array>
 
     <!--    employee spinner-->

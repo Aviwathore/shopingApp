@@ -15,6 +15,18 @@
         android:theme="@style/Theme.UserInformation"
         tools:targetApi="31">
         <activity
+            android:name=".productdata.Product"
+            android:exported="false" />
+        <activity
+            android:name=".customAdapter.singlePage.NewCustomListView"
+            android:exported="false" />
+        <activity
+            android:name=".customAdapter.CustomListView"
+            android:exported="false" />
+        <activity
+            android:name=".InputField.Field"
+            android:exported="false" />
+        <activity
             android:name=".user.UserDetails"
             android:exported="false" />
         <activity

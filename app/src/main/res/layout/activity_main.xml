@@ -78,6 +78,48 @@
             android:onClick="onUser"
             />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textField"
+            android:text="InputField"
+            android:textColor="#8BC34A"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="120sp"
+            android:onClick="onTextField"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/customAdaptor"
+            android:text="Custom"
+            android:textColor="#FF5722"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="35dp"
+            android:layout_marginStart="125sp"
+            android:onClick="onCustomAdaptor"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/products"
+            android:text="Product"
+            android:textColor="#009688"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="65dp"
+            android:layout_marginStart="125sp"
+            android:onClick="onProduct"
+            />
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/app_bar"
             style="@style/ThemeOverlay.MaterialComponents.Toolbar.Primary"
