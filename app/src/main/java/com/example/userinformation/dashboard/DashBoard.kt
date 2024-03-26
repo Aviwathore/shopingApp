@@ -12,8 +12,10 @@ import com.example.userinformation.customAdapter.CustomListView
 import com.example.userinformation.Groceries.Groceries
 import com.example.userinformation.InputField.Field
 import com.example.userinformation.R
+import com.example.userinformation.activityLifeCycle.MainActivity
 import com.example.userinformation.beauty.Beauty
 import com.example.userinformation.cloth.Cloth
+import com.example.userinformation.customViewForRecycleView.CARV
 import com.example.userinformation.databinding.ActivityMainBinding
 import com.example.userinformation.electronics.Electronics
 import com.example.userinformation.employee.Employee
@@ -21,7 +23,6 @@ import com.example.userinformation.home.Home
 import com.example.userinformation.pharmacy.Pharmacy
 import com.example.userinformation.productdata.Product
 import com.example.userinformation.shoes.Shoes
-//import com.example.userinformation.pharmacy.Pharmacy
 import com.example.userinformation.timepicker.TimePicker
 import com.example.userinformation.user.UserDetails
 import com.google.android.material.appbar.MaterialToolbar
@@ -161,6 +162,18 @@ class DashBoard : AppCompatActivity() {
     fun onProduct(view: View) {
         if (view.id==R.id.products){
             startActivity(Intent(this, Product::class.java))
+        }
+    }
+
+    fun onCARV(view: View) {
+        if (view.id==R.id.carv){
+            startActivity(Intent(this, CARV::class.java))
+        }
+    }
+
+    fun onUserInfo(view: View) {
+        if (view.id==R.id.user_info){
+            startActivity(Intent(this,MainActivity::class.java))
         }
     }
 
