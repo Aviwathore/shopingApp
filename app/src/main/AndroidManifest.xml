@@ -15,6 +15,18 @@
         android:theme="@style/Theme.UserInformation"
         tools:targetApi="31">
         <activity
+            android:name=".passDataFragmentToFragmentOnSingleActivity.SingleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activityToFragment.ActivityToFragment"
+            android:exported="false" />
+        <activity
+            android:name=".activityToFragment.MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".fragmentToActivity.FragmentToActivity"
+            android:exported="false" />
+        <activity
             android:name=".activityLifeCycle.MainActivity"
             android:exported="false" />
         <activity

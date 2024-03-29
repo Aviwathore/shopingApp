@@ -19,7 +19,9 @@ import com.example.userinformation.customViewForRecycleView.CARV
 import com.example.userinformation.databinding.ActivityMainBinding
 import com.example.userinformation.electronics.Electronics
 import com.example.userinformation.employee.Employee
+import com.example.userinformation.fragmentToActivity.FragmentToActivity
 import com.example.userinformation.home.Home
+import com.example.userinformation.passDataFragmentToFragmentOnSingleActivity.SingleActivity
 import com.example.userinformation.pharmacy.Pharmacy
 import com.example.userinformation.productdata.Product
 import com.example.userinformation.shoes.Shoes
@@ -176,5 +178,17 @@ class DashBoard : AppCompatActivity() {
             startActivity(Intent(this,MainActivity::class.java))
         }
     }
+
+    fun onFragmentToActivity(view: View) {
+        if (view.id==R.id.fragment){
+            startActivity(Intent(this, FragmentToActivity::class.java))
+        }
+    }
+
+   fun onFragmentToFragmentSingleActivity(view: View){
+       if (view.id==R.id.fragment_to_fragment_onSingle_Activity){
+           startActivity(Intent(this, SingleActivity::class.java))
+       }
+   }
 
 }

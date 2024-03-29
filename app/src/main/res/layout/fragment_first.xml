@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CCC7D0"
+    tools:context=".passDataFragmentToFragmentOnSingleActivity.FirstFragment"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fragment One"
+        android:textColor="#009688"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="100dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/id_fragment_first_text"
+        android:hint="Enter First Fragment Message"
+        android:layout_marginTop="100dp"
+        android:textColor="#E91E63"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_fragment_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:backgroundTint="#E91E63"
+        android:gravity="center"
+        android:text="SEND F2" />
+
+
+</LinearLayout>
