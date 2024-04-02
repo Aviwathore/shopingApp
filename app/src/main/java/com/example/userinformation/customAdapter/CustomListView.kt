@@ -2,12 +2,9 @@ package com.example.userinformation.customAdapter
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.R
-import com.example.userinformation.customAdapter.customAdapter.IconAdapter
+import com.example.userinformation.customAdapter.customAdapter.IconCustomAdapter
 import com.example.userinformation.customAdapter.modal.Icons
 import com.example.userinformation.customAdapter.singlePage.NewCustomListView
 import com.example.userinformation.databinding.ActivityCustomListViewBinding
@@ -44,7 +41,7 @@ class CustomListView : AppCompatActivity() {
         }
 
         binding.customListView.isClickable=true
-        binding.customListView.adapter = IconAdapter(this, iconList)
+        binding.customListView.adapter = IconCustomAdapter(this, iconList)
 
         binding.customListView.setOnItemClickListener { parent, view, position, id ->
 

@@ -46,6 +46,33 @@
     <!--    employee spinner-->
 
     <string name="emp_status">Status</string>
+    <string name="signn">Sign In</string>
+    <string name="create_new_acoount_here">create new acoount here</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="login">Login</string>
+    <string name="registration">Registration</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="Username">username</string>
+    <string name="email">Email</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="Female">\n</string>
+    <string name="female">Female</string>
+    <string name="cloth">Cloth</string>
+    <string name="fargment_to_activity">Fargment To Activity</string>
+    <string name="fragment_to_activity">fragment_to_activity</string>
+    <string name="fragment_to_activityy">Fragment To Activity</string>
+    <string name="activity_lifecycle">Activity LifeCycle</string>
+    <string name="custom_adaptor_for_recycler_view">Custom Adaptor For Recycler View</string>
+    <string name="shoes">Shoes</string>
+    <string name="employee_post">Employee(POST)</string>
+    <string name="user_post_json_obj">User (POST JSON Obj)</string>
+    <string name="inputfield">InputField</string>
+    <string name="product">Product</string>
+    <string name="custom_adaptor_for_list_view">Custom Adaptor For List View</string>
+    <string name="fragment_to_fragment_single_activity">Fragment To Fragment (Single Activity)</string>
+    <string name="layout">Layout</string>
 
     <string-array name="Status">
         <item>Success</item>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layout.LinearLayoutActivity"
+    android:orientation="vertical">
+
+<!--     weight is give for taking a same height and width for each component on screen-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textStyle="italic|bold"
+            android:textSize="29sp"
+            android:layout_weight="1" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2"
+            android:textSize="29sp"
+            android:textStyle="italic|bold"
+            android:layout_weight="1" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textStyle="italic|bold"
+            android:textSize="29sp"
+            android:layout_weight="2" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4"
+            android:textStyle="italic|bold"
+            android:textSize="29sp"
+            android:layout_weight="1" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+<!--        Theme.AppCompat.DayNight.NoActionBar-->
+<!--        need to use this for apply drawable style on diff. types of button -->
+<!--        app:shapeAppearanceOverlay="@style/custom_button"-->
+<!--        android:background="@drawable/button_layout"-->
+
+        <Button
+            style="@style/custom_button"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="b1" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_layout"
+            android:text="b2" />
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/custom_button"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="b3" />
+
+    </LinearLayout>
+
+<!--    if we want take text below the img then need to set orientation is vertical for both-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    <ImageView
+        android:id="@+id/img_1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/beauty"
+        android:contentDescription="TODO" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Beauty"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            android:textStyle="italic"
+            android:layout_marginStart="26dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/img_btn_1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/do_more"
+            android:scaleType="fitCenter"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:contentDescription="TODO" />
+
+    </LinearLayout>
+
+</LinearLayout>

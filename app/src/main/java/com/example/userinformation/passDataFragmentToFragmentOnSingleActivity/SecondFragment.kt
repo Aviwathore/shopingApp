@@ -24,6 +24,8 @@ class SecondFragment : Fragment() {
 
         return view
     }
-
+    fun displayReceivedData(data: String) {
+        textMessage.text = data
+    }
 
 }

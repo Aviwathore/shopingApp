@@ -15,6 +15,15 @@
         android:theme="@style/Theme.UserInformation"
         tools:targetApi="31">
         <activity
+            android:name=".layout.ConstraintLayout"
+            android:exported="false" />
+        <activity
+            android:name=".layout.RelativeLayout"
+            android:exported="false" />
+        <activity
+            android:name=".layout.LinearLayoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".passDataFragmentToFragmentOnSingleActivity.SingleActivity"
             android:exported="false" />
         <activity
@@ -27,7 +36,7 @@
             android:name=".fragmentToActivity.FragmentToActivity"
             android:exported="false" />
         <activity
-            android:name=".activityLifeCycle.MainActivity"
+            android:name=".activityLifeCycle.LifeCycleOFActivity"
             android:exported="false" />
         <activity
             android:name=".recycleView.UserInfo"
@@ -36,7 +45,7 @@
             android:name=".customViewForRecycleView.CARV"
             android:exported="false" />
         <activity
-            android:name=".productdata.Product"
+            android:name=".productdata.ProductActivity"
             android:exported="false" />
         <activity
             android:name=".customAdapter.singlePage.NewCustomListView"
@@ -45,7 +54,7 @@
             android:name=".customAdapter.CustomListView"
             android:exported="false" />
         <activity
-            android:name=".InputField.Field"
+            android:name=".InputField.InputFieldActivity"
             android:exported="false" />
         <activity
             android:name=".user.UserDetails"
@@ -57,7 +66,7 @@
             android:name=".shoes.Shoes"
             android:exported="false" />
         <activity
-            android:name=".timepicker.TimePicker"
+            android:name=".timepicker.TimePickerActivity"
             android:exported="false" />
         <activity
             android:name=".Groceries.Groceries"
@@ -72,19 +81,19 @@
             android:name=".home.Home"
             android:exported="false" />
         <activity
-            android:name=".electronics.Electronics"
+            android:name=".electronics.ElectronicsActivity"
             android:exported="false" />
         <activity
             android:name=".cloth.Cloth"
             android:exported="false" />
         <activity
-            android:name=".userdetails.Registration"
+            android:name=".userdetails.RegistrationActivity"
             android:exported="false" />
         <activity
-            android:name=".dashboard.DashBoard"
+            android:name=".dashboard.DashBoardActivity"
             android:exported="false" />
         <activity
-            android:name=".userdetails.Login"
+            android:name=".userdetails.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

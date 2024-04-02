@@ -2,15 +2,12 @@ package com.example.userinformation.passDataFragmentToFragmentOnSingleActivity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivitySingleBinding
-import com.example.userinformation.passDataFragmentToFragmentOnSingleActivity.fragmentInterface.PassDataFragmentToFragment
+import com.example.userinformation.passDataFragmentToFragmentOnSingleActivity.fragmentInterface.PassDataFragmentToFragmentActivity
 
-class SingleActivity : AppCompatActivity(), PassDataFragmentToFragment {
+class SingleActivity : AppCompatActivity(), PassDataFragmentToFragmentActivity {
     private lateinit var binding: ActivitySingleBinding
     @SuppressLint("CommitTransaction")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,11 +32,13 @@ class SingleActivity : AppCompatActivity(), PassDataFragmentToFragment {
         val bundle = Bundle()
 
 //        set data using argument
-
+        bundle.putString("textMessage", data)
 //        pass data from firstFragment to SecondFragment
 
         val fragment2 = SecondFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.container, fragment2).commit()
+        fragment2.arguments=bundle
+        supportFragmentManager.beginTransaction().replace(R.id.container, fragment2).addToBackStack(null).commit()
+
 
     }
 }

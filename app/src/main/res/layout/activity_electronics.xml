@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".electronics.Electronics">
+    tools:context=".electronics.ElectronicsActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

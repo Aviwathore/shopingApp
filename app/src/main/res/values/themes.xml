@@ -4,6 +4,15 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+    
+<!--    <style name="Base.Theme.UserInformation" parent="Theme.AppCompat.DayNight.NoActionBar" >-->
+
+<!--    </style>-->
+    <style name="custom_button" parent="Theme.AppCompat.DayNight.NoActionBar">
+        <item name="android:backgroundTint">@null</item>
+        <item name="android:background">@drawable/button_layout</item>
+        <item name="android:textColor">@color/green</item>
+    </style>
 
     <style name="Theme.UserInformation" parent="Base.Theme.UserInformation" />
 
