@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.Groceries.GroceriesActivity
@@ -14,7 +15,9 @@ import com.example.userinformation.R
 import com.example.userinformation.activityLifeCycle.LifeCycleOFActivity
 import com.example.userinformation.beauty.Beauty
 import com.example.userinformation.cloth.Cloth
-import com.example.userinformation.customViewForRecycleView.CARV
+import com.example.userinformation.customViewForRecycleView.CARVActivity
+import com.example.userinformation.customdialogbox.CustomDialogBoxActivity
+import com.example.userinformation.dashboard.service.ServiceExample
 import com.example.userinformation.databinding.ActivityMainBinding
 import com.example.userinformation.electronics.ElectronicsActivity
 import com.example.userinformation.employee.Employee
@@ -23,7 +26,7 @@ import com.example.userinformation.home.Home
 import com.example.userinformation.layout.LinearLayoutActivity
 import com.example.userinformation.passDataFragmentToFragmentOnSingleActivity.SingleActivity
 import com.example.userinformation.pharmacy.Pharmacy
-import com.example.userinformation.productdata.ProductActivity
+import com.example.userinformation.intent.IntentActivity
 import com.example.userinformation.shoes.Shoes
 import com.example.userinformation.timepicker.TimePickerActivity
 import com.example.userinformation.user.UserDetails
@@ -41,6 +44,7 @@ class DashBoardActivity : AppCompatActivity() {
 
         binding=ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         topAppBar= findViewById(R.id.app_bar)
 
@@ -73,6 +77,9 @@ class DashBoardActivity : AppCompatActivity() {
             }
 
         }
+
+        val intent =Intent(this, ServiceExample::class.java)
+        ContextCompat.startForegroundService(this, intent)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -119,9 +126,9 @@ class DashBoardActivity : AppCompatActivity() {
         }
     }
     fun onGroceries(view: View) {
-        if (view.id== R.id.btn_groceries){
-            startActivity(Intent(this, GroceriesActivity::class.java))
-        }
+       if (view.id== R.id.btn_groceries){
+           startActivity(Intent(this, GroceriesActivity::class.java))
+       }
     }
 
     fun onPickMe(view: View) {
@@ -163,13 +170,13 @@ class DashBoardActivity : AppCompatActivity() {
 
     fun onProduct(view: View) {
         if (view.id==R.id.products){
-            startActivity(Intent(this, ProductActivity::class.java))
+            startActivity(Intent(this, IntentActivity::class.java))
         }
     }
 
     fun onCARV(view: View) {
         if (view.id==R.id.carv){
-            startActivity(Intent(this, CARV::class.java))
+            startActivity(Intent(this, CARVActivity::class.java))
         }
     }
 
@@ -195,5 +202,13 @@ class DashBoardActivity : AppCompatActivity() {
             startActivity(Intent(this,LinearLayoutActivity::class.java))
         }
     }
+
+    fun onCustomDialog(view: View){
+        if (view.id==R.id.custom_dialog){
+            startActivity(Intent(this, CustomDialogBoxActivity::class.java))
+        }
+    }
+
+
 
 }

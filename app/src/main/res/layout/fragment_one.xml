@@ -5,11 +5,11 @@
     android:layout_height="match_parent"
     tools:context=".fragmentToActivity.FragmentOne">
 
+<!--    android:text="TEXT1 "-->
    <TextView
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:id="@+id/fragmentTextOne"
-       android:text="TEXT1 "
        android:layout_gravity="center"
        android:gravity="center"
        android:textColor="#009688"
@@ -20,7 +20,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/fragmentTextTwo"
-        android:text="TEXT2"
         android:gravity="center"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"

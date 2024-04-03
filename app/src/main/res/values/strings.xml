@@ -73,6 +73,33 @@
     <string name="custom_adaptor_for_list_view">Custom Adaptor For List View</string>
     <string name="fragment_to_fragment_single_activity">Fragment To Fragment (Single Activity)</string>
     <string name="layout">Layout</string>
+    <string name="groceries_section">Groceries Section</string>
+    <string name="enter_user_name">Enter User name</string>
+    <string name="enter_user_job">Enter user job</string>
+    <string name="send_data">Send Data</string>
+    <string name="response">Response :</string>
+    <string name="user_details">User Details</string>
+    <string name="enter_customer_name">Enter Customer Name</string>
+    <string name="enter_customer_contact">Enter Customer Contact</string>
+    <string name="submit">SUBMIT</string>
+    <string name="open_webpage">Open WebPage</string>
+    <string name="intent_operations">Intent Operations</string>
+    <string name="open_call">open call</string>
+    <string name="open_camera">open camera</string>
+    <string name="intent">Intent</string>
+    <string name="service">Service</string>
+    <string name="excellent">Excellent</string>
+    <string name="verygood">VeryGood</string>
+    <string name="best">Best</string>
+    <string name="good">Good</string>
+    <string name="pleace_give_a_ratting_to_this_app">Pleace Give A Ratting To This App</string>
+    <string name="please_give_a_ratting_to_this_ap">\n</string>
+    <string name="please_give_a_ratting_to_this_app">please_give_a_ratting_to_this_app</string>
+    <string name="please_give_the_ratting">Please Give The Ratting</string>
+    <string name="submit_dialog">Submit Dialog</string>
+    <string name="cancel">Cancel</string>
+    <string name="text_view">Text View</string>
+    <string name="custom_dialog_box">Custom Dialog Box</string>
 
     <string-array name="Status">
         <item>Success</item>

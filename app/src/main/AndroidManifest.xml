@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,12 @@
         android:theme="@style/Theme.UserInformation"
         tools:targetApi="31">
         <activity
+            android:name=".customdialogbox.CustomDialogBoxActivity"
+            android:exported="false" />
+        <activity
+            android:name=".customViewForRecycleView.fragment.CustomRecyclerViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".layout.ConstraintLayout"
             android:exported="false" />
         <activity
@@ -25,27 +32,23 @@
             android:exported="false" />
         <activity
             android:name=".passDataFragmentToFragmentOnSingleActivity.SingleActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activityToFragment.ActivityToFragment"
-            android:exported="false" />
-        <activity
-            android:name=".activityToFragment.MainActivity"
-            android:exported="false" />
+            android:exported="false" /> <!-- android:name=".activityToFragment.ActivityToFragment" -->
+        <!-- <activity -->
+        <!-- android:name=".activityToFragment.MainActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".fragmentToActivity.FragmentToActivity"
             android:exported="false" />
         <activity
             android:name=".activityLifeCycle.LifeCycleOFActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".recycleView.UserInfo" -->
+        <!-- android:exported="false" /> -->
+        <activity
+            android:name=".customViewForRecycleView.CARVActivity"
             android:exported="false" />
         <activity
-            android:name=".recycleView.UserInfo"
-            android:exported="false" />
-        <activity
-            android:name=".customViewForRecycleView.CARV"
-            android:exported="false" />
-        <activity
-            android:name=".productdata.ProductActivity"
+            android:name=".intent.IntentActivity"
             android:exported="false" />
         <activity
             android:name=".customAdapter.singlePage.NewCustomListView"
@@ -69,7 +72,7 @@
             android:name=".timepicker.TimePickerActivity"
             android:exported="false" />
         <activity
-            android:name=".Groceries.Groceries"
+            android:name=".Groceries.GroceriesActivity"
             android:exported="false" />
         <activity
             android:name=".pharmacy.Pharmacy"

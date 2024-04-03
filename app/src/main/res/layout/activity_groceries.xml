@@ -5,14 +5,14 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Groceries.Groceries"
+    tools:context=".Groceries.GroceriesActivity"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Groceries Section"
+        android:text="@string/groceries_section"
         android:textSize="25sp"
         android:textColor="#E91E63"
         android:textStyle="bold"
@@ -23,7 +23,7 @@
         android:id="@+id/user_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter User name"
+        android:hint="@string/enter_user_name"
         android:layout_marginTop="70dp"
         />
 
@@ -31,7 +31,7 @@
         android:id="@+id/j_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter user job"
+        android:hint="@string/enter_user_job"
         android:layout_marginTop="140dp"
         />
 
@@ -40,8 +40,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="210dp"
-        android:layout_marginStart="160dp"
-        android:text="Send Data" />
+        android:layout_marginStart="145dp"
+        android:text="@string/send_data" />
 
     <TextView
         android:id="@+id/response_id"
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="270dp"
         android:gravity="center_horizontal"
-        android:text="Response : "
+        android:text="@string/response"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold" />

@@ -491,7 +491,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
-                            android:text="@string/product"
+                            android:text="@string/intent"
                             android:layout_gravity="center"
                             android:textSize="16sp"
                             android:textStyle="bold"
@@ -578,8 +578,8 @@
 <!--                    <com.google.android.material.card.MaterialCardView-->
 <!--                        android:layout_width="125dp"-->
 <!--                        android:layout_height="70dp"-->
-<!--                        android:id="@+id/customAdaptor"-->
-<!--                        android:onClick="onCustomAdaptor"-->
+<!--                        android:id="@+id/services"-->
+<!--                        android:onClick="onServices"-->
 <!--                        app:strokeWidth="1dp"-->
 <!--                        app:strokeColor="@color/black"-->
 <!--                        app:cardCornerRadius="15dp"-->
@@ -591,12 +591,36 @@
 <!--                            android:layout_width="wrap_content"-->
 <!--                            android:layout_height="wrap_content"-->
 <!--                            android:gravity="center_horizontal"-->
-<!--                            android:text="@string/custom_adaptor_for_list_view"-->
+<!--                            android:text="@string/service"-->
 <!--                            android:layout_gravity="center"-->
 <!--                            android:textStyle="bold"-->
 <!--                            android:padding="5dp"/>-->
 
 <!--                    </com.google.android.material.card.MaterialCardView>-->
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="125dp"
+                        android:layout_height="70dp"
+                        android:id="@+id/custom_dialog"
+                        android:onClick="onCustomDialog"
+                        app:strokeWidth="1dp"
+                        app:strokeColor="@color/black"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="15dp"
+                        app:cardBackgroundColor="@color/white"
+                        android:layout_marginStart="10dp" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:text="@string/custom_dialog_box"
+                            android:layout_gravity="center"
+                            android:textStyle="bold"
+                            android:padding="5dp"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
                 </LinearLayout>
 
             </LinearLayout>

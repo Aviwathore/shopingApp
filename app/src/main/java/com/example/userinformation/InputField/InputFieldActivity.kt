@@ -7,17 +7,29 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.R
+import com.example.userinformation.customdialogbox.MyFragment
 import com.example.userinformation.databinding.ActivityFieldBinding
 
 class InputFieldActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFieldBinding
 
+    private var fragment = MyFragment.getInstance()
+
     var result = ArrayList<CheckBox>()
+    override fun onStop() {
+        super.onStop()
+
+        fragment.dismissDialog()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding= ActivityFieldBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        fragment.showDialog(supportFragmentManager, "mydialogbox")
+//        fragment.dismissDialog()
 
         // checkbox code
             binding.idjava.setOnCheckedChangeListener{buttonView, isChecked ->

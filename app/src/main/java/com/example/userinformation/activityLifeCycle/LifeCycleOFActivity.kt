@@ -5,12 +5,18 @@ import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.userinformation.activityLifeCycle.customdialogbox.MyFragmentClass
 
 class LifeCycleOFActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
 
         Toast.makeText(this, "I am onCreate", Toast.LENGTH_LONG).show()
         Log.d("TAG"," RUN ")
+
+        val sm = supportFragmentManager.beginTransaction()
+        val myFragment = MyFragmentClass()
+
+        myFragment.show(sm, "Custom Dialog Box Fragment")
 
     }
 

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+       android:text="@string/please_give_the_ratting"
+        android:textStyle="bold"
+        android:textColor="@color/crimson"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginTop="50dp"/>
+
+        <RadioGroup
+            android:id="@+id/radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:layout_centerHorizontal="true">
+
+            <RadioButton
+                android:id="@+id/Excellent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/excellent"
+                android:textStyle="bold"
+                android:contextClickable="false"/>
+
+            <RadioButton
+                android:id="@+id/best"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/best"
+                android:textStyle="bold"
+                android:contextClickable="false"/>
+
+            <RadioButton
+                android:id="@+id/very_good"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/verygood"
+                android:textStyle="bold"
+                android:contextClickable="false"/>
+
+
+            <RadioButton
+                android:id="@+id/Good"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/good"
+                android:textStyle="bold"
+                android:contextClickable="false"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_submit_dialog"
+                android:text="@string/submit_dialog"
+                android:backgroundTint="#33A937"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_cancel_dialog"
+                android:text="@string/cancel"
+                android:backgroundTint="#F40606"/>
+
+
+        </RadioGroup>
+
+
+</RelativeLayout>
