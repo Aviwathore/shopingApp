@@ -5,36 +5,64 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="34dp"
+    android:layout_marginTop="50dp"
+    android:layout_marginEnd="34dp"
     tools:context=".customAdapter.singlePage.NewCustomListView">
 
     <ImageView
+        android:id="@+id/profile_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp" />
+
+    <TextView
+        android:id="@+id/tx_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profile_img"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="140dp"
-        android:id="@+id/profile_img" />
+        android:layout_marginStart="120dp"
+        android:textColor="#E91E63"
+        android:textSize="18sp"
+        android:text="@string/id"
+        android:textStyle="bold" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
         android:id="@+id/newName"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="#E91E63"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="140dp"
-        />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/profile_img"
+        android:layout_marginTop="20dp"
         android:gravity="center"
-        android:id="@+id/newMessage"
-        android:textStyle="bold"
-        android:textSize="18sp"
         android:textColor="#E91E63"
-        android:layout_marginLeft="160dp"
-        android:layout_marginTop="160dp"
-        />
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tx_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newName"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="120dp"
+        android:textColor="#E91E63"
+        android:text="@string/message"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/newMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="217dp"
+        android:layout_below="@+id/newName"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textColor="#E91E63"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
 </RelativeLayout>

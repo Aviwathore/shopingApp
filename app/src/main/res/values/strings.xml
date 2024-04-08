@@ -100,9 +100,70 @@
     <string name="cancel">Cancel</string>
     <string name="text_view">Text View</string>
     <string name="custom_dialog_box">Custom Dialog Box</string>
+    <string name="fragment_second">Fragment Second</string>
+    <string name="f_to_f">F to F</string>
+    <string name="a">Activity LifeCycle</string>
+    <string name="adaptor_rv">Adaptor RV</string>
+    <string name="post_api">Post Api</string>
+    <string name="data_transfer_jo">Data Transfer(JO)</string>
+    <string name="intent_operation">Intent Operations</string>
+    <string name="a_to_f">A to F</string>
+    <string name="custom_dialog">Custom Dialog</string>
+    <string name="dtjo">DTJO</string>
+    <string name="a_lifecycle">A Lifecycle</string>
+    <string name="in_operations">In.Operations</string>
+    <string name="fragment_one">Fragment One</string>
+    <string name="enter_first_fragment_message">Enter First Fragment Message</string>
+    <string name="send_f2">SEND F2</string>
+    <string name="enter_message">Enter Message</string>
+    <string name="employee_details">Employee Details</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_salary">Enter Salary</string>
+    <string name="enter_age">Enter Age</string>
+    <string name="respons">Response :</string>
+    <string name="user_detail">User Details</string>
+    <string name="enter_your_job">Enter Your Job</string>
+    <string name="android">Android</string>
+    <string name="development">Development</string>
+    <string name="transfer_data">Transfer Data</string>
+    <string name="ok">OK</string>
+    <string name="okay">okay</string>
+    <string name="enter_user">Enter user name</string>
+    <string name="id">Id :</string>
+    <string name="message">Message</string>
+    <string name="delete_item">delete item</string>
+    <string name="delete">Delete</string>
+    <string name="user_id">User Id:</string>
+    <string name="i">Id:</string>
+    <string name="title">Title:</string>
+    <string name="completed">Completed:</string>
+    <string name="user_">User Id:</string>
+    <string name="contact">Contact</string>
+    <string name="invalid_form">Invalid Form</string>
+    <string name="please_enter_correct_details">Please Enter Correct Details</string>
+    <string name="confirm_your_details">Confirm Your Details</string>
+    <string name="please_confirm_your_detail_before_submit_form">PLease Confirm Your Detail Before Submit Form.</string>
+    <string name="please_confirm_your_details_before_submit_the_form">Please Confirm Your Details Before Submit The Form</string>
+    <string name="edit">Edit</string>
 
     <string-array name="Status">
         <item>Success</item>
         <item>Failure</item>
     </string-array>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
 </resources>

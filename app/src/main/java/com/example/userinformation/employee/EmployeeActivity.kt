@@ -33,7 +33,7 @@ class Employee : AppCompatActivity() {
             val name = binding.empName.text.toString()
             val salary = binding.empSalary.text.toString()
             val age = binding.empAge.text.toString()
-            val st1 = binding.spinnerId.selectedItemId.toString()
+//            val st1 = binding.spinnerId.selectedItemId.toString()
             val st =resources.getStringArray(R.array.Status)
             val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, st)
             adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)

@@ -2,28 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#CCC7D0"
+    android:layout_height="wrap_content"
     tools:context=".passDataFragmentToFragmentOnSingleActivity.FirstFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_marginTop="34dp"
+    android:layout_marginStart="34dp"
+    android:layout_marginEnd="34dp">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Fragment One"
-        android:textColor="#009688"
-        android:textSize="25sp"
+        android:text="@string/fragment_one"
+        android:textColor="@color/crimson"
+        android:textSize="22sp"
         android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginTop="100dp" />
+        android:gravity="center" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/id_fragment_first_text"
-        android:hint="Enter First Fragment Message"
-        android:layout_marginTop="100dp"
-        android:textColor="#E91E63"
+        android:hint="@string/enter_message"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -32,9 +34,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
-        android:background="@drawable/btn_bg"
+        android:background="@drawable/btn_white"
+        android:textColor="@color/white"
         android:gravity="center"
-        android:text="SEND F2" />
+        android:text="@string/send_f2" />
 
 
 </LinearLayout>

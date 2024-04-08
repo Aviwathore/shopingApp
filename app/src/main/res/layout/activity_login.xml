@@ -42,7 +42,7 @@
         android:layout_below="@+id/img_login"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
-        android:textStyle="italic" />
+        android:textStyle="normal" />
 
     <EditText
         android:layout_width="match_parent"
@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/create_new_acoount_here"
-        android:textColor="@color/green"
+        android:textColor="@color/crimson"
         android:id="@+id/text1"
         android:layout_below="@+id/loginbtn"
         android:layout_marginTop="10dp"

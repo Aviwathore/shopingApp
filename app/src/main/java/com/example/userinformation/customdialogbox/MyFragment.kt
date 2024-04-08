@@ -73,6 +73,7 @@ class MyFragment private constructor():DialogFragment() {
 
         cancelButton.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
+                Toast.makeText(context, "Terminate", Toast.LENGTH_SHORT).show()
                 dismiss()
             }
         })

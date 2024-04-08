@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.userinformation.R
-import com.example.userinformation.home.recycleviewapi.adapter.HomeAdaptor
 
-class BeautyAdaptor (private val beautyList: ArrayList<String>):RecyclerView.Adapter<BeautyAdaptor.ViewHolder>() {
+class BeautyAdaptor(private val beautyList: ArrayList<String>,
+                    private val onItemClick: (String) -> Unit ):RecyclerView.Adapter<BeautyAdaptor.ViewHolder>() {
     class ViewHolder(view : View): RecyclerView.ViewHolder(view) {
         val user: TextView
 
         init {
-            user=view.findViewById(R.id.userId)
+            user=view.findViewById(R.id.user)
         }
     }
 
@@ -27,6 +27,9 @@ class BeautyAdaptor (private val beautyList: ArrayList<String>):RecyclerView.Ada
         val recycle=beautyList[position]
 
         holder.user.text= recycle.toString()
+
+        val beautyItem = beautyList[position]
+        holder.itemView.setOnClickListener { onItemClick(recycle) }
     }
 
     override fun getItemCount(): Int {

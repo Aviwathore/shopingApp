@@ -3,6 +3,7 @@ package com.example.userinformation.passDataFragmentToFragmentOnSingleActivity
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,7 +35,9 @@ class FirstFragment : Fragment() {
 
     button.setOnClickListener {
         val data = messageEdit.text.toString().trim()
+        Log.d("data", "yesss")
         passDataListener.passData(data)
+        Log.d("passdata","yesss")
     }
 //        return binding.root
         return view
@@ -44,6 +47,7 @@ class FirstFragment : Fragment() {
         super.onAttach(context)
         if (context is PassDataFragmentToFragmentActivity) {
             passDataListener = context
+            Log.d("attach", "yess")  // done
         } else {
             throw ClassCastException("$context must implement PassDataFragmentToFragment")
         }

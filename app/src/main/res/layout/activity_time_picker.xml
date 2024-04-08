@@ -4,36 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".timepicker.TimePickerActivity">
 
     <TextView
-        android:layout_width="match_parent"
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/time_picker_dialog"
         android:textSize="25sp"
         android:textStyle="bold"
         android:textColor="#D81383"
-        android:gravity="center"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="150dp" />
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/time"
         android:id="@+id/selectTime"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#D81383"
-        android:gravity="center"
-        android:layout_marginTop="200dp" />
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text2" />
 
-    <com.google.android.material.button.MaterialButton
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/pickme"
+        android:background="@drawable/btn_white"
         android:gravity="center"
-        android:layout_marginTop="250dp"
-        android:layout_marginStart="140dp"
+        android:textColor="@color/crimson"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/selectTime"
         android:text="@string/pick_me"
         />
 

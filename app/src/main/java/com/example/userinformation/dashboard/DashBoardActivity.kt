@@ -138,29 +138,29 @@ class DashBoardActivity : AppCompatActivity() {
         }
     }
 
-    fun onShoes(view: View) {
-        if (view.id==R.id.shoes){
-            startActivity(Intent(this, Shoes::class.java))
-        }
-    }
+//    fun onShoes(view: View) {
+//        if (view.id==R.id.shoes){
+//            startActivity(Intent(this, Shoes::class.java))
+//        }
+//    }
 
-    fun onEmployee(view: View) {
-        if (view.id==R.id.Employee){
-            startActivity(Intent(this, Employee::class.java))
-        }
-    }
+//    fun onEmployee(view: View) {
+//        if (view.id==R.id.Employee){
+//            startActivity(Intent(this, Employee::class.java))
+//        }
+//    }
 
-    fun onUser(view: View) {
-        if(view.id==R.id.users){
-            startActivity(Intent(this, UserDetails::class.java))
-        }
-    }
+//    fun onUser(view: View) {
+//        if(view.id==R.id.users){
+//            startActivity(Intent(this, UserDetails::class.java))
+//        }
+//    }
 
-    fun onTextField(view: View) {
-        if(view.id==R.id.textField){
-            startActivity(Intent(this, InputFieldActivity::class.java))
-        }
-    }
+//    fun onTextField(view: View) {
+//        if(view.id==R.id.textField){
+//            startActivity(Intent(this, InputFieldActivity::class.java))
+//        }
+//    }
 
     fun onCustomAdaptor(view: View) {
         if (view.id==R.id.customAdaptor){
@@ -192,16 +192,16 @@ class DashBoardActivity : AppCompatActivity() {
         }
     }
 
-   fun onFragmentToFragmentSingleActivity(view: View){
-       if (view.id==R.id.fragment_to_fragment_onSingle_Activity){
-           startActivity(Intent(this, SingleActivity::class.java))
-       }
-   }
-    fun onLayout(view: View){
-        if (view.id==R.id.layout_id){
-            startActivity(Intent(this,LinearLayoutActivity::class.java))
-        }
-    }
+//   fun onFragmentToFragmentSingleActivity(view: View){
+//       if (view.id==R.id.fragment_to_fragment_onSingle_Activity){
+//           startActivity(Intent(this, SingleActivity::class.java))
+//       }
+//   }
+//    fun onLayout(view: View){
+//        if (view.id==R.id.layout_id){
+//            startActivity(Intent(this,LinearLayoutActivity::class.java))
+//        }
+//    }
 
     fun onCustomDialog(view: View){
         if (view.id==R.id.custom_dialog){

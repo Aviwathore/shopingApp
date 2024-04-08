@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.R
@@ -15,7 +16,7 @@ import com.google.android.material.button.MaterialButton
 
 class TimePickerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTimePickerBinding
-    private lateinit var pickTime: MaterialButton
+    private lateinit var pickTime: AppCompatButton
     private lateinit var selectTime: TextView
 
     @SuppressLint("MissingInflatedId")

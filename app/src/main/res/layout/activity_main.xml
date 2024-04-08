@@ -55,36 +55,42 @@
                 android:layout_height="100dp"
                 android:layout_marginStart="200dp"
                 android:background="@color/white"
-                android:src="@drawable/amazon_logo" />
+                android:src="@drawable/amazon_logo"
+                android:contentDescription="TODO" />
 
         </RelativeLayout>
 
 
         <!--        cardView-->
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="180dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btnCloths"
-                    android:layout_width="170dp"
-                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="4dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onCloth"
-                    android:layout_marginStart="4dp"
                     app:cardCornerRadius="25dp"
-                    app:cardElevation="10dp">
+                    app:cardElevation="10dp"
+                    android:layout_weight="1">
 
                     <ImageView
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="TODO"
                         android:scaleType="fitStart"
@@ -95,11 +101,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
-                        android:fontFamily="sans-serif"
+                        android:layout_marginTop="40dp"
                         android:text="@string/cloth"
-                        android:textSize="22sp"
-                        android:textStyle="italic|bold" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -107,16 +112,17 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_ele"
-                    android:layout_width="170dp"
-                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
                     android:layout_marginStart="10dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onElectronics"
-                    app:cardCornerRadius="25dp">
+                    app:cardCornerRadius="25dp"
+                    android:layout_weight="1">
 
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:contentDescription="TODO"
@@ -128,11 +134,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
-                        android:fontFamily="sans-serif"
+                        android:layout_marginTop="40dp"
                         android:text="@string/electronic"
-                        android:textSize="22sp"
-                        android:textStyle="italic|bold" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -140,9 +145,11 @@
 
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="horizontal"
                 tools:ignore="UselessParent">
 
@@ -151,17 +158,19 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_home"
-                    android:layout_width="170dp"
-                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginStart="4dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onHome"
                     app:cardCornerRadius="25dp"
-                    android:layout_marginStart="4dp"
-                    app:cardElevation="10dp">
+                    app:cardElevation="10dp"
+                    android:layout_weight="1">
 
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="10dp"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="TODO"
                         android:scaleType="fitStart"
@@ -172,11 +181,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="40dp"
                         android:fontFamily="sans-serif"
                         android:text="@string/home"
-                        android:textSize="22sp"
-                        android:textStyle="italic|bold" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -184,16 +193,17 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_beauty"
-                    android:layout_width="170dp"
-                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
                     android:layout_marginStart="10dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onBeauty"
-                    app:cardCornerRadius="25dp">
+                    app:cardCornerRadius="25dp"
+                    android:layout_weight="1">
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="80dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:contentDescription="TODO"
@@ -205,37 +215,40 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="40dp"
                         android:fontFamily="sans-serif"
                         android:text="@string/beauty"
-                        android:textSize="22sp"
-                        android:textStyle="italic|bold" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                 </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:orientation="horizontal">
 
                 <!--                app:cardElevation="30dp"-->
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_groceries"
-                    android:layout_width="170dp"
-                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
                     android:layout_marginStart="4dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onGroceries"
                     app:cardCornerRadius="25dp"
-                    app:cardElevation="10dp">
+                    app:cardElevation="10dp"
+                    android:layout_weight="1">
 
                     <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:contentDescription="TODO"
@@ -247,26 +260,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="40dp"
                         android:fontFamily="sans-serif"
                         android:text="@string/groceries"
-                        android:textSize="22sp"
-                        android:textStyle="italic|bold" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/btn_pharmacy"
-                    android:layout_width="170dp"
-                    android:layout_height="150dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
                     android:layout_marginStart="10dp"
                     android:backgroundTint="@color/white"
                     android:onClick="onPharmacy"
-                    app:cardCornerRadius="25dp">
+                    app:cardCornerRadius="25dp"
+                    android:layout_weight="1">
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="80dp"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
                         android:contentDescription="TODO"
@@ -278,11 +292,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="40dp"
                         android:fontFamily="sans-serif"
                         android:text="@string/pharmacy"
-                        android:textSize="22sp"
-                        android:textStyle="italic|bold" />
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
 
                 </com.google.android.material.card.MaterialCardView>
 
@@ -291,339 +305,247 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_marginTop="10dp"
-                    android:background="#ED4C83"
+                    android:orientation="horizontal"
                     android:padding="5dp">
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="104dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/fragment"
-                        android:onClick="onFragmentToActivity"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="@color/black"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="10dp"
-                        app:cardBackgroundColor="@color/white">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/fragment_to_activityy"
-                            android:gravity="center_horizontal"
-                            android:layout_marginTop="15dp"
-                            android:textStyle="bold" />
-
-                    </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="104dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/carv"
-                        android:onClick="onCARV"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="@color/black"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="15dp"
-                        app:cardBackgroundColor="@color/white"
-                        android:layout_marginStart="10dp" >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="@string/custom_adaptor_for_recycler_view"
-                           android:layout_gravity="center"
-                            android:textStyle="bold"
-                            android:padding="5dp"/>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="104dp"
-                        android:layout_height="70dp"
                         android:id="@+id/user_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="4dp"
+                        android:backgroundTint="@color/white"
                         android:onClick="onUserInfo"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="@color/black"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="15dp"
-                        app:cardBackgroundColor="@color/white"
-                        android:layout_marginStart="10dp" >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="@string/activity_lifecycle"
-                            android:layout_gravity="center"
-                            android:textStyle="bold"
-                            android:padding="5dp"/>
-
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    android:background="#ED4C83"
-                    android:padding="5dp">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="104dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/shoes"
-                        android:onClick="onShoes"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="@color/black"
-                        app:cardCornerRadius="15dp"
+                        app:cardCornerRadius="25dp"
                         app:cardElevation="10dp"
-                        app:cardBackgroundColor="@color/white">
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:contentDescription="TODO"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/elect" />
 
                         <TextView
+                            android:id="@+id/a_lifecycle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/shoes"
                             android:layout_gravity="center"
-                            android:gravity="center_horizontal"
-                            android:textSize="16sp"
+                            android:layout_marginTop="40dp"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/a_lifecycle"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="104dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/Employee"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="@color/black"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="15dp"
-                        android:onClick="onEmployee"
-                        app:cardBackgroundColor="@color/white"
-                        android:layout_marginStart="10dp" >
+                        android:id="@+id/carv"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="10dp"
+                        android:backgroundTint="@color/white"
+                        android:onClick="onCARV"
+                        app:cardCornerRadius="25dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:contentDescription="TODO"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/cloth" />
 
                         <TextView
+                            android:id="@+id/txt_carv1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="@string/employee_post"
                             android:layout_gravity="center"
-                            android:textStyle="bold"
-                            android:padding="5dp"/>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="104dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/users"
-                        app:strokeWidth="1dp"
-                        android:onClick="onUser"
-                        app:strokeColor="@color/black"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="15dp"
-                        app:cardBackgroundColor="@color/white"
-                        android:layout_marginStart="10dp" >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="@string/user_post_json_obj"
-                            android:layout_gravity="center"
-                            android:textStyle="bold"
-                            android:padding="5dp"/>
-
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    android:background="#ED4C83"
-                    android:padding="5dp">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="104dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/textField"
-                        android:onClick="onTextField"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="@color/black"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="10dp"
-                        app:cardBackgroundColor="@color/white">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/inputfield"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:textSize="16sp"
+                            android:layout_marginTop="40dp"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/adaptor_rv"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
                     </com.google.android.material.card.MaterialCardView>
 
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="104dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/products"
-                        app:strokeWidth="1dp"
-                        android:onClick="onProduct"
-                        app:strokeColor="@color/black"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="15dp"
-                        app:cardBackgroundColor="@color/white"
-                        android:layout_marginStart="10dp" >
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="@string/intent"
-                            android:layout_gravity="center"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:padding="5dp"/>
+                </LinearLayout>
 
-                    </com.google.android.material.card.MaterialCardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="104dp"
-                        android:layout_height="70dp"
                         android:id="@+id/customAdaptor"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="4dp"
+                        android:backgroundTint="@color/white"
                         android:onClick="onCustomAdaptor"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="@color/black"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="15dp"
-                        app:cardBackgroundColor="@color/white"
-                        android:layout_marginStart="10dp" >
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="@string/custom_adaptor_for_list_view"
-                            android:layout_gravity="center"
-                            android:textStyle="bold"
-                            android:padding="5dp"/>
-
-                    </com.google.android.material.card.MaterialCardView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="10dp"
-                    android:background="#ED4C83"
-                    android:padding="5dp">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:layout_width="104dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/fragment_to_fragment_onSingle_Activity"
-                        android:onClick="onFragmentToFragmentSingleActivity"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="@color/black"
-                        app:cardCornerRadius="15dp"
+                        app:cardCornerRadius="25dp"
                         app:cardElevation="10dp"
-                        app:cardBackgroundColor="@color/white">
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:contentDescription="TODO"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/beauty" />
 
                         <TextView
+                            android:id="@+id/custom_adaptor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/fragment_to_fragment_single_activity"
                             android:layout_gravity="center"
-                            android:gravity="center_horizontal"
+                            android:layout_marginTop="40dp"
+                            android:fontFamily="sans-serif"
+                            android:text="Adaptor LV"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
 
                     </com.google.android.material.card.MaterialCardView>
 
+
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="104dp"
-                        android:layout_height="70dp"
-                        android:id="@+id/layout_id"
-                        app:strokeWidth="1dp"
-                        android:onClick="onLayout"
-                        app:strokeColor="@color/black"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="15dp"
-                        app:cardBackgroundColor="@color/white"
-                        android:layout_marginStart="10dp" >
+                        android:id="@+id/fragment"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="4dp"
+                        android:backgroundTint="@color/white"
+                        android:onClick="onFragmentToActivity"
+                        app:cardCornerRadius="25dp"
+                        app:cardElevation="10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:contentDescription="TODO"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/home" />
 
                         <TextView
+                            android:id="@+id/fragment_activity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="@string/layout"
                             android:layout_gravity="center"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            android:padding="5dp"/>
+                            android:layout_marginTop="40dp"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center"
+                            android:text="@string/a_to_f"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </com.google.android.material.card.MaterialCardView>
 
-<!--                    <com.google.android.material.card.MaterialCardView-->
-<!--                        android:layout_width="125dp"-->
-<!--                        android:layout_height="70dp"-->
-<!--                        android:id="@+id/services"-->
-<!--                        android:onClick="onServices"-->
-<!--                        app:strokeWidth="1dp"-->
-<!--                        app:strokeColor="@color/black"-->
-<!--                        app:cardCornerRadius="15dp"-->
-<!--                        app:cardElevation="15dp"-->
-<!--                        app:cardBackgroundColor="@color/white"-->
-<!--                        android:layout_marginStart="10dp" >-->
 
-<!--                        <TextView-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:gravity="center_horizontal"-->
-<!--                            android:text="@string/service"-->
-<!--                            android:layout_gravity="center"-->
-<!--                            android:textStyle="bold"-->
-<!--                            android:padding="5dp"/>-->
+                </LinearLayout>
 
-<!--                    </com.google.android.material.card.MaterialCardView>-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:padding="5dp"
+                    android:paddingBottom="24dp">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:layout_width="125dp"
-                        android:layout_height="70dp"
                         android:id="@+id/custom_dialog"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="4dp"
+                        android:backgroundTint="@color/white"
                         android:onClick="onCustomDialog"
-                        app:strokeWidth="1dp"
-                        app:strokeColor="@color/black"
-                        app:cardCornerRadius="15dp"
-                        app:cardElevation="15dp"
-                        app:cardBackgroundColor="@color/white"
-                        android:layout_marginStart="10dp" >
+                        app:cardCornerRadius="25dp"
+                        app:cardElevation="10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:contentDescription="TODO"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/groceries" />
 
                         <TextView
+                            android:id="@+id/dialog"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_horizontal"
-                            android:text="@string/custom_dialog_box"
                             android:layout_gravity="center"
-                            android:textStyle="bold"
-                            android:padding="5dp"/>
+                            android:layout_marginTop="40dp"
+                            android:fontFamily="sans-serif"
+                            android:text="@string/custom_dialog"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
 
                     </com.google.android.material.card.MaterialCardView>
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/products"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="4dp"
+                        android:backgroundTint="@color/white"
+                        android:onClick="onProduct"
+                        app:cardCornerRadius="25dp"
+                        app:cardElevation="10dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:contentDescription="TODO"
+                            android:scaleType="fitStart"
+                            android:src="@drawable/pharmacy" />
+
+                        <TextView
+                            android:id="@+id/product_data"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="40dp"
+                            android:fontFamily="sans-serif"
+                            android:gravity="center"
+                            android:text="@string/in_operations"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
 
                 </LinearLayout>
 
             </LinearLayout>
+
 
         </LinearLayout>
 

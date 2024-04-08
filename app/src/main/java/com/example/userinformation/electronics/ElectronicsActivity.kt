@@ -24,11 +24,11 @@ class ElectronicsActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_electronics)
 
-        val builder=AlertDialog.Builder(this)
-        builder.setTitle("Welcome To Electronics Shop")
-            .setMessage("Have a good day !!")
-        val alertDialog : AlertDialog=builder.create()
-        alertDialog.show()
+//        val builder=AlertDialog.Builder(this)
+//        builder.setTitle("Welcome To Electronics Shop")
+//            .setMessage("Have a good day !!")
+//        val alertDialog : AlertDialog=builder.create()
+//        alertDialog.show()
 
         val eleList = arrayListOf<ElectronicsRecycleItem>()
 

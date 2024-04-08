@@ -1,122 +1,223 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".userdetails.RegistrationActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".userdetails.RegistrationActivity">
 
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/sign_up_text1"
-        android:text="@string/registration"
-        android:textColor="@color/crimson"
-        android:textStyle="italic|bold"
-        android:textSize="26sp"
-        android:gravity="center"
-        android:layout_marginTop="50dp" />
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="250dp"
-        android:layout_height="220dp"
-        android:id="@+id/img_signup"
-        android:src="@drawable/signup"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="85dp" />
-
-    <EditText
-        android:id="@+id/id_sign_up_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/img_signup"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
-        android:minEms="5"
-        android:maxEms="20"
-        android:hint="@string/name"
-        android:textColor="@color/blue"
-        android:textColorHint="#2DE91E63"
-        android:textStyle="italic"
-        android:layout_marginTop="13dp"/>
-
-    <EditText
-        android:id="@+id/id_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="70dp"
-        android:layout_marginRight="70dp"
-        android:hint="@string/email"
-        android:textColorHint="#2DE91E63"
-        android:maxEms="30"
-        android:textStyle="italic"
-        android:textColor="@color/blue"
-        android:layout_below="@+id/id_sign_up_name"
-        android:layout_marginTop="13dp"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/id_sign_up_password"
-        android:layout_marginRight="70dp"
-        android:layout_marginLeft="70dp"
-        android:hint="@string/password"
-        android:inputType="textPassword"
-        android:textColorHint="#2DE91E63"
-        android:layout_below="@+id/id_email"
-        android:layout_marginTop="13dp"
-        android:maxEms="8"
-        android:textColor="@color/blue" />
-
-    <TextView
-        android:id="@+id/id_gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="@string/gender"
-        android:textColorHint="#65E91E63"
-        android:textSize="18sp"
-        android:layout_below="@+id/id_sign_up_password"
-        android:layout_marginTop="13dp"
-        android:layout_marginStart="72dp" />
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/id_radio_group"
-        android:layout_below="@+id/id_sign_up_password">
-
-        <RadioButton
-            android:id="@+id/id_radio_male"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/sign_up_text1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="150dp"
-            android:hint="@string/male"
-            android:textColorHint="@color/crimson" />
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:text="@string/registration"
+            android:textColor="@color/crimson"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <RadioButton
-            android:id="@+id/id_radio_female"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/img_signup"
+            android:layout_width="250dp"
+            android:layout_height="220dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/signup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_text1" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_name"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="255dp"
-            android:hint="@string/female"
-            android:textColorHint="@color/crimson"
-            android:layout_marginVertical="-900dp"
-            android:layout_marginTop="-48dp"/>
+            android:layout_marginStart="34dp"
+            android:layout_marginEnd="34dp"
+            android:hint="@string/name"
+            app:counterEnabled="true"
+            app:counterMaxLength="20"
+            app:endIconCheckable="true"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@drawable/baseline_error_24"
+            app:helperText="Required*"
+            app:endIconMode="clear_text"
+            app:helperTextTextColor="#FB0505"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_signup"
+            app:startIconDrawable="@drawable/baseline_person_24">
 
-    </RadioGroup>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_sign_up_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLength="20" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_signup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/id_radio_group"
-        android:background="@drawable/button_layout"
-        android:layout_marginTop="23dp"
-        android:text="@string/sign_up"
-        android:onClick="onRegistration"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_email"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginEnd="34dp"
+            android:hint="@string/email"
+            app:counterEnabled="true"
+            app:counterMaxLength="30"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@drawable/baseline_error_24"
+            app:helperText="Required*"
+            app:endIconMode="custom"
+            app:endIconDrawable="@drawable/baseline_check_circle_24"
+            app:endIconTint="@color/green"
+            app:helperTextTextColor="#FB0505"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_name"
+            app:startIconDrawable="@drawable/baseline_email_24">
 
 
-</RelativeLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:maxLength="30" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_contact"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginEnd="34dp"
+            app:startIconDrawable="@drawable/phone_call"
+            android:hint="@string/contact"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:helperText="Required*"
+            app:helperTextTextColor="#FB0505"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_email"
+            app:prefixText="+91 ">
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/contact_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLength="10" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_password"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginEnd="34dp"
+            android:hint="@string/password"
+            app:errorEnabled="true"
+            app:errorIconDrawable="@drawable/baseline_error_24"
+            app:endIconMode="password_toggle"
+            app:helperText="Required*"
+            app:helperTextTextColor="#F60303"
+            app:endIconCheckable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_contact"
+            app:startIconDrawable="@drawable/baseline_lock_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_sign_up_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--    <com.google.android.material.textfield.TextInputLayout-->
+        <!--        android:id="@+id/edit_radio_button"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        app:layout_constraintEnd_toEndOf="parent"-->
+        <!--        app:layout_constraintStart_toStartOf="parent"-->
+        <!--        app:layout_constraintTop_toBottomOf="@+id/edit_password"-->
+        <!--        android:hint="@string/gender"-->
+        <!--        app:startIconDrawable="@drawable/baseline_person_24"-->
+        <!--        android:layout_marginStart="34dp"-->
+        <!--        android:layout_marginEnd="34dp">-->
+
+        <RadioGroup
+            android:id="@+id/id_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginEnd="34dp"
+            app:layout_constraintTop_toBottomOf="@+id/edit_password">
+
+            <RadioButton
+                android:id="@+id/id_radio_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:hint="@string/male" />
+
+            <RadioButton
+                android:id="@+id/id_radio_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="-900dp"
+                android:layout_marginStart="200dp"
+                android:layout_marginTop="-48dp"
+                android:hint="@string/female" />
+
+            <TextView
+                android:id="@+id/id_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="-40dp"
+                android:text="@string/gender"
+                android:textSize="18sp" />
+
+        </RadioGroup>
+
+
+        <!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="34dp"
+            android:layout_marginEnd="34dp"
+            android:background="@drawable/button_layout"
+            android:onClick="onRegistration"
+            android:text="@string/sign_up"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_radio_group" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

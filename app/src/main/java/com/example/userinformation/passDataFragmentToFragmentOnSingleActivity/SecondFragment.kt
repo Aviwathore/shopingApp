@@ -2,6 +2,7 @@ package com.example.userinformation.passDataFragmentToFragmentOnSingleActivity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,11 +22,18 @@ class SecondFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_second, container, false)
 
         textMessage = view.findViewById(R.id.id_fragment_second)
+        val data = arguments?.getString("textMessage")
 
+//        if (data != null){
+//            displayReceivedData(data)
+//        }
+        textMessage.text = data
+
+        Log.d("second","yessss")
         return view
     }
-    fun displayReceivedData(data: String) {
-        textMessage.text = data
-    }
+//    fun displayReceivedData(data: String) {
+//        textMessage.text = data
+//    }
 
 }

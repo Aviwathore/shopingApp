@@ -7,12 +7,14 @@ import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.R
 import com.example.userinformation.cloth.api.ClothComment
 import com.example.userinformation.cloth.api.CommentInterface
+import com.example.userinformation.databinding.ActivityClothBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,12 +25,16 @@ const val BASE_URL="https://jsonplaceholder.typicode.com/"
 class Cloth : AppCompatActivity() {
     private lateinit var text: TextView
     var clothCommentArraylist :ArrayList<ClothComment> = ArrayList<ClothComment>()
+    private lateinit var binding: ActivityClothBinding
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_cloth)
 
+        binding = ActivityClothBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        
         text= findViewById(R.id.commentList)
         getCommentData()
 
@@ -74,8 +80,20 @@ class Cloth : AppCompatActivity() {
                     R.id.listText, // ID of the TextView in row layout
                     commentList
                 )
+
+                binding.commentList.isClickable= true
+
                 val listView = findViewById<ListView>(R.id.listComment)
+                binding.commentList.setOnClickListener{
+                    val builder=AlertDialog.Builder(this@Cloth)
+                    builder.setTitle("Welcome To Electronics Shop")
+                        .setMessage("Have a good day !!")
+                    val alertDialog : AlertDialog =builder.create()
+                    alertDialog.show()
+                }
                 listView.adapter = listAdapter
+
+
 
             }
 
