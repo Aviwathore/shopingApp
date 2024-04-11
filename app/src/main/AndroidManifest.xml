@@ -16,15 +16,33 @@
         android:theme="@style/Theme.UserInformation"
         tools:targetApi="31">
         <activity
-            android:name=".splashscreen.SplashScreenActivity"
-            android:launchMode="singleInstance"
-            android:exported="true">
+            android:name=".sqlitedatabase.contact.SQLiteMainActivity"
+            android:exported="true" >
+
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
 
             <category android:name="android.intent.category.LAUNCHER" />
-
         </intent-filter>
+
+        </activity>
+<!--        <activity-->
+<!--            android:name=".sqlitedatabase.booklibrary.BookLibraryActivity"-->
+<!--            android:exported="true"-->
+<!--            android:label="Book Library">-->
+<!--           -->
+<!--        </activity>-->
+        <activity
+            android:name=".splashscreen.SplashScreenActivity"
+            android:exported="true"
+            android:launchMode="singleInstance">
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity
             android:name=".userdetails.sharedPreference.SettingsActivity"
@@ -115,9 +133,7 @@
             android:exported="false" />
         <activity
             android:name=".userdetails.LoginActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>
