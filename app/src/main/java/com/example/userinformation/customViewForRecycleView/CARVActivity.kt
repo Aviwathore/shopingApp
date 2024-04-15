@@ -1,20 +1,16 @@
 package com.example.userinformation.customViewForRecycleView
 
-import android.content.Intent
+
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.R
 import com.example.userinformation.customViewForRecycleView.adapter.CustomRVAdapter
 import com.example.userinformation.customViewForRecycleView.api.CustomRVDataAvatarApi
-import com.example.userinformation.customViewForRecycleView.fragment.CustomRecyclerViewActivity
-import com.example.userinformation.customViewForRecycleView.fragment.CustomRecyclerViewFragment
 import com.example.userinformation.customViewForRecycleView.modal.Data
 import com.example.userinformation.customViewForRecycleView.modal.UserResponse
 import com.example.userinformation.databinding.ActivityCarvBinding
@@ -28,10 +24,6 @@ const val BASE_URL = "https://reqres.in/"
 
 class CARVActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCarvBinding
-    private lateinit var editId: TextView
-    private  lateinit var editFirstName: EditText
-    private  lateinit var  editLastName: EditText
-    private lateinit var editEmail :EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

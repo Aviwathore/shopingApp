@@ -37,7 +37,8 @@
             android:src="@drawable/signup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_text1" />
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_text1"
+            android:contentDescription="@string/sign_upp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edit_name"

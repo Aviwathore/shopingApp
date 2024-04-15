@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+
 }
 
 android {
@@ -26,7 +27,7 @@ android {
             )
         }
     }
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
     compileOptions {
@@ -40,20 +41,23 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 //    implementation (libs.retrofit)
-    implementation (libs.retrofit)
+    implementation(libs.retrofit)
 //    implementation (libs.converter.gson)
 //    implementation (libs.gson)
-    implementation (libs.material.v150)
-    implementation (libs.androidx.cardview)
-    implementation (libs.converter.gson)
-    implementation (libs.glide)
-    implementation (libs.androidx.recyclerview)
+    implementation(libs.material.v150)
+    implementation(libs.androidx.cardview)
+    implementation(libs.converter.gson)
+    implementation(libs.glide)
+    implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.preference)

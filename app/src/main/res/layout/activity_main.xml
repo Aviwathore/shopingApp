@@ -56,7 +56,7 @@
                 android:layout_marginStart="200dp"
                 android:background="@color/white"
                 android:src="@drawable/amazon_logo"
-                android:contentDescription="TODO" />
+                android:contentDescription="@string/logo" />
 
         </RelativeLayout>
 
@@ -92,7 +92,7 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:layout_gravity="center_horizontal"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@string/cloth"
                         android:scaleType="fitStart"
                         android:src="@drawable/cloth" />
 
@@ -125,7 +125,7 @@
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@string/electronic"
                         android:scaleType="fitStart"
                         android:src="@drawable/elect" />
 
@@ -172,7 +172,7 @@
                         android:layout_height="60dp"
                         android:layout_marginTop="10dp"
                         android:layout_gravity="center_horizontal"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@string/home"
                         android:scaleType="fitStart"
                         android:src="@drawable/home" />
 
@@ -206,7 +206,7 @@
                         android:layout_height="70dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@string/beauty"
                         android:scaleType="fitStart"
                         android:src="@drawable/beauty" />
 
@@ -251,7 +251,7 @@
                         android:layout_height="60dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@string/groceries"
                         android:scaleType="fitStart"
                         android:src="@drawable/groceries" />
 
@@ -283,7 +283,7 @@
                         android:layout_height="70dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="10dp"
-                        android:contentDescription="TODO"
+                        android:contentDescription="@string/pharmacy"
                         android:scaleType="fitStart"
                         android:src="@drawable/pharmacy" />
 
@@ -333,7 +333,7 @@
                             android:layout_height="60dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="10dp"
-                            android:contentDescription="TODO"
+                            android:contentDescription="@string/groceries"
                             android:scaleType="fitStart"
                             android:src="@drawable/elect" />
 
@@ -365,7 +365,7 @@
                             android:layout_height="60dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="10dp"
-                            android:contentDescription="TODO"
+                            android:contentDescription="@string/adaptor_rv"
                             android:scaleType="fitStart"
                             android:src="@drawable/cloth" />
 
@@ -409,7 +409,7 @@
                             android:layout_height="70dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="10dp"
-                            android:contentDescription="TODO"
+                            android:contentDescription="@string/adaptor_rv"
                             android:scaleType="fitStart"
                             android:src="@drawable/beauty" />
 
@@ -420,7 +420,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="40dp"
                             android:fontFamily="sans-serif"
-                            android:text="Adaptor LV"
+                            android:text="@string/adaptor_lv"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -443,7 +443,7 @@
                             android:layout_height="60dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="10dp"
-                            android:contentDescription="TODO"
+                            android:contentDescription="@string/a"
                             android:scaleType="fitStart"
                             android:src="@drawable/home" />
 
@@ -488,7 +488,7 @@
                             android:layout_height="60dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="10dp"
-                            android:contentDescription="TODO"
+                            android:contentDescription="@string/custom_dialog"
                             android:scaleType="fitStart"
                             android:src="@drawable/groceries" />
 
@@ -522,7 +522,7 @@
                             android:layout_height="60dp"
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="10dp"
-                            android:contentDescription="TODO"
+                            android:contentDescription="@string/pharmacy"
                             android:scaleType="fitStart"
                             android:src="@drawable/pharmacy" />
 

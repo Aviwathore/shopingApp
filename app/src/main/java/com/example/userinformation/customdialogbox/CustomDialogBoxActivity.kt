@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.R
-import com.example.userinformation.activityLifeCycle.customdialogbox.MyFragmentClass
 
 class CustomDialogBoxActivity : AppCompatActivity() {
     private var fragment = MyFragment.getInstance()

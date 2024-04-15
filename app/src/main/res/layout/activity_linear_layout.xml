@@ -87,7 +87,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/beauty"
-        android:contentDescription="TODO" />
+        android:contentDescription="img1" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -121,7 +121,7 @@
             android:scaleType="fitCenter"
             android:scaleX="2"
             android:scaleY="2"
-            android:contentDescription="TODO" />
+            android:contentDescription="@string/imgbtn1" />
 
     </LinearLayout>
 

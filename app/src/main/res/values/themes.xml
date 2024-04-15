@@ -31,7 +31,7 @@
         <item name="android:layout_height">65dp</item>
         <item name="cornerRadius">36dp</item>
         <item name="backgroundTint">#00246B</item>
-        <item name="android:textSize">15dp</item>
+        <item name="android:textSize">15sp</item>
 <!--        <item name="android:layout_margin">5dp</item>-->
     </style>
     

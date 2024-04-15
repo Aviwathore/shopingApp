@@ -16,6 +16,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityRegistrationBinding
 import com.example.userinformation.databinding.BottomSheetContainerBinding
+import com.example.userinformation.textbottomsheetdialogbox.CustomTextBottomSheetDialog
 import com.example.userinformation.userdetails.sharedPreference.DataConformationActivity
 
 
@@ -203,37 +204,9 @@ class RegistrationActivity : AppCompatActivity() {
 //    }
 
     private fun invalidForm() {
-//        val message = "Please Fill Correct Details"
-//
-//
-//        AlertDialog.Builder(this)
-//            .setTitle("Invalid Form")
-//            .setMessage(message)
-//            .setPositiveButton("OKAY") { _, _ ->
-//                // Handle OKAY button click if needed
-//                Log.d("After set message", "Message")
-//            }
-//            .show()
 
-
-        val dialog = Dialog(this)
-
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.bottom_sheet_container)
-        dialog.show()
-        dialog.window?.attributes?.windowAnimations ?: R.style.DialogAnimation
-        dialog.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
-        )
-//        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window?.setGravity(Gravity.BOTTOM)
-
-        val ok = dialog.findViewById<AppCompatButton>(R.id.btn_dialog_okay)
-        ok.setOnClickListener {
-            dialog.dismiss()
-        }
-        dialog.show()
+        val bottomSheetDialog = CustomTextBottomSheetDialog.newInstance()
+        bottomSheetDialog.show(supportFragmentManager, "CustomTextBottomSheetDialog")
     }
 
 }

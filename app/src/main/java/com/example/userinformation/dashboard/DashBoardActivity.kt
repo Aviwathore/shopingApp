@@ -10,26 +10,22 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.Groceries.GroceriesActivity
 import com.example.userinformation.customAdapter.CustomListView
-import com.example.userinformation.InputField.InputFieldActivity
 import com.example.userinformation.R
 import com.example.userinformation.activityLifeCycle.LifeCycleOFActivity
 import com.example.userinformation.beauty.Beauty
 import com.example.userinformation.cloth.Cloth
 import com.example.userinformation.customViewForRecycleView.CARVActivity
 import com.example.userinformation.customdialogbox.CustomDialogBoxActivity
+import com.example.userinformation.dashboard.productdetails.AddProductActivity
+import com.example.userinformation.dashboard.productdetails.ViewProductsActivity
 import com.example.userinformation.dashboard.service.ServiceExample
 import com.example.userinformation.databinding.ActivityMainBinding
 import com.example.userinformation.electronics.ElectronicsActivity
-import com.example.userinformation.employee.Employee
 import com.example.userinformation.fragmentToActivity.FragmentToActivity
 import com.example.userinformation.home.Home
-import com.example.userinformation.layout.LinearLayoutActivity
-import com.example.userinformation.passDataFragmentToFragmentOnSingleActivity.SingleActivity
 import com.example.userinformation.pharmacy.Pharmacy
 import com.example.userinformation.intent.IntentActivity
-import com.example.userinformation.shoes.Shoes
 import com.example.userinformation.timepicker.TimePickerActivity
-import com.example.userinformation.user.UserDetails
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 
@@ -54,6 +50,10 @@ class DashBoardActivity : AppCompatActivity() {
         topAppBar.setNavigationOnClickListener{
 
             Toast.makeText(this,"Navigation Click!",Toast.LENGTH_SHORT).show()
+
+            startActivity(Intent(this, ViewProductsActivity::class.java))
+
+
 
             topAppBar.setOnMenuItemClickListener{item->
                 when(item.itemId){

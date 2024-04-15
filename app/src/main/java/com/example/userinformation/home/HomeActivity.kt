@@ -13,10 +13,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityHomeBinding
+import com.example.userinformation.dynamicdilogbox.DynamicDialog
+import com.example.userinformation.dynamicdilogbox.DynamicDialogInterface
 import com.example.userinformation.home.recycleviewapi.adapter.HomeAdaptor
 import com.example.userinformation.home.recycleviewapi.api.HomeInterface
 import com.example.userinformation.home.recycleviewapi.api.OnDeleteItemClickListener
 import com.example.userinformation.home.recycleviewapi.model.HomeToDo
+import com.example.userinformation.textbottomsheetdialogbox.CustomTextBottomSheetDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,7 +27,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 const val BASE_URL ="https://jsonplaceholder.typicode.com/"
-class Home : AppCompatActivity(), OnDeleteItemClickListener {
+class Home : AppCompatActivity(), OnDeleteItemClickListener, DynamicDialogInterface{
     private lateinit var recyclerView: RecyclerView
     var modelListView :ArrayList<HomeToDo> = ArrayList<HomeToDo>()
     private lateinit var homeAdapte :HomeAdaptor
@@ -69,8 +72,8 @@ class Home : AppCompatActivity(), OnDeleteItemClickListener {
 //                recyclerview.adapter?.notifyDataSetChanged()
             }
 
-                override fun onFailure(call: Call<List<HomeToDo>?>, t: Throwable) {
-               Log.d("MainActivity","onFailure "+t.message)
+            override fun onFailure(call: Call<List<HomeToDo>?>, t: Throwable) {
+                Log.d("MainActivity","onFailure "+t.message)
             }
 
         })
@@ -78,31 +81,52 @@ class Home : AppCompatActivity(), OnDeleteItemClickListener {
 
     @SuppressLint("NotifyDataSetChanged", "RestrictedApi")
     override fun onItemClick(position: Int, homeList: ArrayList<HomeToDo>) {
-        showAlertDialog(position, recyclerView, homeList)
+//        showAlertDialog(position, recyclerView, homeList)
+
+        val mainTitle =" Are you sure? You want to delete this details?"
+        val data = homeList[position]
+        val title = data.title
+        val id = data.id
+        val dialog = DynamicDialog.newInstance(mainTitle,title, id,this)
+        dialog.show(supportFragmentManager, "")
 
     }
-
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun showAlertDialog(position: Int, recyclerView: RecyclerView, homeList: ArrayList<HomeToDo>) {
-        val builder = AlertDialog.Builder(this)
-        val details = homeList[position]
-
-       builder.setTitle(" Are you sure you want to delete this?")
-            .setMessage("Id: ${details.id}\nTitle: ${details.title}" )
-            .setPositiveButton("YES") { dialog, _ ->
-                Log.d("before", "before === "+ homeList.size.toString())
-                Log.d("position", "position === $position")
-                homeList.removeAt(position)
-                Log.d("after", "after"+homeList.size.toString())
-                homeAdapte.updateList(homeList)
-                homeAdapte.notifyDataSetChanged()
-
-                dialog.dismiss()
-            }.setNegativeButton("NO"){ dialog, _ ->
-                dialog.dismiss()
-
-            }
-            .show()
+    override fun onOkayButtonClicked(id: Int) {
+        // Perform delete operation here
+        val itemToRemove = modelListView.find { it.id == id }
+        if (itemToRemove != null) {
+            modelListView.remove(itemToRemove)
+            homeAdapte.updateList(modelListView)
+            homeAdapte.notifyDataSetChanged()
+        } else {
+            Log.d("Home", "Item with ID $id not found.")
+        }
     }
+
+
+
+//    @SuppressLint("NotifyDataSetChanged")
+//    private fun showAlertDialog(position: Int, recyclerView: RecyclerView, homeList: ArrayList<HomeToDo>) {
+//        val builder = AlertDialog.Builder(this)
+//        val details = homeList[position]
+//
+//        builder.setTitle(" Are you sure you want to delete this?")
+//            .setMessage("Id: ${details.id}\nTitle: ${details.title}" )
+//            .setPositiveButton("YES") { dialog, _ ->
+//                Log.d("before", "before === "+ homeList.size.toString())
+//                Log.d("position", "position === $position")
+//                homeList.removeAt(position)
+//                Log.d("after", "after"+homeList.size.toString())
+//                homeAdapte.updateList(homeList)
+//                homeAdapte.notifyDataSetChanged()
+//
+//                dialog.dismiss()
+//            }.setNegativeButton("NO"){ dialog, _ ->
+//                dialog.dismiss()
+//
+//            }
+//            .show()
+//    }
 }
