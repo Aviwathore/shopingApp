@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:boxStrokeWidth="0dp"
-        app:endIconDrawable="@drawable/baseline_cancel_presentation_24"
+        app:endIconDrawable="@drawable/baseline_clear_24"
         app:endIconMode="custom"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"

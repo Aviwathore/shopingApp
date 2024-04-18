@@ -16,14 +16,11 @@
         android:theme="@style/Theme.UserInformation"
         tools:targetApi="31">
         <activity
+            android:name=".dashboard.task.confirmbottomsheetdialog.successfulStoreInfo.SuccessActivity"
+            android:exported="false" />
+        <activity
             android:name=".dashboard.task.UserInformationActivity"
-            android:exported="true" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".dashboard.productdetails.UpdateProductActivity"
             android:exported="false" />
@@ -32,9 +29,7 @@
             android:exported="false" />
         <activity
             android:name=".sqlitedatabase.contact.SQLiteMainActivity"
-            android:exported="true">
-
-        </activity> <!-- <activity -->
+            android:exported="true"></activity> <!-- <activity -->
         <!-- android:name=".sqlitedatabase.booklibrary.BookLibraryActivity" -->
         <!-- android:exported="true" -->
         <!-- android:label="Book Library"> -->
@@ -44,7 +39,11 @@
             android:name=".splashscreen.SplashScreenActivity"
             android:exported="true"
             android:launchMode="singleInstance">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".userdetails.sharedPreference.SettingsActivity"

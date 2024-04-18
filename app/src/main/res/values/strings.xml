@@ -210,15 +210,19 @@
     <string name="select_state">Select State</string>
     <string name="state">State</string>
     <string name="postal">Postal</string>
-    <string name="country">Country</string>
+    <string name="country">Country   </string>
     <string name="_2021">2021</string>
     <string name="no_where_st">no where st</string>
     <string name="malaysia">Malaysia</string>
-<!--    <string name="continue">Continue</string>-->
+    <!--    <string name="continue">Continue</string>-->
     <string name="countinue">Countinue</string>
     <string name="confirmText">Are all the data shown correct? If not, you are able to make changes.</string>
     <string name="yes">Yes, all is correct</string>
     <string name="confirmation">Confirmation</string>
+    <string name="star">*</string>
+    <string name="successfully">Your Information Store Successfully</string>
+    <string name="success_description">Your all information which are present in your information form are store in a database successfully.</string>
+    <string name="go_to_home">Go to Home</string>
 
 
     <!--    spinner state-->

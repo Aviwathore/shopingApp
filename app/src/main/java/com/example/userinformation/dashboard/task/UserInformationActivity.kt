@@ -6,40 +6,20 @@ import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.icu.util.TimeZone
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
 import android.view.View
-import android.view.View.OnClickListener
-import android.view.View.OnFocusChangeListener
-import android.view.View.OnTouchListener
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.userinformation.R
 import com.example.userinformation.dashboard.DashBoardActivity
 import com.example.userinformation.dashboard.task.confirmbottomsheetdialog.ConfirmBottomSheetDialog
 import com.example.userinformation.databinding.ActivityUserInformationBinding
-import com.google.android.material.textfield.MaterialAutoCompleteTextView
-import com.google.android.material.textfield.TextInputEditText
 import java.util.Locale
 
 class UserInformationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityUserInformationBinding
-        private var calendar = Calendar.getInstance(TimeZone.GMT_ZONE)
-    private lateinit var editFirstName: TextInputEditText
-    private lateinit var editLastName: TextInputEditText
-    private lateinit var editDate: MaterialAutoCompleteTextView
-    private lateinit var editAddress: TextInputEditText
-    private lateinit var editState: AutoCompleteTextView
-    private lateinit var editPostal: AutoCompleteTextView
-    private lateinit var editCountry: AutoCompleteTextView
-    private lateinit var radioButton: RadioGroup
-    private lateinit var maleRadioButton :RadioButton
-    private lateinit var femaleRadioButton: RadioButton
-    private lateinit var editContact : TextInputEditText
+    private var calendar = Calendar.getInstance(TimeZone.GMT_ZONE)
+    private var confirm: ConfirmBottomSheetDialog? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -50,225 +30,111 @@ class UserInformationActivity : AppCompatActivity() {
 
             startActivity(Intent(this, DashBoardActivity::class.java))
         }
+        // hint
+        binding.editFirstName.hint = getString(R.string.first_name)
+        binding.editLastName.hint = getString(R.string.enter_last_name)
+        binding.editContact.hint = "+91 "
+        binding.editdate.hint = getString(R.string._5_march_1995)
+        binding.editAddress.hint = getString(R.string.no_where_st)
+        binding.filledExposedDropdown.hint = getString(R.string.select_state)
+        binding.editPostal.hint = getString(R.string._2021)
+        binding.editCountry.hint = getString(R.string.malaysia)
 
-        binding.btnContinue.setOnClickListener(object : OnClickListener {
-            override fun onClick(v: View?) {
-
-                if (TextUtils.isEmpty(editFirstName.text.toString())) {
-                    editFirstName.error = "First Name Is Required"
-//                    editFirstName.setBackgroundColor(Color.WHITE)
-//
-//                    val errorColor = Color.parseColor("#FFE91E63")
-//                    editFirstName.setTextColor(errorColor)
-
-                    editFirstName.setBackgroundResource(R.drawable.border_color)
-                }else if (!editFirstName.text.toString().matches(Regex("[a-zA-Z]+"))) {
-                    editFirstName.error = "Invalid First Name"
-                    editFirstName.setBackgroundResource(R.drawable.border_color)
-                }
-                if (TextUtils.isEmpty(editState.text.toString())){
-                    editState.error = "State Is Required"
-                    editState.setBackgroundResource(R.drawable.border_color)
-                }
-                if (TextUtils.isEmpty(editLastName.text.toString())) {
-                    editLastName.error = "Last Name Is Required"
-                    editLastName.setBackgroundResource(R.drawable.border_color)
-                }
-                if (TextUtils.isEmpty(editContact.text.toString()) ){
-                    editContact.error = "Contact Number Is Required"
-                    editContact.setBackgroundResource(R.drawable.border_color)
-                }else if (!editContact.text.toString().matches(Regex("\\d{10}"))) {
-                    // If contact number does not have 10 digits
-                    editContact.error = "Invalid Contact Number"
-                    editContact.setBackgroundResource(R.drawable.border_color)
-                    return
-                }
-                if (TextUtils.isEmpty(editCountry.text.toString())) {
-                    editCountry.error = "Country Name Is Required"
-                    editCountry.setBackgroundResource(R.drawable.border_color)
-                }
-                if (TextUtils.isEmpty(editPostal.text.toString())) {
-                    editPostal.error = "Postal Code Is Required"
-                    editPostal.setBackgroundResource(R.drawable.border_color)
-                }
-                if (TextUtils.isEmpty(editDate.text.toString())) {
-                    editDate.error = "Date s Required"
-                    binding.txtDateOfBirth.endIconDrawable = null
-
-                    editDate.setBackgroundResource(R.drawable.border_color)
-                }
-                if (TextUtils.isEmpty(editAddress.text.toString())) {
-                    editAddress.error = "Address Is Required"
-                    editAddress.setBackgroundResource(R.drawable.border_color)
-                }
-
-                maleRadioButton= binding.maleBtn
-                femaleRadioButton=binding.FemaleBtn
-
-                radioButton.setOnCheckedChangeListener{_, checked ->
-                    val radioButton = findViewById<RadioButton>(checked)
-                    val gender = radioButton.text.toString()
-
-////                    when (){
-////                        "Male" ->{
-////
-////                        }
-////                        "Female" ->{
-////
-////                        }else->{
-////                            Toast.makeText(this@UserInformationActivity, "PLease Select Gender", Toast.LENGTH_SHORT).show()
-////                        }
-////                    }
-
-                    if (TextUtils.isEmpty(gender)){
-                        Toast.makeText(this@UserInformationActivity, "PLease Select Gender", Toast.LENGTH_SHORT).show()
-                    }
-
-                    if (!(TextUtils.isEmpty(editFirstName.text.toString()) || TextUtils.isEmpty(editState.text.toString())
-                                || TextUtils.isEmpty(editAddress.text.toString()) || TextUtils.isEmpty(editDate.text.toString())
-                                || TextUtils.isEmpty(editPostal.text.toString()) || TextUtils.isEmpty(editCountry.text.toString())
-                                || TextUtils.isEmpty(editContact.text.toString()) || TextUtils.isEmpty(editLastName.text.toString()))
-                        || TextUtils.isEmpty(gender)){
-
-                        val confirmDialog = ConfirmBottomSheetDialog.ConfirmBottomSheetDialogInstance()
-                        confirmDialog.show(supportFragmentManager, "")
-                    }
-                }
-            }
-
-
-        })
-//        // set hint
-//
-        radioButton = binding.radioGroup
-        editLastName = binding.editLastName
-        editLastName.hint = getString(R.string.enter_last_name)
-
-        editFirstName = binding.editFirstName
-        editFirstName.hint = getString(R.string.enter_first_name)
-
-        editContact = binding.editContact
-        editContact.hint = "+91 "
-
-        editDate = binding.editdate
-        editDate.hint = getString(R.string._5_march_1995)
-
-        editAddress = binding.editAddress
-        editAddress.hint = getString(R.string.no_where_st)
-
-        editState = binding.filledExposedDropdown
-        editState.hint = getString(R.string.select_state)
-
-        editPostal = binding.editPostal
-        editPostal.hint = getString(R.string._2021)
-
-        editCountry = binding.editCountry
-        editCountry.hint = getString(R.string.malaysia)
-
-//        // date picker
-
+        // date picker
         binding.editdate.setOnClickListener {
             showDateOfBirthPicker()
         }
+        // state picker
+        val stateArray = arrayOf(
+            "Assam",
+            "Bihar",
+            "Karnataka",
+            "Goa",
+            "Haryana",
+            "Nagaland",
+            "Ladakh",
+            "Maharashtra",
+            "Kerala",
+            "Jharkhand",
+            "Punjab",
+            "Manipur",
+            "Lakshadweep"
+        )
+        // set to adapter
+        val adapter = ArrayAdapter(
+            this@UserInformationActivity, android.R.layout.simple_dropdown_item_1line, stateArray
+        )
+        // set to inputFiled
+        binding.filledExposedDropdown.setAdapter(adapter)
 
-        binding.filledExposedDropdown.setOnFocusChangeListener(object : OnFocusChangeListener {
+        binding.filledExposedDropdown.onFocusChangeListener =
+            View.OnFocusChangeListener { _, focus ->
+                if (focus) {
+                    binding.filledExposedDropdown.showDropDown()
+                }
+                binding.filledExposedDropdown.error = null
+            }
+        // Postal picker
+        val postalArray = arrayOf(
+            "2021", "2022", "2023", "2024", "2025", "2026"
+        )
 
-            override fun onFocusChange(v: View?, hasFocus: Boolean) {
-                val stateArray = arrayOf(
-                    "Assam",
-                    "Bihar",
-                    "Karnataka",
-                    "Goa",
-                    "Haryana",
-                    "Nagaland",
-                    "Ladakh",
-                    "Maharashtra",
-                    "Kerala",
-                    "Jharkhand",
-                    "Punjab",
-                    "Manipur",
-                    "Lakshadweep"
-                )
+        // set to adapter
+        val postalAdaptor = ArrayAdapter(
+            this@UserInformationActivity, android.R.layout.simple_dropdown_item_1line, postalArray
+        )
+        // set to inputFiled
+        binding.editPostal.setAdapter(postalAdaptor)
 
-                val adapter = ArrayAdapter(
-                    this@UserInformationActivity,
-                    android.R.layout.simple_dropdown_item_1line,
-                    stateArray
-                )
+        binding.editPostal.onFocusChangeListener = View.OnFocusChangeListener { _, focus ->
+            if (focus) {
+                binding.editPostal.showDropDown()
+                binding.editPostal.error = null
+            }
+        }
 
-                val autoCompleteTextView: AutoCompleteTextView = binding.filledExposedDropdown
-                autoCompleteTextView.setAdapter(adapter)
+        // Country
+        val countryArray = arrayOf(
+            "Armenia",
+            "Australia",
+            "Bangladesh",
+            "China",
+            "Afghanistan",
+            "India",
+            "Malaysia",
+            "Barbados"
+        )
+        val countryAdapter = ArrayAdapter(
+            this@UserInformationActivity, android.R.layout.simple_dropdown_item_1line, countryArray
+        )
+        binding.editCountry.setAdapter(countryAdapter)
 
-                autoCompleteTextView.setOnClickListener {
-                    autoCompleteTextView.showDropDown()
+        binding.editCountry.onFocusChangeListener = View.OnFocusChangeListener { _, focus ->
+            if (focus) {
+                binding.editCountry.showDropDown()
+            }
+            binding.editCountry.error = null
+        }
+
+        binding.maleBtn.setOnCheckedChangeListener { comp, b ->
+            binding.radioGroup.background = null
+        }
+
+        binding.FemaleBtn.setOnCheckedChangeListener { comp, b ->
+            binding.radioGroup.background = null
+        }
+
+        binding.btnContinue.setOnClickListener {
+            if (checkValidation()) {
+                if (confirm != null && confirm!!.isVisible) {
+                    confirm!!.dismiss()
+                } else {
+                    confirm = ConfirmBottomSheetDialog.ConfirmBottomSheetDialogInstance()
+                    confirm!!.show(supportFragmentManager, "")
                 }
             }
-        })
-
-        binding.editPostal.setOnFocusChangeListener(object : OnFocusChangeListener {
-
-            override fun onFocusChange(v: View?, hasFocus: Boolean) {
-                val postalArray = arrayOf("2021", "2022", "2023", "2024", "2025", "2026")
-                val adapter = ArrayAdapter(
-                    this@UserInformationActivity,
-                    android.R.layout.simple_dropdown_item_1line,
-                    postalArray
-                )
-                val editPostalTextView: AutoCompleteTextView = binding.editPostal
-                editPostalTextView.setAdapter(adapter)
-
-                editPostalTextView.setOnClickListener {
-                    editPostalTextView.showDropDown()
-                }
-            }
-
-        })
-
-        binding.editCountry.setOnFocusChangeListener(object : OnFocusChangeListener {
-            override fun onFocusChange(v: View?, hasFocus: Boolean) {
-                val countryArray = arrayOf(
-                    "Armenia",
-                    "Australia",
-                    "Bangladesh",
-                    "China",
-                    "Afghanistan",
-                    "India",
-                    "Malaysia",
-                    "Barbados"
-                )
-                val adapter = ArrayAdapter(
-                    this@UserInformationActivity,
-                    android.R.layout.simple_dropdown_item_1line,
-                    countryArray
-
-                )
-                val countryAutoCompletView: AutoCompleteTextView = binding.editCountry
-                countryAutoCompletView.setAdapter(adapter)
-
-                countryAutoCompletView.setOnClickListener {
-                    countryAutoCompletView.showDropDown()
-                }
-            }
-
-
-        })
-
+        }
     }
-
-
-//    private fun stateSpinner() {
-//        Log.d("Spinner", "statspiner call")
-//        val stateArray = resources.getStringArray(R.array.State)
-//        Log.d("StateSpinner", "State array size: ${stateArray.size}")
-//        val adapter = ArrayAdapter(
-//            this,
-//            android.R.layout.simple_dropdown_item_1line, // Using the default layout
-//            stateArray
-//        )
-//        val autoCompleteTextView = binding.filledExposedDropdown as AutoCompleteTextView
-//        autoCompleteTextView.setAdapter(adapter)
-//        Log.d("StateSpinner", "Adapter set to AutoCompleteTextView")
-//    }
 
 
     private fun showDateOfBirthPicker() {
@@ -287,14 +153,117 @@ class UserInformationActivity : AppCompatActivity() {
                 val formatDate = dateFormat.format(selectedDate.time)
 
                 binding.editdate.setText(formatDate)
+                binding.editdate.error = null
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
             calendar.get(Calendar.DAY_OF_MONTH)
         )
-        datePicker.datePicker.maxDate= System.currentTimeMillis()
+        datePicker.datePicker.maxDate = System.currentTimeMillis()
         datePicker.show()
     }
+
+    private fun checkValidation(): Boolean {
+        var emptyFiled = false
+
+        val filedData = listOf(
+            binding.editFirstName to "First name is required",
+            binding.editLastName to "Last name is required",
+            binding.editContact to "contact number is required",
+            binding.editdate to "Date is required",
+            binding.editAddress to "Address is required",
+            binding.filledExposedDropdown to "State is required",
+            binding.editPostal to "Postal is required",
+            binding.editCountry to "Country is required"
+        )
+
+        filedData.forEach { (inputFiled, errorMessage) ->
+            val filed = inputFiled.text.toString()
+            if (filed.isEmpty()) {
+                inputFiled.error = errorMessage
+                inputFiled.setBackgroundResource(R.drawable.border_color)
+                binding.txtDateOfBirth.endIconDrawable = null
+                binding.txtInputState.endIconDrawable = null
+                binding.txtPostalInput.endIconDrawable = null
+                binding.txtCountryInput.endIconDrawable = null
+
+                emptyFiled = true
+            } else {
+                inputFiled.error = null
+            }
+        }
+
+        if (!binding.maleBtn.isChecked && !binding.FemaleBtn.isChecked) {
+            binding.radioGroup.setBackgroundResource(R.drawable.border_color)
+            Toast.makeText(this@UserInformationActivity, "Please Select Gender", Toast.LENGTH_SHORT)
+                .show()
+            emptyFiled = true
+        }
+        return !emptyFiled
+    }
+
+//    private fun checkGenderValidation(): Boolean {
+//
+//      else{
+//            binding.radioGroup.background = null
+//        }
+//
+//        return true
+//    }
+
+//    private fun checkValidation(): Boolean {
+//        var emptyFiled = false
+//
+//        if (TextUtils.isEmpty(binding.editFirstName.text.toString())) {
+//            emptyFiled = true
+//            binding.editFirstName.error = "First Name Is Required"
+//            binding.editFirstName.setBackgroundResource(R.drawable.border_color)
+//        }
+//        if (TextUtils.isEmpty(binding.editLastName.text.toString())) {
+//            emptyFiled = true
+//            binding.editLastName.error = "Last name is required"
+//            binding.editLastName.setBackgroundResource(R.drawable.border_color)
+//        }
+//        if (TextUtils.isEmpty(binding.editContact.text.toString())) {
+//            emptyFiled = true
+//            binding.editContact.error = "contact number is required"
+//            binding.editContact.setBackgroundResource(R.drawable.border_color)
+//        }
+//        if (TextUtils.isEmpty(binding.editdate.text.toString())) {
+//            emptyFiled = true
+//            binding.editdate.error = "Date is required"
+//            binding.editdate.setBackgroundResource(R.drawable.border_color)
+//            binding.txtDateOfBirth.endIconDrawable = null
+//        }
+//        if (!binding.maleBtn.isClickable || !binding.FemaleBtn.isClickable) {
+//            Toast.makeText(this@UserInformationActivity, "Please select gender", Toast.LENGTH_SHORT)
+//                .show()
+//        }
+//        if (TextUtils.isEmpty(binding.editAddress.text.toString())) {
+//            emptyFiled = true
+//            binding.editAddress.error = "Address is required"
+//            binding.editAddress.setBackgroundResource(R.drawable.border_color)
+//        }
+//        if (TextUtils.isEmpty(binding.filledExposedDropdown.text.toString())) {
+//            emptyFiled = true
+//            binding.filledExposedDropdown.error = "State is required"
+//            binding.filledExposedDropdown.setBackgroundResource(R.drawable.border_color)
+//            binding.txtInputState.endIconDrawable = null
+//        }
+//        if (TextUtils.isEmpty(binding.editPostal.text.toString())) {
+//            emptyFiled = true
+//            binding.editPostal.error = "Postal is required"
+//            binding.editPostal.setBackgroundResource(R.drawable.border_color)
+//            binding.txtPostalInput.endIconDrawable = null
+//        }
+//        if (TextUtils.isEmpty(binding.editCountry.text.toString())) {
+//            emptyFiled = true
+//            binding.editCountry.error = "Country is required"
+//            binding.editCountry.setBackgroundResource(R.drawable.border_color)
+//            binding.txtCountryInput.endIconDrawable = null
+//        }
+//        return !emptyFiled
+//    }
 
 
 }
