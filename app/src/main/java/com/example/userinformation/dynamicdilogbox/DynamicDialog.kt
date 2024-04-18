@@ -70,6 +70,10 @@ class DynamicDialog : DialogFragment() {
                 this.listener= listener
             }
         }
+
+        fun DynamicDialogBox(mainTitle : String){
+
+        }
     }
 
 }

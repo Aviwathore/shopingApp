@@ -1,7 +1,9 @@
 package com.example.userinformation.splashscreen
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.AsyncTask
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -9,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.R
+import com.example.userinformation.dashboard.DashBoardActivity
 import com.example.userinformation.databinding.ActivitySplashScreenBinding
 import com.example.userinformation.userdetails.LoginActivity
 
@@ -54,8 +57,16 @@ class SplashScreenActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: String?) {
 
-            startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
-        }
+            val sharedPreferences = getSharedPreferences("LoginInfo", Context.MODE_PRIVATE)
+            val check = sharedPreferences.getBoolean("flag", false)
+
+            if (check){
+                startActivity(Intent(this@SplashScreenActivity, DashBoardActivity::class.java))
+            }else{
+                startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
+            }
+            }
+
     }
 
 }

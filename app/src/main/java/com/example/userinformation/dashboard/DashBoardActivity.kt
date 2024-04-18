@@ -1,5 +1,7 @@
 package com.example.userinformation.dashboard
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -19,6 +21,7 @@ import com.example.userinformation.customdialogbox.CustomDialogBoxActivity
 import com.example.userinformation.dashboard.productdetails.AddProductActivity
 import com.example.userinformation.dashboard.productdetails.ViewProductsActivity
 import com.example.userinformation.dashboard.service.ServiceExample
+import com.example.userinformation.dashboard.task.UserInformationActivity
 import com.example.userinformation.databinding.ActivityMainBinding
 import com.example.userinformation.electronics.ElectronicsActivity
 import com.example.userinformation.fragmentToActivity.FragmentToActivity
@@ -26,6 +29,7 @@ import com.example.userinformation.home.Home
 import com.example.userinformation.pharmacy.Pharmacy
 import com.example.userinformation.intent.IntentActivity
 import com.example.userinformation.timepicker.TimePickerActivity
+import com.example.userinformation.userdetails.LoginActivity
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.snackbar.Snackbar
 
@@ -33,6 +37,7 @@ class DashBoardActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
     private lateinit var topAppBar :MaterialToolbar
 
+    @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        enableEdgeToEdge()
@@ -59,14 +64,21 @@ class DashBoardActivity : AppCompatActivity() {
                 when(item.itemId){
                     R.id.favorite ->{
                         Toast.makeText(this,"Favorite Click!", Toast.LENGTH_SHORT).show()
+                        startActivity(Intent(this, UserInformationActivity::class.java))
                         true
                     }
                     R.id.search ->{
                         Toast.makeText(this, "Search Click !", Toast.LENGTH_SHORT).show()
                         true
                     }
-                    R.id.timerpicker ->{
-                        onTimeClicker(it)
+                    R.id.logout ->{
+//                        Toast.makeText(this, "Search Click !", Toast.LENGTH_SHORT).show()
+                        val editor = getSharedPreferences("LoginInfo", MODE_PRIVATE).edit()
+                        editor.putBoolean("flag", false)
+                        editor.apply()
+
+                        startActivity(Intent(this, LoginActivity::class.java))
+
                         true
                     }
                     else -> {false
@@ -88,11 +100,13 @@ class DashBoardActivity : AppCompatActivity() {
         }
     }
 
-    private fun onTimeClicker(view: View) {
-        if (view.id== R.id.timerpicker){
-            startActivity(Intent(this, TimePickerActivity::class.java))
-        }
-    }
+
+
+//    private fun onTimeClicker(view: View) {
+//        if (view.id== R.id.timerpicker){
+//            startActivity(Intent(this, TimePickerActivity::class.java))
+//        }
+//    }
 
 //    private fun onTimeClicker(timerpicker: Int) {
 //        if (timerpicker==R.id.timerpicker) {

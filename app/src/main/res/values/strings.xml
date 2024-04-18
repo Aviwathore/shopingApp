@@ -194,7 +194,48 @@
     <string name="are_you_sure_you_want_to_romove_this_details">Are You Sure, You Want To Romove This Details?</string>
     <string name="are_you_sure_you_want_to_remove_this_details">Are you sure, You want to remove this details ?</string>
     <string name="user_information">User Information</string>
-    <string name="first_name">First Name</string>
-    <string name="last_name">Last Name</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
     <string name="add">ADD</string>
+    <string name="back_button">Back Button</string>
+    <string name="your_information">Your Information</string>
+    <string name="your_informations">Your Informations</string>
+    <string name="infoDescription">Lorem ipsum dolor sit amet, consectetuer\nadipiscing elit.</string>
+    <string name="enter_first_name">Enter First Name</string>
+    <string name="_5_march_1995">5 March 1995</string>
+    <string name="date_of_birth">Date of birth</string>
+    <string name="enter_last_name">Enter Last Name</string>
+    <string name="address">Address</string>
+    <string name="enter_your_address">Enter Your Address</string>
+    <string name="select_state">Select State</string>
+    <string name="state">State</string>
+    <string name="postal">Postal</string>
+    <string name="country">Country</string>
+    <string name="_2021">2021</string>
+    <string name="no_where_st">no where st</string>
+    <string name="malaysia">Malaysia</string>
+<!--    <string name="continue">Continue</string>-->
+    <string name="countinue">Countinue</string>
+    <string name="confirmText">Are all the data shown correct? If not, you are able to make changes.</string>
+    <string name="yes">Yes, all is correct</string>
+    <string name="confirmation">Confirmation</string>
+
+
+    <!--    spinner state-->
+
+    <string-array name="State">
+        <item>Assam</item>
+        <item>Bihar</item>
+        <item>Karnataka</item>
+        <item>Goa</item>
+        <item>Haryana</item>
+        <item>Nagaland</item>
+        <item>Ladakh</item>
+        <item>Maharashtra</item>
+        <item>Kerala</item>
+        <item>Jharkhand</item>
+        <item>Punjab</item>
+        <item>Manipur</item>
+        <item>Lakshadweep</item>
+    </string-array>
 </resources>

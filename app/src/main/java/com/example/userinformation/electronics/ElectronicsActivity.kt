@@ -14,7 +14,7 @@ import com.example.userinformation.databinding.ActivityElectronicsBinding
 
 //private const val BASE_URL ="https://dummyjson.com/"
 class ElectronicsActivity : AppCompatActivity() {
-//    private lateinit var binding: ActivityElectronicsBinding
+    private lateinit var binding: ActivityElectronicsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

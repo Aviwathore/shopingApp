@@ -24,7 +24,6 @@ class CustomTextBottomSheetDialog : BottomSheetDialogFragment() {
     ): View? {
         val view = inflater.inflate(R.layout.bottom_sheet_dialog, container, false)
         val okayBtn = view.findViewById<AppCompatButton>(R.id.btn_bottom_sheet)
-
         okayBtn.setOnClickListener(object : OnClickListener{
             override fun onClick(v: View?) {
                 dismiss()

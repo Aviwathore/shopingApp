@@ -46,11 +46,12 @@ class LoginActivity : AppCompatActivity() {
                 val editor = getSharedPreferences("LoginInfo", MODE_PRIVATE).edit()
                 editor.putString("username", binding.editUserName.text.toString())
                 editor.putString("password", binding.editPassword.text.toString())
-
+                editor.putBoolean("flag",true)
                 editor.apply()
 
                 val enterUserName= binding.editUserName.text.toString()
                 val enterPassword = binding.editPassword.text.toString()
+
                 if (TextUtils.isEmpty(enterUserName)) {
                     binding.editUserName.error = "User name is required"
                     invalidForm()
@@ -61,7 +62,11 @@ class LoginActivity : AppCompatActivity() {
                     binding.editPassword.error = "Password is required"
                     return
                 } else {
-                    startActivity(Intent(this@LoginActivity, DashBoardActivity::class.java))
+                    if (enterUserName==savedUsername && enterPassword==savedPassword) {
+                        startActivity(Intent(this@LoginActivity, DashBoardActivity::class.java))
+                    }else{
+                        invalidForm()
+                    }
                 }
             }
         })

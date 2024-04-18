@@ -54,6 +54,7 @@ dependencies {
 //    implementation (libs.converter.gson)
 //    implementation (libs.gson)
     implementation(libs.material.v150)
+
     implementation(libs.androidx.cardview)
     implementation(libs.converter.gson)
     implementation(libs.glide)

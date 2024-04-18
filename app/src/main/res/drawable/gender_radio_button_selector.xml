@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item android:drawable="@drawable/gender_radio_button_checked_background" android:state_checked="true" />
+    <item android:drawable="@drawable/gender_radio_button_unchecked_background" android:state_checked="false" />
+
+<!--    <item android:state_checked="false">-->
+<!--        <shape android:shape="oval">-->
+<!--            <solid android:color="@color/white" />-->
+<!--        </shape>-->
+<!--    </item>-->
+
+<!--    <item android:state_checked="true">-->
+<!--        <shape android:shape="oval">-->
+<!--            <solid android:color="@color/crimson" />-->
+<!--        </shape>-->
+<!--    </item>-->
+
+<!--    <item android:color="@color/white" android:state_checked="false"/>-->
+<!--    <item android:color="@color/crimson" android:state_checked="true"/>-->
+</selector>

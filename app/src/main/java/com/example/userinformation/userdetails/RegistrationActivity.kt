@@ -81,9 +81,9 @@ class RegistrationActivity : AppCompatActivity() {
 
         val nameText = binding.idSignUpName.text.toString()
 
-        if (nameText.matches(".*[A-Z].*".toRegex()) || nameText.matches(".*[a-z].*".toRegex())){
-            return "Only Contains Character "
-        }
+//        if (nameText.matches(".*[A-Z].*".toRegex()) || nameText.matches(".*[a-z].*".toRegex())){
+//            return "Only Contains Character "
+//        }
         if (nameText.length < 3) {
             return "Maximum 5 Character"
         }
@@ -101,19 +101,6 @@ class RegistrationActivity : AppCompatActivity() {
 
     private fun validPassword(): String? {
         val passText = binding.idSignUpPassword.text.toString()
-
-//        if (passwordText.length < 8) {
-//            return "Password must be at least 8 character long"
-//        }
-//        if (!passwordText.matches(Regex("[A-Z]"))) {
-//            return "Password must contain at least one uppercase letter"
-//        }
-//        if (!passwordText.matches(Regex("[a-z]"))) {
-//            return "Password must contain at least one lowercase letter"
-//        }
-//        if (!passwordText.matches(Regex("[^A-Za-z0-9]"))) {
-//            return "Password must contain at least one special letter"
-//        }
 
         if (passText.length<8){
             return "Password must be at least 8 character long"
@@ -170,38 +157,19 @@ class RegistrationActivity : AppCompatActivity() {
             editor.putString("password", binding.idSignUpPassword.text.toString())
             editor.apply()
 
-            if (validName && validEmail && validContact && validPassword) {
-                startActivity(Intent(this, DataConformationActivity::class.java))
-            } else {
+            if (true){
+
+                if (validName && validEmail && validContact && validPassword) {
+                    startActivity(Intent(this, DataConformationActivity::class.java))
+                } else {
+                    invalidForm()
+                }
+            }else{
                 invalidForm()
             }
+
         }
     }
-
-//    @SuppressLint("SetTextI18n")
-//    private fun showDetails() {
-//
-//        val builder =AlertDialog.Builder(this@RegistrationActivity)
-//
-//        val editor = getSharedPreferences("Details", MODE_PRIVATE)
-//        val name =binding.idSignUpName.setText("Name: ${editor.getString("name", null)}")
-//        val email =binding.idEmail.setText("Email: ${editor.getString("email", null)}")
-//        val contact = binding.contactId.setText("Contact: ${editor.getString("contact", null)}")
-//        val password = binding.idSignUpPassword.setText("Password: ${editor.getString("password", null)}")
-//
-//        builder.setTitle("Please Confirm Your Details Before Submit Form.")
-//            .setMessage("\n\n${name}\n$email\n$contact\n$password")
-//            .setPositiveButton("SUBMIT"){data, _ ->
-//
-//                startActivity(Intent(this, LoginActivity::class.java))
-//                data.dismiss()
-//            }
-//            .setNegativeButton("Edit"){data, _ ->
-//
-//                data.dismiss()
-//
-//            }
-//    }
 
     private fun invalidForm() {
 
