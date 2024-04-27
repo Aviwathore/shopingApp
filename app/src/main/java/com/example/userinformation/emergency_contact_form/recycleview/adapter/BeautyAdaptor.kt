@@ -1,4 +1,4 @@
-package com.example.userinformation.beauty.recycleview.adapter
+package com.example.userinformation.emergency_contact_form.recycleview.adapter
 
 import android.view.LayoutInflater
 import android.view.View

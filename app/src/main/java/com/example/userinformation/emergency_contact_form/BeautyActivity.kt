@@ -1,4 +1,4 @@
-package com.example.userinformation.beauty
+package com.example.userinformation.emergency_contact_form
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,8 +11,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.userinformation.R
-import com.example.userinformation.beauty.recycleview.adapter.BeautyAdaptor
-import com.example.userinformation.beauty.recycleview.api.BeautyInterface
+import com.example.userinformation.emergency_contact_form.recycleview.adapter.BeautyAdaptor
+import com.example.userinformation.emergency_contact_form.recycleview.api.BeautyInterface
 import com.example.userinformation.databinding.ActivityBeautyBinding
 import com.example.userinformation.home.recycleviewapi.model.HomeToDo
 import retrofit2.Call

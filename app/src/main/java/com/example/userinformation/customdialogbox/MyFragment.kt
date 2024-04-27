@@ -31,8 +31,6 @@ class MyFragment private constructor():DialogFragment() {
 
     }
 
-    // Method to show dialog box
-
     fun showDialog(fragmentManager: FragmentManager, tag: String) {
 
         if (fragmentManager.findFragmentByTag(tag)==null){
@@ -48,12 +46,9 @@ class MyFragment private constructor():DialogFragment() {
         super.onCreate(savedInstanceState)
     }
 
-    // Method to set selected option
     fun setSelectedOption(option: Int) {
         selectedOption = option
     }
-
-    // Method to get selected option
     fun getSelectedOption(): Int {
         return selectedOption
     }
@@ -96,7 +91,6 @@ class MyFragment private constructor():DialogFragment() {
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
-        // Reset selected option when the dialog is dismissed
         selectedOption = -1
     }
 }

@@ -54,8 +54,21 @@
     <string name="registration">Registration</string>
     <string name="sign_up">Sign Up</string>
     <string name="Username">username</string>
-    <string name="email">Email</string>
-    <string name="gender">Gender</string>
+    <string name="email">* Email</string>
+    <string name="enter_email">Enter Email</string>
+
+    <string name="first_name_hint">First Name</string>
+    <string name="last_name_hint">Last Name</string>
+    <string name="mobile_number_hint">Mobile Number</string>
+    <string name="aadhaar_number_hint">Aadhaar Number</string>
+    <string name="email_hint">Email</string>
+    <string name="date_of_birth_hint">Date Of Birth</string>
+    <string name="address_hint">Address</string>
+    <string name="re_enter_aadhaar_number_hint">Re-Enter Aadhaar Number</string>
+    <string name="state_hint">State</string>
+    <string name="postal_hint">Postal</string>
+    <string name="country_hint">Country</string>
+    <string name="gender">* Gender</string>
     <string name="male">Male</string>
     <string name="Female">\n</string>
     <string name="female">Female</string>
@@ -194,8 +207,8 @@
     <string name="are_you_sure_you_want_to_romove_this_details">Are You Sure, You Want To Romove This Details?</string>
     <string name="are_you_sure_you_want_to_remove_this_details">Are you sure, You want to remove this details ?</string>
     <string name="user_information">User Information</string>
-    <string name="first_name">First name</string>
-    <string name="last_name">Last name</string>
+    <string name="first_name">* First name</string>
+    <string name="last_name">* Last name</string>
     <string name="add">ADD</string>
     <string name="back_button">Back Button</string>
     <string name="your_information">Your Information</string>
@@ -203,14 +216,14 @@
     <string name="infoDescription">Lorem ipsum dolor sit amet, consectetuer\nadipiscing elit.</string>
     <string name="enter_first_name">Enter First Name</string>
     <string name="_5_march_1995">5 March 1995</string>
-    <string name="date_of_birth">Date of birth</string>
+    <string name="date_of_birth">* Date of birth</string>
     <string name="enter_last_name">Enter Last Name</string>
     <string name="address">Address</string>
     <string name="enter_your_address">Enter Your Address</string>
     <string name="select_state">Select State</string>
-    <string name="state">State</string>
-    <string name="postal">Postal</string>
-    <string name="country">Country   </string>
+    <string name="state">* State</string>
+    <string name="postal">* Postal</string>
+    <string name="country">* Country</string>
     <string name="_2021">2021</string>
     <string name="no_where_st">no where st</string>
     <string name="malaysia">Malaysia</string>
@@ -223,8 +236,49 @@
     <string name="successfully">Your Information Store Successfully</string>
     <string name="success_description">Your all information which are present in your information form are store in a database successfully.</string>
     <string name="go_to_home">Go to Home</string>
+    <string name="aadhaar_number">* Aadhaar number</string>
+    <string name="form">Form</string>
+    <string name="mobile_number">* Mobile number</string>
+    <string name="aadhaar">####-####-####</string>
+    <string name="_123456789">123456789</string>
+    <string name="re_enter_aadhaar_number">* Re-Enter Aadhaar Number</string>
+    <string name="guardian_details">Guardian Details</string>
+    <string name="guardian">Guardian</string>
+    <string name="emergency_contact_name">* Emergency contact name</string>
+    <string name="contact_number">* Contact number</string>
+    <string name="relationship">* Relationship</string>
+    <string name="any_relationship_with_bank_staff">* Any relationship with Bank staff</string>
+    
+    <string name="emergency_name_hint">Immediate family member</string>
+    <string name="contact_number_hint">+91 </string>
+    <string name="relationship_hint">Relationship with contact</string>
+    <string name="bank_staff_full_name">* Bank staff\'s full name</string>
+    <string name="digit_text">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+    <string name="bank_staff_mobile_number">* Bank staff\'s mobile number</string>
+    <string name="bank_staff_mobile_number_hint">Bank staff\'s mobile number</string>
+    <string name="bank_staff_full_name_hint">Enter staff full name</string>
+    <string name="enter_relation_hint">Select correct relation</string>
+    <string name="staff_mobile_hint">012 345 6789</string>
+    <string name="confirm"> I hereby confirm that the declared individual have agreed to be contact by Bank for the purpose of my financing</string>
+    <string name="next">Next</string>
+    <string name="yess">Yes</string>
+    <string name="img">img</string>
+    <string name="emergency_contact">Emergency Contact</string>
+    <string name="emergency_message">An emergency contact name is  used by residential to
+        record information about how to contact someone in case of an emergency.\n\nStoring this information about your
+        emergency contacts in one place can help you to quickly get in touch with people who
+        can help you in the event of an emergency.</string>
 
 
+    <string name="bank_staff_mobile_error">Bank staff\'s mobile number is required</string>
+    <string name="bank_staff_name_error">Bank staff\'s name is required</string>
+    <string name="relation_error">Relation is required</string>
+    <string name="contact_error">Contact number is required</string>
+    <string name="emergency_contact_error">Emergency contact name is required</string>
+    <string name="relationship_is_required">Relationship is required</string>
+    <string name="contact_digit_error">Contact number must be 10 digit</string>
+    <string name="select_correct_option_error">Select correct option</string>
+    <!--    hereby confirm that I have reviewed the all details and confirm their accuracy-->
     <!--    spinner state-->
 
     <string-array name="State">

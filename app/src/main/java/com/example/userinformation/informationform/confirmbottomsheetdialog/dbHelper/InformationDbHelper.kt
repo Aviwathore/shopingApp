@@ -1,10 +1,9 @@
-package com.example.userinformation.dashboard.task.confirmbottomsheetdialog.dbHelper
+package com.example.userinformation.informationform.confirmbottomsheetdialog.dbHelper
 
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import java.util.Date
 
 class InformationDbHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
     companion object{
@@ -25,7 +24,7 @@ class InformationDbHelper(context: Context): SQLiteOpenHelper(context, DATABASE_
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        val createTable = "create table ${TABLE_NAME}"+
+        val createTable = "create table $TABLE_NAME"+
                 "($KEY_ID INTEGER PRIMARY KEY AUTOINCREMENT ," +
                 "$FIRST_NAME TEXT ," +
                 "$LAST_NAME TEXT," +
@@ -44,7 +43,15 @@ class InformationDbHelper(context: Context): SQLiteOpenHelper(context, DATABASE_
         onCreate(db)
     }
 
-    fun insertInfo(context: Context, firstName:String, lastName:String, address:String, state:String, postal:String, country:String){
+    fun insertInfo(
+        context: Context,
+        firstName: String,
+        lastName: String,
+        address: String,
+        state: String,
+        postal: String,
+        country: String
+    ): Long {
         val dpHelper = InformationDbHelper(context)
 
         val database = dpHelper.writableDatabase
@@ -59,8 +66,10 @@ class InformationDbHelper(context: Context): SQLiteOpenHelper(context, DATABASE_
             put(COUNTRY, country)
         }
 
-        database.insert(TABLE_NAME, null, data)
+        val status = database.insert(TABLE_NAME, null, data)
 
         database.close()
+
+        return status
     }
 }

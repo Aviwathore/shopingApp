@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.userinformation.R
 import com.example.userinformation.dashboard.DashBoardActivity
-import com.example.userinformation.dashboard.task.confirmbottomsheetdialog.ConfirmBottomSheetDialog
+import com.example.userinformation.informationform.confirmbottomsheetdialog.ConfirmBottomSheetDialog
 import com.example.userinformation.databinding.ActivityUserInformationBinding
 import java.util.Locale
 
@@ -30,15 +30,35 @@ class UserInformationActivity : AppCompatActivity() {
 
             startActivity(Intent(this, DashBoardActivity::class.java))
         }
+
+        // scroll visibility
+//        binding.scrollview.setOnScrollChangeListener(object :OnScrollChangeListener{
+//            override fun onScrollChange(
+//                v: View?,
+//                scrollX: Int,
+//                scrollY: Int,
+//                oldScrollX: Int,
+//                oldScrollY: Int
+//            ) {
+//                if (scrollY>oldScrollY){
+//                    binding.btnContinue.isInvisible
+//                }else{
+//                    binding.btnContinue.isVisible
+//                }
+//            }
+//
+//        })
         // hint
         binding.editFirstName.hint = getString(R.string.first_name)
         binding.editLastName.hint = getString(R.string.enter_last_name)
-        binding.editContact.hint = "+91 "
+        binding.editContact.hint = "Enter mobile number "
         binding.editdate.hint = getString(R.string._5_march_1995)
         binding.editAddress.hint = getString(R.string.no_where_st)
         binding.filledExposedDropdown.hint = getString(R.string.select_state)
+        binding.filledExposedDropdown.autofillHints
         binding.editPostal.hint = getString(R.string._2021)
         binding.editCountry.hint = getString(R.string.malaysia)
+        binding.editEmail.hint = getString(R.string.enter_email)
 
         // date picker
         binding.editdate.setOnClickListener {
@@ -89,8 +109,8 @@ class UserInformationActivity : AppCompatActivity() {
         binding.editPostal.onFocusChangeListener = View.OnFocusChangeListener { _, focus ->
             if (focus) {
                 binding.editPostal.showDropDown()
-                binding.editPostal.error = null
             }
+            binding.editPostal.error = null
         }
 
         // Country
@@ -108,6 +128,8 @@ class UserInformationActivity : AppCompatActivity() {
             this@UserInformationActivity, android.R.layout.simple_dropdown_item_1line, countryArray
         )
         binding.editCountry.setAdapter(countryAdapter)
+        binding.editCountry.isFocusable = true
+        binding.editCountry.isClickable = true
 
         binding.editCountry.onFocusChangeListener = View.OnFocusChangeListener { _, focus ->
             if (focus) {
@@ -115,6 +137,11 @@ class UserInformationActivity : AppCompatActivity() {
             }
             binding.editCountry.error = null
         }
+//       binding.editCountry.onItemClickListener = AdapterView.OnItemClickListener{parent, view, position, id ->
+//           binding.editCountry.showDropDown()
+////           val clickedItem = parent.getItemAtPosition(position).toString()
+////           binding.editCountry.error = null
+//       }
 
         binding.maleBtn.setOnCheckedChangeListener { comp, b ->
             binding.radioGroup.background = null
@@ -125,14 +152,14 @@ class UserInformationActivity : AppCompatActivity() {
         }
 
         binding.btnContinue.setOnClickListener {
-            if (checkValidation()) {
-                if (confirm != null && confirm!!.isVisible) {
-                    confirm!!.dismiss()
-                } else {
-                    confirm = ConfirmBottomSheetDialog.ConfirmBottomSheetDialogInstance()
-                    confirm!!.show(supportFragmentManager, "")
-                }
-            }
+//            if (checkValidation()) {
+//                if (confirm != null && confirm!!.isVisible) {
+//                    confirm!!.dismiss()
+////                } else {
+//////                    confirm = ConfirmBottomSheetDialog.getInstance()
+//////                    confirm!!.show(supportFragmentManager, "")
+////                }
+//            }
         }
     }
 
@@ -164,43 +191,47 @@ class UserInformationActivity : AppCompatActivity() {
     }
 
     private fun checkValidation(): Boolean {
-        var emptyFiled = false
+        var emptyField = false
 
-        val filedData = listOf(
+        val fieldData = listOf(
             binding.editFirstName to "First name is required",
             binding.editLastName to "Last name is required",
-            binding.editContact to "contact number is required",
+            binding.editContact to "Contact number is required",
             binding.editdate to "Date is required",
-            binding.editAddress to "Address is required",
             binding.filledExposedDropdown to "State is required",
             binding.editPostal to "Postal is required",
-            binding.editCountry to "Country is required"
+            binding.editCountry to "Country is required",
+            binding.editEmail to "Email is required"
         )
 
-        filedData.forEach { (inputFiled, errorMessage) ->
-            val filed = inputFiled.text.toString()
-            if (filed.isEmpty()) {
-                inputFiled.error = errorMessage
-                inputFiled.setBackgroundResource(R.drawable.border_color)
-                binding.txtDateOfBirth.endIconDrawable = null
-                binding.txtInputState.endIconDrawable = null
-                binding.txtPostalInput.endIconDrawable = null
-                binding.txtCountryInput.endIconDrawable = null
-
-                emptyFiled = true
+        fieldData.forEach { (inputField, errorMessage) ->
+            val field = inputField.text.toString().trim()
+            if (field.isEmpty()) {
+                inputField.error = errorMessage
+                inputField.setBackgroundResource(R.drawable.border_color)
+                emptyField = true
             } else {
-                inputFiled.error = null
+                inputField.error = null
             }
+        }
+        val email = binding.editEmail.text.toString().trim()
+
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            binding.editEmail.error = "Invalid Email"
+            emptyField = true
         }
 
         if (!binding.maleBtn.isChecked && !binding.FemaleBtn.isChecked) {
             binding.radioGroup.setBackgroundResource(R.drawable.border_color)
             Toast.makeText(this@UserInformationActivity, "Please Select Gender", Toast.LENGTH_SHORT)
                 .show()
-            emptyFiled = true
+            emptyField = true
         }
-        return !emptyFiled
+
+        return !emptyField
     }
+
 
 //    private fun checkGenderValidation(): Boolean {
 //

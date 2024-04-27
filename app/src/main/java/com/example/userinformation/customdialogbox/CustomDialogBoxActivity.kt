@@ -13,15 +13,8 @@ class CustomDialogBoxActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_custom_dialog_box)
-
-//        val sm = supportFragmentManager.beginTransaction()
-//        val myFragment = MyFragment()
-//
-//        myFragment.show(sm, "Custom Dialog Box Fragment")
-        fragment.setSelectedOption(-1)          // Reset Selected Option
+        fragment.setSelectedOption(-1)
         fragment.showDialog(supportFragmentManager, "mydialogbox")
-
-//        fragment.dismissDialog()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

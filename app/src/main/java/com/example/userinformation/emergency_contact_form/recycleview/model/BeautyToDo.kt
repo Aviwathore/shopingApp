@@ -1,4 +1,4 @@
-package com.example.userinformation.beauty.recycleview.model
+package com.example.userinformation.emergency_contact_form.recycleview.model
 
 data class BeautyToDo(val userId: Int,
                       val id : Int,

@@ -1,4 +1,4 @@
-package com.example.userinformation.beauty.recycleview.api
+package com.example.userinformation.emergency_contact_form.recycleview.api
 
 import com.example.userinformation.home.recycleviewapi.model.HomeToDo
 import retrofit2.Call

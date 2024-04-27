@@ -1,35 +1,28 @@
 package com.example.userinformation.dashboard
 
 import android.annotation.SuppressLint
-import android.content.ClipData.Item
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.ActionMenuItemView
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.Groceries.GroceriesActivity
-import com.example.userinformation.customAdapter.CustomListView
 import com.example.userinformation.R
 import com.example.userinformation.activityLifeCycle.LifeCycleOFActivity
-import com.example.userinformation.beauty.Beauty
 import com.example.userinformation.cloth.Cloth
+import com.example.userinformation.customAdapter.CustomListView
 import com.example.userinformation.customViewForRecycleView.CARVActivity
 import com.example.userinformation.customdialogbox.CustomDialogBoxActivity
-import com.example.userinformation.dashboard.productdetails.AddProductActivity
 import com.example.userinformation.dashboard.productdetails.ViewProductsActivity
-import com.example.userinformation.dashboard.service.ServiceExample
 import com.example.userinformation.dashboard.task.UserInformationActivity
 import com.example.userinformation.databinding.ActivityMainBinding
-import com.example.userinformation.electronics.ElectronicsActivity
 import com.example.userinformation.fragmentToActivity.FragmentToActivity
+import com.example.userinformation.emergency_contact_form.EmergencyContactFormActivity
 import com.example.userinformation.home.Home
-import com.example.userinformation.pharmacy.Pharmacy
+import com.example.userinformation.informationform.InformationFormActivity
 import com.example.userinformation.intent.IntentActivity
+import com.example.userinformation.pharmacy.Pharmacy
 import com.example.userinformation.timepicker.TimePickerActivity
 import com.example.userinformation.userdetails.LoginActivity
 import com.google.android.material.appbar.MaterialToolbar
@@ -142,21 +135,26 @@ class DashBoardActivity : AppCompatActivity() {
         }
     }
 
-    fun onElectronics(view: View) {
-        if (view.id == R.id.btn_ele) {
-            startActivity(Intent(this, ElectronicsActivity::class.java))
+//    fun onElectronics(view: View) {
+//        if (view.id == R.id.btn_ele) {
+//            startActivity(Intent(this, ElectronicsActivity::class.java))
+//        }
+//    }
+
+    fun onForm(view: View){
+        if (view.id==R.id.btnInfoForm){
+            startActivity(Intent(this, InformationFormActivity::class.java))
         }
     }
-
     fun onHome(view: View) {
         if (view.id == R.id.btn_home) {
             startActivity(Intent(this, Home::class.java))
         }
     }
 
-    fun onBeauty(view: View) {
-        if (view.id == R.id.btn_beauty) {
-            startActivity(Intent(this, Beauty::class.java))
+    fun onGuardian(view: View) {
+        if (view.id == R.id.btn_guardian) {
+            startActivity(Intent(this, EmergencyContactFormActivity::class.java))
         }
     }
 

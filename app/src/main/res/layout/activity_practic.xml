@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginStart="24dp"
+    android:layout_marginEnd="24dp"
+    tools:context=".PracticActivity">
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/linear1"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:gravity="center"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent">-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/inputCountryCode"-->
+<!--            android:layout_weight="1">-->
+
+<!--            <com.hbb20.CountryCodePicker-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/codePicker" />-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--        <com.google.android.material.textfield.TextInputLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/input2"-->
+<!--            android:layout_weight="6">-->
+<!--            <com.google.android.material.textfield.TextInputEditText-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/i2"-->
+<!--                android:inputType="number"-->
+<!--                android:text="3455443"/>-->
+<!--        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--    </LinearLayout>-->
+
+
+
+        <!-- Country Code Picker -->
+<!--        <com.hbb20.CountryCodePicker-->
+<!--            android:id="@+id/countryCodePicker"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:ccp_defaultNameCode="US"-->
+<!--            app:ccp_showFlag="true"-->
+<!--            app:ccp_showNameCode="false"-->
+<!--            app:ccp_showPhoneNumber="false"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginEnd="8dp"/>-->
+
+<!--        &lt;!&ndash; Contact Number EditText &ndash;&gt;-->
+<!--        <EditText-->
+<!--            android:id="@+id/editTextPhoneNumber"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:hint="Phone Number"-->
+<!--            android:text="345678"-->
+<!--            android:inputType="phone"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@id/countryCodePicker"-->
+<!--            app:layout_constraintTop_toTopOf="@id/countryCodePicker" />-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

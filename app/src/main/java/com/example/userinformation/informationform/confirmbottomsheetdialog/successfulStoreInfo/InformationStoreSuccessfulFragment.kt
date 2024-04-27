@@ -1,4 +1,4 @@
-package com.example.userinformation.dashboard.task.confirmbottomsheetdialog.successfulStoreInfo
+package com.example.userinformation.informationform.confirmbottomsheetdialog.successfulStoreInfo
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

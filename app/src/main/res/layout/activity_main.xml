@@ -111,12 +111,12 @@
                 <!--                app:cardElevation="30dp"-->
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_ele"
+                    android:id="@+id/btnInfoForm"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:layout_marginStart="10dp"
                     android:backgroundTint="@color/white"
-                    android:onClick="onElectronics"
+                    android:onClick="onForm"
                     app:cardCornerRadius="25dp"
                     android:layout_weight="1">
 
@@ -127,7 +127,7 @@
                         android:layout_marginTop="10dp"
                         android:contentDescription="@string/electronic"
                         android:scaleType="fitStart"
-                        android:src="@drawable/elect" />
+                        android:src="@drawable/form" />
 
                     <TextView
                         android:id="@+id/electronics"
@@ -135,7 +135,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginTop="40dp"
-                        android:text="@string/electronic"
+                        android:text="@string/form"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 
@@ -192,12 +192,12 @@
                 <!--                app:cardElevation="30dp"-->
 
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/btn_beauty"
+                    android:id="@+id/btn_guardian"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
                     android:layout_marginStart="10dp"
                     android:backgroundTint="@color/white"
-                    android:onClick="onBeauty"
+                    android:onClick="onGuardian"
                     app:cardCornerRadius="25dp"
                     android:layout_weight="1">
 
@@ -217,7 +217,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="40dp"
                         android:fontFamily="sans-serif"
-                        android:text="@string/beauty"
+                        android:text="@string/guardian"
                         android:textSize="18sp"
                         android:textStyle="bold" />
 

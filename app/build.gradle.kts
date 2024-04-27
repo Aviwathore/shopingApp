@@ -15,6 +15,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+//        multiDexEnabled =true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -53,10 +54,28 @@ dependencies {
     implementation(libs.retrofit)
 //    implementation (libs.converter.gson)
 //    implementation (libs.gson)
-    implementation(libs.material.v150)
 
+    //noinspection UseTomlInstead
+//    implementation ("ru.egslava:MaskedEditText:1.0.5"
+
+//    implementation (libs.MaskedEditText)
+//    implementation(libs.maskedEditText)
+//    implementation(libs.masked.edittext)
+    //noinspection UseTomlInstead
+//    implementation("com.github.pinball83:masked-edittext:1.0.5")
+//    implementation(libs.pinball83.masked.edittext)
+//    implementation(libs.pinball83.masked.edittext)
+//    implementation(libs.material.v150)
+//    implementation (libs.countrycodepicker)
+    implementation (libs.countrycodepicker)
+//    implementation (libs.countrycodepicker)
+    implementation (libs.ccp)
+//    implementation(libs.maskedEditText)
+//    implementation (libs.masked.edittext)
+//    implementation (libs.multidex)
     implementation(libs.androidx.cardview)
     implementation(libs.converter.gson)
+   implementation(libs.masked.edittext)
     implementation(libs.glide)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.navigation.fragment.ktx)

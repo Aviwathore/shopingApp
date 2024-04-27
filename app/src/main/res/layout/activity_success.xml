@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".dashboard.task.confirmbottomsheetdialog.successfulStoreInfo.SuccessActivity">
+    tools:context=".informationform.confirmbottomsheetdialog.successfulStoreInfo.SuccessActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"

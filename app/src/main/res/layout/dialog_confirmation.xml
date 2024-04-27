@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bottom_sheet_dialog_background"
+    android:background="@drawable/emergency_dilog_background"
     android:orientation="vertical"
     android:paddingBottom="24dp">
 
@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         >
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/confirmation"
@@ -51,9 +51,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp">
 
-        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
             android:text="@string/confirmText"
             android:gravity="center_horizontal"/>
     </com.google.android.material.textfield.TextInputLayout>
