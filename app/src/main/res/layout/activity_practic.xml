@@ -7,73 +7,46 @@
     android:layout_height="match_parent"
     android:layout_marginStart="24dp"
     android:layout_marginEnd="24dp"
-    tools:context=".PracticActivity">
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/linear1"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:layout_marginTop="50dp"-->
-<!--        android:gravity="center"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent">-->
-
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/inputCountryCode"-->
-<!--            android:layout_weight="1">-->
-
-<!--            <com.hbb20.CountryCodePicker-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/codePicker" />-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--        <com.google.android.material.textfield.TextInputLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/input2"-->
-<!--            android:layout_weight="6">-->
-<!--            <com.google.android.material.textfield.TextInputEditText-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:id="@+id/i2"-->
-<!--                android:inputType="number"-->
-<!--                android:text="3455443"/>-->
-<!--        </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--    </LinearLayout>-->
+    tools:context=".practice.PracticActivity">
 
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/clAnyRelationship"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        tools:ignore="MissingConstraints">
 
-        <!-- Country Code Picker -->
-<!--        <com.hbb20.CountryCodePicker-->
-<!--            android:id="@+id/countryCodePicker"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:ccp_defaultNameCode="US"-->
-<!--            app:ccp_showFlag="true"-->
-<!--            app:ccp_showNameCode="false"-->
-<!--            app:ccp_showPhoneNumber="false"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent"-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:layout_marginEnd="8dp"/>-->
+        <TextView
+            android:id="@+id/txtAnyRelationship"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/any_relationship_with_bank_staff"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-<!--        &lt;!&ndash; Contact Number EditText &ndash;&gt;-->
-<!--        <EditText-->
-<!--            android:id="@+id/editTextPhoneNumber"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:hint="Phone Number"-->
-<!--            android:text="345678"-->
-<!--            android:inputType="phone"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@id/countryCodePicker"-->
-<!--            app:layout_constraintTop_toTopOf="@id/countryCodePicker" />-->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ilAnyRelationship"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:endIconDrawable="@drawable/baseline_keyboard_arrow_down_24"
+            app:endIconMode="custom"
+            app:layout_constraintTop_toBottomOf="@+id/txtAnyRelationship">
+
+            <AutoCompleteTextView
+                android:id="@+id/acTxtAnyRelationship"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:dropDownSelector="@color/gray"
+                android:focusable="false"
+                android:inputType="none"
+                android:padding="18dp"
+                android:text="@string/yess"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

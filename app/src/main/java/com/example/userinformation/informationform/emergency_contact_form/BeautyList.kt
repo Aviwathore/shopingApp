@@ -1,4 +1,4 @@
-package com.example.userinformation.emergency_contact_form
+package com.example.userinformation.informationform.emergency_contact_form
 
 data class BeautyList(var name:String, var price: Double)
 {

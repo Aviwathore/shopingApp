@@ -22,12 +22,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/txtEmergencyContact"
             android:text="@string/emergency_contact"
-            android:textSize="22sp"
+            android:textSize="24sp"
             android:textStyle="bold"
             android:padding="8dp"
             android:gravity="center"
-            android:textColor="@color/white"
-            android:background="@drawable/btn_crimson" />
+            android:textColor="@color/crimson" />
 
         <TextView
             android:layout_width="wrap_content"

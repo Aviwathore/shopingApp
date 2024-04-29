@@ -18,7 +18,7 @@ import com.example.userinformation.dashboard.productdetails.ViewProductsActivity
 import com.example.userinformation.dashboard.task.UserInformationActivity
 import com.example.userinformation.databinding.ActivityMainBinding
 import com.example.userinformation.fragmentToActivity.FragmentToActivity
-import com.example.userinformation.emergency_contact_form.EmergencyContactFormActivity
+import com.example.userinformation.informationform.emergency_contact_form.EmergencyContactFormActivity
 import com.example.userinformation.home.Home
 import com.example.userinformation.informationform.InformationFormActivity
 import com.example.userinformation.intent.IntentActivity

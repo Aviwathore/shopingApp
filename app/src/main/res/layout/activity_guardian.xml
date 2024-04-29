@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".emergency_contact_form.EmergencyContactFormActivity">
+    tools:context=".informationform.emergency_contact_form.EmergencyContactFormActivity">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsView"
@@ -72,7 +72,8 @@
                         android:id="@+id/editEmergencyContactName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="@string/digit_text"
+                        android:inputType="text"
+
                         android:textSize="16sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -212,6 +213,7 @@
                         tools:ignore="LabelFor" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 

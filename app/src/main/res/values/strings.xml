@@ -278,6 +278,8 @@
     <string name="relationship_is_required">Relationship is required</string>
     <string name="contact_digit_error">Contact number must be 10 digit</string>
     <string name="select_correct_option_error">Select correct option</string>
+    <string name="enter_number">enter number</string>
+    <string name="call">Call</string>
     <!--    hereby confirm that I have reviewed the all details and confirm their accuracy-->
     <!--    spinner state-->
 

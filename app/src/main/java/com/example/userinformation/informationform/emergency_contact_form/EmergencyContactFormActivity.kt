@@ -1,21 +1,32 @@
-package com.example.userinformation.emergency_contact_form
+package com.example.userinformation.informationform.emergency_contact_form
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityGuardianBinding
 import com.example.userinformation.informationform.confirmbottomsheetdialog.successfulStoreInfo.SuccessActivity
+import com.example.userinformation.informationform.dbHelper.FormDBHelper
+import com.example.userinformation.informationform.emergency_contact_form.customeadaptor.CustomArrayAdapter
+import com.example.userinformation.informationform.emergency_contact_form.emergencycontactformdhbelper.EmergencyContactDataClass
 import com.example.userinformation.informationform.highlightStar
 
 class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityGuardianBinding
+    private lateinit var dbHelper: FormDBHelper
+    private lateinit var images: Array<Drawable>
 
     private val relationshipWithContactArray = arrayOf(
         "Grand Father",
@@ -37,14 +48,20 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
         "Uncle"
     )
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGuardianBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val rootView = binding.root
         mandatoryFiled()
         editTextHint()
 
+        images = arrayOf(
+            ResourcesCompat.getDrawable(resources, R.drawable.yes, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.cancel, null)
+        ).filterNotNull().toTypedArray()
         setUpDropdownAdapters()
 
         binding.imgBackButton.setOnClickListener(this)
@@ -62,6 +79,48 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
         binding.ilEmergencyContactName.setEndIconOnClickListener {
             showEmergencyDialog()
         }
+        if (!::dbHelper.isInitialized) {
+            dbHelper = FormDBHelper(this)
+        }
+
+        rootView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                // Determine whether the soft keyboard is visible
+                val isKeyboardVisible = isKeyboardVisible(rootView)
+
+                // Update the visibility of the continue button
+                binding.acBtnNext.isVisible = !isKeyboardVisible
+            }
+        })
+    }
+
+    private fun isKeyboardVisible(rootView: View): Boolean {
+        val SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD = 200
+        val r = Rect()
+        rootView.getWindowVisibleDisplayFrame(r)
+        val heightDiff = rootView.rootView.height - (r.bottom - r.top)
+        return heightDiff > SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD
+    }
+    private fun getFormData() {
+
+        val emergencyContact = binding.editEmergencyContactName.text.toString()
+        val mobileNumber = binding.editContactNumber.text.toString()
+        val relationship = binding.acTxtRelationship.text.toString()
+        val bankStaffRelation = binding.acTextRelation.text.toString()
+        val bankStaffName = binding.editBankStaffName.text.toString()
+        val anyRelation = binding.acTxtAnyRelationship.text.toString()
+        val bankStaffNumber = binding.editBankStaffMobile.text.toString()
+
+        val data = EmergencyContactDataClass(
+            emergencyContact,
+            mobileNumber,
+            relationship,
+            bankStaffRelation,
+            bankStaffName,
+            anyRelation,
+            bankStaffNumber
+        )
+        storeDataInDatabase(data)
     }
 
     private fun checkVisibility(position: Int) {
@@ -70,6 +129,7 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
         if (selectedOption == "No") {
             textColor()
             removeMandatoryFiled()
+//            binding.editBankStaffMobile.error = null
             enableField(false)
 
         } else {
@@ -80,7 +140,6 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
             mandatoryFiled()
             highlightTextColor()
         }
-
 
     }
 
@@ -105,6 +164,7 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
         val allFields = someField + extraFields
 
         someField.forEach { (field, errorMessage) ->
+
             val inputField = field.text.toString().trim()
             if (inputField.isEmpty() && field.isEnabled) {
                 field.error = errorMessage
@@ -123,17 +183,22 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
                 binding.ilEmergencyContactName.endIconDrawable = null
                 emptyField = true
             }
+            if (binding.acTxtAnyRelationship.text.toString().trim() == "Yes") {
+                if (binding.editContactNumber.length() != 10) {
+                    binding.editContactNumber.setBackgroundResource(R.drawable.border_color)
+                    binding.editContactNumber.error = getString(R.string.contact_digit_error)
+                    emptyField = true
+                }
+                if (field.isEnabled) {
+                    if (binding.editBankStaffMobile.length() != 10) {
+                        binding.editBankStaffMobile.setBackgroundResource(R.drawable.border_color)
+                        binding.editBankStaffMobile.error = getString(R.string.contact_digit_error)
+                        emptyField = true
+                    }
+                }
+            }
 
-            if (binding.editContactNumber.length() != 10) {
-                binding.editContactNumber.setBackgroundResource(R.drawable.border_color)
-                binding.editContactNumber.error = getString(R.string.contact_digit_error)
-                emptyField = true
-            }
-            if (binding.editBankStaffMobile.length() != 10 && field.isEnabled) {
-                binding.editBankStaffMobile.setBackgroundResource(R.drawable.border_color)
-                binding.editBankStaffMobile.error = getString(R.string.contact_digit_error)
-                emptyField = true
-            }
+
 
         }
         return !emptyField
@@ -184,14 +249,14 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
         )
 
         binding.acTxtRelationship.setAdapter(adapter)
-
-        val anyRelationshipAdaptor = ArrayAdapter(
-            this@EmergencyContactFormActivity,
-            android.R.layout.simple_dropdown_item_1line,
-            anyRelationshipWithBankStaff
-        )
-
-        binding.acTxtAnyRelationship.setAdapter(anyRelationshipAdaptor)
+//
+//        val anyRelationshipAdaptor = ArrayAdapter(
+//            this@EmergencyContactFormActivity,
+//            android.R.layout.simple_dropdown_item_1line,
+//            anyRelationshipWithBankStaff
+//        )
+//
+//        binding.acTxtAnyRelationship.setAdapter(anyRelationshipAdaptor)
 
         val staffRelationAdapter = ArrayAdapter(
             this@EmergencyContactFormActivity,
@@ -199,6 +264,16 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
             bankStaffRelation
         )
         binding.acTextRelation.setAdapter(staffRelationAdapter)
+
+
+        val customAdapter = CustomArrayAdapter(
+            this@EmergencyContactFormActivity,
+            anyRelationshipWithBankStaff,
+            images
+        )
+
+        binding.acTxtAnyRelationship.setAdapter(customAdapter)
+//        binding.acTxtAnyRelationship.dropDownWidth = 400
     }
 
     private fun showEmergencyDialog() {
@@ -259,13 +334,26 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun onNextButton() {
         if (checkValidationForAllFields()) {
-
-            startActivity(Intent(this, SuccessActivity::class.java))
+            getFormData()
         } else {
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
         }
     }
 
+    private fun storeDataInDatabase(data: EmergencyContactDataClass) {
+        val returnId = dbHelper.insertGuardianData(data)
+        Log.d("RETURN ID OF EMERGENCY CONTACT FORM", "============================= $returnId")
+        if (returnId != 1L) {
+//            Log.d("Data Insertion", "Data inserted successfully from emergency form")
+            Toast.makeText(this, "EMERGENCY DATA INSERTED IN DATABASE", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, SuccessActivity::class.java))
+
+
+        } else {
+            Log.d("DATA NOT INSERTED", "Data not inserted from emergency form")
+            startActivity(Intent(this, EmergencyContactFormActivity::class.java))
+        }
+    }
 
 
     private fun showRStaffRelationDropDown() {

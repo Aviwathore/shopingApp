@@ -2,11 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" >
 
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission
         android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
+
+
 
     <application
         android:allowBackup="true"
@@ -19,19 +26,19 @@
         android:theme="@style/Theme.UserInformation"
         tools:targetApi="31" >
         <activity
-            android:name=".emergency_contact_form.EmergencyContactFormActivity"
+            android:name=".informationform.emergency_contact_form.EmergencyContactFormActivity"
             android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
-            android:name=".PracticActivity"
+            android:name=".practice.PracticActivity"
             android:exported="true" >
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
 
 
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
         </activity>
         <activity
             android:name=".informationform.InformationFormActivity"
@@ -137,7 +144,7 @@
             android:name=".pharmacy.Pharmacy"
             android:exported="false" />
         <activity
-            android:name=".emergency_contact_form.Beauty"
+            android:name=".informationform.emergency_contact_form.Beauty"
             android:exported="false" />
         <activity
             android:name=".home.Home"

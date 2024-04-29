@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
@@ -60,7 +59,9 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/crimson"
         android:textSize="14sp"
-        android:hint="@string/enter_message"/>
+        android:autofillHints="text"
+        android:hint="@string/enter_message"
+        android:inputType="text" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_send_text"
@@ -71,5 +72,29 @@
         android:layout_marginTop="20dp"
         android:backgroundTint="@color/white"
         android:text="@string/send_data" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/call"
+        android:layout_below="@+id/btn_send_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginStart="44dp"
+        android:hint="@string/enter_number"
+        android:inputType="number"
+        android:maxLength="10"
+        android:autofillHints="creditCardNumber" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_call"
+        android:text="@string/call"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        android:layout_below="@+id/call"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

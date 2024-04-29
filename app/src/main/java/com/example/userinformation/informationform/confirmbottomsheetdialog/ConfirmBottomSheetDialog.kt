@@ -10,10 +10,10 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import com.example.userinformation.R
 import com.example.userinformation.databinding.DialogConfirmationBinding
-import com.example.userinformation.emergency_contact_form.EmergencyContactFormActivity
 import com.example.userinformation.informationform.InformationFormActivity
 import com.example.userinformation.informationform.dbHelper.FormDBHelper
 import com.example.userinformation.informationform.dbHelper.InformationFormDataClass
+import com.example.userinformation.informationform.emergency_contact_form.EmergencyContactFormActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class ConfirmBottomSheetDialog(private val formDataClass: InformationFormDataClass):BottomSheetDialogFragment() {
@@ -48,9 +48,12 @@ class ConfirmBottomSheetDialog(private val formDataClass: InformationFormDataCla
 
         binding.yesBtn.setOnClickListener{
             val data = InformationFormDataClass(0,first,last,mobile,gender,state,country,dateOfBirth,address,postal,email)
-            storeDataInDataBase(data)
-            Log.d("AFTER CLICK ON YES BUTTON","DATA INSERT")
-            dismiss()
+            if (!isDataAlreadyExist(data)) {
+                storeDataInDataBase(data)
+                Log.d("AFTER CLICK ON YES BUTTON", "DATA INSERT")
+                dismiss()
+            }
+
         }
 
 
@@ -69,6 +72,30 @@ class ConfirmBottomSheetDialog(private val formDataClass: InformationFormDataCla
 
         })
         return rootView
+    }
+
+    private fun isDataAlreadyExist(data: InformationFormDataClass): Boolean {
+        val database = dbHelper.readableDatabase
+        val col = arrayOf("info_id")
+        val selection = "info_id =?"
+        val selectionArg = arrayOf(formDataClass.info_id.toString())
+
+        val cursor = database.query(
+            "Information",
+            col,
+            selection,
+            selectionArg,
+            null,
+            null,
+            null
+        )
+        val dataExist = cursor.count > 0
+        cursor.close()
+        database.close()
+        Log.d("DATA EXIST", "=============$dataExist ========== $selection======== $col")
+        return dataExist
+
+
     }
 
     private fun storeDataInDataBase(formDataClass: InformationFormDataClass) {

@@ -3,6 +3,8 @@ package com.example.userinformation.informationform
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.graphics.Color
+import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.icu.util.TimeZone
@@ -12,11 +14,15 @@ import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
 import android.view.View
+import android.view.ViewTreeObserver
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.view.isVisible
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityInformationFormBinding
 import com.example.userinformation.informationform.confirmbottomsheetdialog.ConfirmBottomSheetDialog
+import com.example.userinformation.informationform.confirmbottomsheetdialog.CustomCountryArrayAdaptor
 import com.example.userinformation.informationform.dbHelper.FormDBHelper
 import com.example.userinformation.informationform.dbHelper.InformationFormDataClass
 import java.util.Locale
@@ -29,6 +35,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
     private var confirm: ConfirmBottomSheetDialog? = null
     private lateinit var dbHelper: FormDBHelper
     private var isDatePickerShown = false
+    private lateinit var images: Array<Drawable>
     private val stateArray = arrayOf(
         "Assam",
         "Bihar",
@@ -60,13 +67,14 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
         "2021", "2022", "2023", "2024", "2025", "2026"
     )
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityInformationFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val rootView = binding.root
         binding.backButton.setOnClickListener {
             finish()
         }
@@ -98,7 +106,28 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
             binding.editPostal.error = null
 
         }
+        binding.editPostal.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.editPostal.showDropDown()
+            }
+        }
 
+        binding.editCountry.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                // Check if the country field has focus and there's text in it
+                if (binding.editCountry.text.isEmpty()) {
+                    binding.editPostal.showDropDown()
+                } else {
+                    // If there's no text, clear focus to prevent the keyboard from opening
+                    binding.editCountry.clearFocus()
+                }
+            }
+        }
+        binding.editState.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.editPostal.showDropDown()
+            }
+        }
 
         val postalAdaptor = ArrayAdapter(
             this@InformationFormActivity, android.R.layout.simple_dropdown_item_1line, postalArray
@@ -106,10 +135,27 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.editPostal.setAdapter(postalAdaptor)
 
-        val countryAdapter = ArrayAdapter(
-            this@InformationFormActivity, android.R.layout.simple_dropdown_item_1line, countryArray
+
+        images = arrayOf(
+            ResourcesCompat.getDrawable(resources, R.drawable.armenia, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.australia, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.bangladesh, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.china, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.afghanistan, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.india, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.malaysia, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.barbados, null)
+
+
+        ).filterNotNull().toTypedArray()
+
+        val customAdapter = CustomCountryArrayAdaptor(
+            this@InformationFormActivity,
+            countryArray,
+            images
         )
-        binding.editCountry.setAdapter(countryAdapter)
+
+        binding.editCountry.setAdapter(customAdapter)
 
         binding.editCountry.setOnClickListener {
             binding.editCountry.showDropDown()
@@ -194,8 +240,25 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
         })
 
 
+        rootView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                // Determine whether the soft keyboard is visible
+                val isKeyboardVisible = isKeyboardVisible(rootView)
+
+                // Update the visibility of the continue button
+                binding.btnContinue.isVisible = !isKeyboardVisible
+            }
+        })
+
     }
 
+    private fun isKeyboardVisible(rootView: View): Boolean {
+        val SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD = 200
+        val r = Rect()
+        rootView.getWindowVisibleDisplayFrame(r)
+        val heightDiff = rootView.rootView.height - (r.bottom - r.top)
+        return heightDiff > SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD
+    }
     private fun editTextHint() {
         binding.editFirst.hint = getString(R.string.first_name_hint)
         binding.editLast.hint = getString(R.string.last_name_hint)
@@ -296,7 +359,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
             binding.editState to "State is required",
             binding.editPostal to "Postal is required",
             binding.editCountry to "Country is required",
-            binding.editEmail to "Email is required"
+            binding.editEmail to "Email is required",
         )
 
         filedData.forEach { (inputFiled, errorMessage) ->
@@ -331,6 +394,8 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
         if (!binding.rdMale.isChecked && !binding.rdFemale.isChecked) {
             binding.rgGender.setBackgroundResource(R.drawable.border_color)
             emptyFiled = true
+        }else{
+            binding.rgGender.setBackgroundResource(R.drawable.white_border)
         }
         if (binding.editReenterAadhaar.length() != 14) {
             binding.editReenterAadhaar.error = "Aadhaar number must be 12 digits long"

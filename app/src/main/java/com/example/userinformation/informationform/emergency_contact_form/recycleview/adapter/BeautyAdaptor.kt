@@ -1,4 +1,4 @@
-package com.example.userinformation.emergency_contact_form.recycleview.adapter
+package com.example.userinformation.informationform.emergency_contact_form.recycleview.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -17,13 +17,13 @@ class BeautyAdaptor(private val beautyList: ArrayList<String>,
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BeautyAdaptor.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.home_recycle_layout, parent, false)
         return  ViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: BeautyAdaptor.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recycle=beautyList[position]
 
         holder.user.text= recycle.toString()
