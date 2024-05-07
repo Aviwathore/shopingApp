@@ -1,5 +1,6 @@
 [versions]
 agp = "8.3.2"
+ambilwarna = "2.0.1"
 appcompatVersion = "1.6.1"
 cardview = "1.0.0"
 ccp = "2.5.1"
@@ -11,6 +12,7 @@ countrycodepicker = "2.4.2"
 githubMaskededittext = "1.0.0"
 githubMaskededittextVersion = "5.0.1"
 glide = "4.12.0"
+glideVersion = "4.11.0"
 gson = "2.10.1"
 hipoMaskededittext = "1.2.9"
 inputMaskAndroid = "8.1.0"
@@ -41,8 +43,10 @@ roomRuntime = "2.6.1"
 ruEgslavaMaskededittext = "1.0.5"
 ruMaskededittext = "1.0.5"
 ruMaskededittextVersion = "1.0.5"
+viewpager2 = "1.0.0"
 
 [libraries]
+ambilwarna = { module = "com.github.yukuku:ambilwarna", version.ref = "ambilwarna" }
 androidx-appcompat-v130 = { module = "androidx.appcompat:appcompat", version.ref = "appcompatVersion" }
 androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -51,10 +55,12 @@ androidx-recyclerview = { module = "androidx.recyclerview:recyclerview", version
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 androidx-room-compiler-v250 = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+androidx-viewpager2 = { module = "androidx.viewpager2:viewpager2", version.ref = "viewpager2" }
 ccp = { module = "com.hbb20:ccp", version.ref = "ccp" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 countrycodepicker = { module = "com.github.joielechong:countrycodepicker", version.ref = "countrycodepicker" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+glide-v4110 = { module = "com.github.bumptech.glide:glide", version.ref = "glideVersion" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

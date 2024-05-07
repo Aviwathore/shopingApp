@@ -5,29 +5,24 @@
     <item android:id="@+id/logout"
         android:title="@string/timer_picker"
         android:icon="@drawable/baseline_logout_24"
-        android:iconTint="@color/white"
         app:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/favorite"
+    <item android:id="@+id/microphone"
         android:title="@string/favorite"
-        android:icon="@drawable/baseline_favorite_24"
-        app:showAsAction="ifRoom"
-        />
-
-    <item
-        android:id="@+id/search"
-        android:title="@string/search"
-        android:icon="@android:drawable/ic_menu_search"
-        android:iconTint="@color/white"
+        android:icon="@drawable/baseline_mic_24"
         app:showAsAction="ifRoom"
         />
 
 <!--    <item-->
-<!--        android:id="@+id/more"-->
-<!--        android:title="@string/more"-->
-<!--        android:icon="@drawable/baseline_more_vert_24"-->
+<!--        android:id="@+id/search"-->
+<!--        android:title="@string/search"-->
+<!--        android:icon="@drawable/baseline_search_24"-->
 <!--        app:showAsAction="ifRoom"-->
 <!--        />-->
+
+<!--   <item android:id="@+id/cloth" android:title="@string/cloth" />-->
+<!--    <item android:id="@+id/notes" android:title="@string/intent" />-->
+
 
 
 </menu>

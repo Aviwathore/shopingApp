@@ -1,14 +1,13 @@
 package com.example.userinformation.dashboard.productdetails
 
 import android.annotation.SuppressLint
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +17,7 @@ import com.example.userinformation.dashboard.productdetails.dbhelper.ProductDB
 import com.example.userinformation.dashboard.productdetails.model.Product
 import com.example.userinformation.databinding.ActivityViewProductsBinding
 
-class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
+class ProductAdapter: RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     private var productList = ArrayList<Product>()
     private var deleteItemClickListener :OnDeleteProductClickListener?=null
@@ -41,8 +40,8 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(
         var id: TextView = item.findViewById<TextView>(R.id.txt_pro_id)
         var name: TextView = item.findViewById<TextView>(R.id.txt_pro_name)
         var category: TextView = item.findViewById<TextView>(R.id.txt_pro_category)
-        val removeBtn: ImageButton = item.findViewById<ImageButton>(R.id.img_btn_delete_product)
-        val updateBtn :ImageButton = item.findViewById<ImageButton>(R.id.img_btn_update_product)
+        val removeBtn: ImageView? = item.findViewById<ImageView>(R.id.img_btn_delete_product)
+        val updateBtn : ImageView? = item.findViewById<ImageView>(R.id.img_btn_update_product)
 
     }
 
@@ -62,11 +61,11 @@ class ProductAdapter() : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>(
         holder.name.text = product.productName.toString()
         holder.category.text = product.productCategory.toString()
 
-        holder.removeBtn.setOnClickListener{
+        holder.removeBtn?.setOnClickListener{
             deleteItemClickListener?.productClick(position, productList)
         }
 
-        holder.updateBtn.setOnClickListener{
+        holder.updateBtn?.setOnClickListener{
             updateProductClickListener?.updateProductClick(product)
         }
 
@@ -104,7 +103,7 @@ class ViewProductsActivity : AppCompatActivity() ,OnDeleteProductClickListener, 
             startActivity(Intent(this, AddProductActivity::class.java))
         }
 
-        recyclerView = findViewById(R.id.product_recycler_view) // Correct the ID
+        recyclerView = findViewById(R.id.product_recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val retrievedAdapter = recyclerView.adapter
@@ -116,11 +115,6 @@ class ViewProductsActivity : AppCompatActivity() ,OnDeleteProductClickListener, 
             recyclerView.adapter = adapter
         }
 
-        //update activity
-
-
-        // fetch and pass to adapter
-
 
         dbHelper = ProductDB(this)
         val productList = ArrayList<Product>()
@@ -129,40 +123,22 @@ class ViewProductsActivity : AppCompatActivity() ,OnDeleteProductClickListener, 
         adapter.setProduct(productList)
 
         adapter.notifyDataSetChanged()
-
-        // delete
         adapter.setOnDeleteProductClickListener(this)
 
-        // update
         adapter.setUpdateProductClickListener(this)
 
     }
 
     override fun productClick(position: Int, productList: ArrayList<Product>) {
-        Log.d("REMOVE", "before deleted")
         val deletedProduct = productList.removeAt(position)
-        Log.d("REMOVE", "After deleted")
         // update recyclerview
         adapter.setProduct(productList)
-        Log.d("REMOVE", "updated view")
         // delete from database
         dbHelper.deleteProduct(this,deletedProduct)
         Log.d("REMOVE", "deleted from database")
-
-//        showConfirmDialog(position, productList)
+        finish()
     }
 
-//    private fun showConfirmDialog(position: Int, productList: ArrayList<Product>) {
-//
-//        val dialog = AlertDialog.Builder(this)
-//            .setTitle("Are You Sure You Want To Delete this ?")
-//            .setMessage("Position : ${position}")
-//            .setPositiveButton("") {dialog, _ ->
-//
-//
-//            }
-//
-//    }
 
     override fun updateProductClick(product: Product) {
 
@@ -174,5 +150,6 @@ class ViewProductsActivity : AppCompatActivity() ,OnDeleteProductClickListener, 
         intent.putExtra("category", product.productCategory)
 
         startActivity(intent)
+        finish()
     }
 }

@@ -95,10 +95,10 @@
     <string name="enter_customer_name">Enter Customer Name</string>
     <string name="enter_customer_contact">Enter Customer Contact</string>
     <string name="submit">SUBMIT</string>
-    <string name="open_webpage">Open WebPage</string>
+    <string name="open_webpage">WebPage</string>
     <string name="intent_operations">Intent Operations</string>
-    <string name="open_call">open call</string>
-    <string name="open_camera">open camera</string>
+    <string name="open_call">dile call</string>
+    <string name="open_camera">camera</string>
     <string name="intent">Intent</string>
     <string name="service">Service</string>
     <string name="excellent">Excellent</string>
@@ -207,27 +207,27 @@
     <string name="are_you_sure_you_want_to_romove_this_details">Are You Sure, You Want To Romove This Details?</string>
     <string name="are_you_sure_you_want_to_remove_this_details">Are you sure, You want to remove this details ?</string>
     <string name="user_information">User Information</string>
-    <string name="first_name">* First name</string>
-    <string name="last_name">* Last name</string>
+    <string name="first_name">* First Name</string>
+    <string name="last_name">* Last Name</string>
     <string name="add">ADD</string>
     <string name="back_button">Back Button</string>
     <string name="your_information">Your Information</string>
-    <string name="your_informations">Your Informations</string>
+    <string name="your_informations">Your Information</string>
     <string name="infoDescription">Lorem ipsum dolor sit amet, consectetuer\nadipiscing elit.</string>
     <string name="enter_first_name">Enter First Name</string>
     <string name="_5_march_1995">5 March 1995</string>
-    <string name="date_of_birth">* Date of birth</string>
+    <string name="date_of_birth">* Date Of Birth</string>
     <string name="enter_last_name">Enter Last Name</string>
     <string name="address">Address</string>
     <string name="enter_your_address">Enter Your Address</string>
     <string name="select_state">Select State</string>
     <string name="state">* State</string>
-    <string name="postal">* Postal</string>
+    <string name="postal">* Postal Code</string>
     <string name="country">* Country</string>
     <string name="_2021">2021</string>
     <string name="no_where_st">no where st</string>
     <string name="malaysia">Malaysia</string>
-    <!--    <string name="continue">Continue</string>-->
+    <string name="btn_continue">Continue</string>
     <string name="countinue">Countinue</string>
     <string name="confirmText">Are all the data shown correct? If not, you are able to make changes.</string>
     <string name="yes">Yes, all is correct</string>
@@ -236,28 +236,28 @@
     <string name="successfully">Your Information Store Successfully</string>
     <string name="success_description">Your all information which are present in your information form are store in a database successfully.</string>
     <string name="go_to_home">Go to Home</string>
-    <string name="aadhaar_number">* Aadhaar number</string>
+    <string name="aadhaar_number">* Aadhaar Number</string>
     <string name="form">Form</string>
-    <string name="mobile_number">* Mobile number</string>
+    <string name="mobile_number">* Mobile Number</string>
     <string name="aadhaar">####-####-####</string>
     <string name="_123456789">123456789</string>
     <string name="re_enter_aadhaar_number">* Re-Enter Aadhaar Number</string>
     <string name="guardian_details">Guardian Details</string>
     <string name="guardian">Guardian</string>
-    <string name="emergency_contact_name">* Emergency contact name</string>
-    <string name="contact_number">* Contact number</string>
+    <string name="emergency_contact_name">* Emergency Contact Name</string>
+    <string name="contact_number">* Contact Number</string>
     <string name="relationship">* Relationship</string>
-    <string name="any_relationship_with_bank_staff">* Any relationship with Bank staff</string>
-    
-    <string name="emergency_name_hint">Immediate family member</string>
+    <string name="any_relationship_with_bank_staff">* Any Relationship With Bank Staff</string>
+
+    <string name="emergency_name_hint">Immediate Family Member</string>
     <string name="contact_number_hint">+91 </string>
-    <string name="relationship_hint">Relationship with contact</string>
-    <string name="bank_staff_full_name">* Bank staff\'s full name</string>
+    <string name="relationship_hint">Relationship With Contact</string>
+    <string name="bank_staff_full_name">* Bank Staff\'s Full Name</string>
     <string name="digit_text">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
-    <string name="bank_staff_mobile_number">* Bank staff\'s mobile number</string>
-    <string name="bank_staff_mobile_number_hint">Bank staff\'s mobile number</string>
-    <string name="bank_staff_full_name_hint">Enter staff full name</string>
-    <string name="enter_relation_hint">Select correct relation</string>
+    <string name="bank_staff_mobile_number">* Bank Staff\'s Mobile Number</string>
+    <string name="bank_staff_mobile_number_hint">Bank Staff\'s Mobile Number</string>
+    <string name="bank_staff_full_name_hint">Enter Staff Full Name</string>
+    <string name="enter_relation_hint">Select Correct Relation</string>
     <string name="staff_mobile_hint">012 345 6789</string>
     <string name="confirm"> I hereby confirm that the declared individual have agreed to be contact by Bank for the purpose of my financing</string>
     <string name="next">Next</string>
@@ -280,6 +280,21 @@
     <string name="select_correct_option_error">Select correct option</string>
     <string name="enter_number">enter number</string>
     <string name="call">Call</string>
+    <string name="camera">Camera</string>
+    <string name="text_to_speech">text to speech</string>
+    <string name="enter_text_here">Enter text here ....</string>
+    <string name="click_here">Click Here</string>
+    <string name="color_picker">Color Picker</string>
+    <string name="select_color">Select Color</string>
+    <string name="pick_color">Pick Color</string>
+    <string name="your_selected_color_is">Your selected color is :</string>
+    <string name="set_color">Set Color</string>
+    <string name="pronunciation_text">Pronunciation Text</string>
+    <string name="teddy">Toy</string>
+    <string name="furniture">Furniture</string>
+    <string name="api_spnner">Api Spinner</string>
+    <string name="data_from_api">Data From Api</string>
+    <string name="select_description">* Select Description</string>
     <!--    hereby confirm that I have reviewed the all details and confirm their accuracy-->
     <!--    spinner state-->
 
@@ -289,13 +304,24 @@
         <item>Karnataka</item>
         <item>Goa</item>
         <item>Haryana</item>
-        <item>Nagaland</item>
-        <item>Ladakh</item>
-        <item>Maharashtra</item>
-        <item>Kerala</item>
         <item>Jharkhand</item>
-        <item>Punjab</item>
-        <item>Manipur</item>
+        <item>Kerala</item>
+        <item>Ladakh</item>
         <item>Lakshadweep</item>
+        <item>Maharashtra</item>
+        <item>Manipur</item>
+        <item>Nagaland</item>
+        <item>Punjab</item>
+    </string-array>
+
+    <string-array name="country_array">
+        <item>Afghanistan</item>
+        <item>Armenia</item>
+        <item>Australia</item>
+        <item>Barbados</item>
+        <item>Bangladesh</item>
+        <item>China</item>
+        <item>India</item>
+        <item>Malaysia</item>
     </string-array>
 </resources>

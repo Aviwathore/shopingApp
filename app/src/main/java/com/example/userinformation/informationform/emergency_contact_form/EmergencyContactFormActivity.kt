@@ -1,31 +1,30 @@
 package com.example.userinformation.informationform.emergency_contact_form
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.view.ViewTreeObserver
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.isVisible
+import androidx.room.RoomMasterTable
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityGuardianBinding
 import com.example.userinformation.informationform.confirmbottomsheetdialog.successfulStoreInfo.SuccessActivity
-import com.example.userinformation.informationform.dbHelper.FormDBHelper
+import com.example.userinformation.informationform.dbHelper.EmergencyContactDataClass
+import com.example.userinformation.informationform.dbHelper.InformationFormDBHelper
 import com.example.userinformation.informationform.emergency_contact_form.customeadaptor.CustomArrayAdapter
-import com.example.userinformation.informationform.emergency_contact_form.emergencycontactformdhbelper.EmergencyContactDataClass
 import com.example.userinformation.informationform.highlightStar
 
 class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityGuardianBinding
-    private lateinit var dbHelper: FormDBHelper
+    private lateinit var dbHelper: InformationFormDBHelper
     private lateinit var images: Array<Drawable>
 
     private val relationshipWithContactArray = arrayOf(
@@ -49,12 +48,12 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
     )
 
 
+    @SuppressLint("SetTextI18n", "RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityGuardianBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val rootView = binding.root
+        
         mandatoryFiled()
         editTextHint()
 
@@ -64,12 +63,32 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
         ).filterNotNull().toTypedArray()
         setUpDropdownAdapters()
 
+
         binding.imgBackButton.setOnClickListener(this)
         binding.acTxtRelationship.setOnClickListener(this)
         binding.acTxtAnyRelationship.setOnClickListener(this)
         binding.acTextRelation.setOnClickListener(this)
         binding.acBtnNext.setOnClickListener(this)
 
+
+        binding.acTextRelation.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.acTextRelation.showDropDown()
+                binding.acTextRelation.error = null
+            }
+        }
+        binding.acTxtRelationship.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.acTxtRelationship.showDropDown()
+                binding.acTxtRelationship.error = null
+            }
+        }
+        binding.acTxtAnyRelationship.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.acTxtAnyRelationship.showDropDown()
+                binding.acTxtAnyRelationship.error = null
+            }
+        }
         binding.acTxtAnyRelationship.setOnItemClickListener { parent, view, position, id ->
             checkVisibility(position)
         }
@@ -79,28 +98,18 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
         binding.ilEmergencyContactName.setEndIconOnClickListener {
             showEmergencyDialog()
         }
-        if (!::dbHelper.isInitialized) {
-            dbHelper = FormDBHelper(this)
+
+        dbHelper = InformationFormDBHelper(this)
+        val tableSize = dbHelper.getTableSize()
+        Log.d("EMERGENCY_TABLE_SIZE", "Size of ${RoomMasterTable.TABLE_NAME}: $tableSize bytes")
+
+        val contacts = dbHelper.getAllEmergencyContacts()
+        for (contact in contacts) {
+            Log.d("EMERGENCY_CONTACT", contact.toString())
         }
-
-        rootView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                // Determine whether the soft keyboard is visible
-                val isKeyboardVisible = isKeyboardVisible(rootView)
-
-                // Update the visibility of the continue button
-                binding.acBtnNext.isVisible = !isKeyboardVisible
-            }
-        })
     }
 
-    private fun isKeyboardVisible(rootView: View): Boolean {
-        val SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD = 200
-        val r = Rect()
-        rootView.getWindowVisibleDisplayFrame(r)
-        val heightDiff = rootView.rootView.height - (r.bottom - r.top)
-        return heightDiff > SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD
-    }
+
     private fun getFormData() {
 
         val emergencyContact = binding.editEmergencyContactName.text.toString()
@@ -129,7 +138,6 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
         if (selectedOption == "No") {
             textColor()
             removeMandatoryFiled()
-//            binding.editBankStaffMobile.error = null
             enableField(false)
 
         } else {
@@ -199,7 +207,6 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
             }
 
 
-
         }
         return !emptyField
     }
@@ -240,6 +247,7 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setUpDropdownAdapters() {
 
         val adapter = ArrayAdapter(
@@ -249,14 +257,6 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
         )
 
         binding.acTxtRelationship.setAdapter(adapter)
-//
-//        val anyRelationshipAdaptor = ArrayAdapter(
-//            this@EmergencyContactFormActivity,
-//            android.R.layout.simple_dropdown_item_1line,
-//            anyRelationshipWithBankStaff
-//        )
-//
-//        binding.acTxtAnyRelationship.setAdapter(anyRelationshipAdaptor)
 
         val staffRelationAdapter = ArrayAdapter(
             this@EmergencyContactFormActivity,
@@ -274,6 +274,7 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
 
         binding.acTxtAnyRelationship.setAdapter(customAdapter)
 //        binding.acTxtAnyRelationship.dropDownWidth = 400
+        binding.acTxtAnyRelationship.setText("Yes", false)
     }
 
     private fun showEmergencyDialog() {
@@ -332,16 +333,31 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
+    @SuppressLint("RestrictedApi")
     private fun onNextButton() {
         if (checkValidationForAllFields()) {
             getFormData()
+
+//            if (::dbHelper.isInitialized) {
+//                val tableSize = dbHelper.getTableSize()
+//                Log.d("EMERGENCY_TABLE_SIZE", "Size of ${RoomMasterTable.TABLE_NAME}: $tableSize bytes")
+//
+//                val contacts = dbHelper.getAllEmergencyContacts()
+//                for (contact in contacts) {
+//                    Log.d("EMERGENCY_CONTACT", contact.toString())
+//                }
+//            } else {
+//                Log.e("EmergencyContactForm", "dbHelper is not initialized")
+//            }
         } else {
             Toast.makeText(this, "Something went wrong", Toast.LENGTH_SHORT).show()
         }
     }
 
+
     private fun storeDataInDatabase(data: EmergencyContactDataClass) {
         val returnId = dbHelper.insertGuardianData(data)
+
         Log.d("RETURN ID OF EMERGENCY CONTACT FORM", "============================= $returnId")
         if (returnId != 1L) {
 //            Log.d("Data Insertion", "Data inserted successfully from emergency form")
@@ -364,5 +380,9 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
     private fun showRelationshipDropdown() {
         binding.acTxtRelationship.showDropDown()
         binding.acTxtRelationship.error = null
+    }
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
     }
 }

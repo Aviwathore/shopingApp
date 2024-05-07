@@ -21,7 +21,7 @@ class CustomListView : AppCompatActivity() {
         setContentView(binding.root)
 
         val image = intArrayOf(
-            R.drawable.elect, R.drawable.cloth, R.drawable.beauty, R.drawable.amazon_logo, R.drawable.groceries, R.drawable.home, R.drawable.pharmacy
+            R.drawable.pc, R.drawable.cloth, R.drawable.beauty, R.drawable.amazon_logo, R.drawable.groceries, R.drawable.makeup, R.drawable.pharmacy
         )
 
         val name = arrayOf(

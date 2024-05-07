@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
 
@@ -10,10 +11,11 @@
         android:id="@+id/card_product"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_weight="1"
         app:cardBackgroundColor="@color/white"
         app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -78,25 +80,25 @@
                 android:padding="10dp"
                 android:textColor="@color/black" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/img_btn_update_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="30dp"
+                android:layout_marginEnd="35dp"
                 android:backgroundTint="@color/white"
                 android:src="@drawable/baseline_edit_24"
-                app:tint="@color/crimson"
+                app:tint="@color/gray"
                 android:contentDescription="@string/edit" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/img_btn_delete_product"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:backgroundTint="@color/white"
-                android:src="@drawable/baseline_more_vert_24"
-                app:tint="#6C6C6D"
+                android:src="@drawable/baseline_delete_24"
+                app:tint="@color/crimson"
                 android:contentDescription="@string/edit" />
 
         </RelativeLayout>

@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:fitsSystemWindows="true"
     tools:context=".informationform.InformationFormActivity">
 
@@ -14,23 +15,23 @@
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/buttonContainer"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="25dp"
             android:layout_marginEnd="24dp">
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#71FFFFFF"
                 android:contentDescription="@string/back_button"
-                android:src="@drawable/baseline_arrow_back_ios_new_24"
+                android:src="@drawable/baseline_arrow_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,11 +39,11 @@
                 android:id="@+id/txt_your_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:background="@android:color/transparent"
                 android:text="@string/your_informations"
                 android:textSize="24sp"
                 android:textStyle="bold"
+                android:layout_marginTop="16dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/backButton" />
 
@@ -50,7 +51,7 @@
                 android:id="@+id/txtDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="16dp"
                 android:background="@android:color/transparent"
                 android:text="@string/infoDescription"
                 android:textSize="15sp"
@@ -61,7 +62,7 @@
                 android:id="@+id/layoutFirst"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="32dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtDescription">
 
@@ -91,6 +92,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editFirst"
                         android:layout_width="match_parent"
+                        android:background="@drawable/black_mobile_border"
                         android:layout_height="wrap_content"
                         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:textSize="15sp" />
@@ -131,6 +133,7 @@
                         android:id="@+id/editLast"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/black_mobile_border"
                         android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -173,6 +176,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textEmailAddress"
+                        android:background="@drawable/black_mobile_border"
                         android:textSize="15sp" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -181,7 +185,7 @@
                 android:id="@+id/layoutMobile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="22dp"
                 app:layout_constraintTop_toBottomOf="@+id/layoutEmail">
 
                 <TextView
@@ -200,7 +204,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:background="@android:color/transparent"
+                    android:background="@drawable/black_mobile_border"
                     app:boxBackgroundMode="outline"
                     app:boxCornerRadiusBottomEnd="8dp"
                     app:boxCornerRadiusBottomStart="8dp"
@@ -216,7 +220,7 @@
                         android:id="@+id/linerLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <com.hbb20.CountryCodePicker
@@ -258,7 +262,7 @@
                 android:id="@+id/layoutDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="22dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layoutMobile">
 
@@ -290,6 +294,7 @@
                     <com.google.android.material.textfield.MaterialAutoCompleteTextView
                         android:id="@+id/editDateOfBirth"
                         android:layout_width="match_parent"
+                        android:background="@drawable/black_mobile_border"
                         android:layout_height="match_parent"
                         android:inputType="none"
                         android:padding="18dp"
@@ -302,7 +307,7 @@
                 android:id="@+id/layoutAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="22dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layoutDate">
 
@@ -343,7 +348,7 @@
                 android:id="@+id/layoutReenterAadhaar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="22dp"
                 app:layout_constraintTop_toBottomOf="@+id/layoutAddress">
 
                 <TextView
@@ -373,6 +378,7 @@
                         android:layout_height="wrap_content"
                         android:digits="0123456789"
                         android:inputType="number"
+                        android:background="@drawable/black_mobile_border"
                         android:maxLength="14"
                         android:textSize="15sp" />
 
@@ -383,7 +389,7 @@
                 android:id="@+id/layoutGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="22dp"
                 app:layout_constraintTop_toBottomOf="@+id/layoutReenterAadhaar">
 
                 <TextView
@@ -432,7 +438,7 @@
                 android:id="@+id/layoutState"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="22dp"
                 app:layout_constraintTop_toBottomOf="@+id/layoutGender">
 
                 <TextView
@@ -470,102 +476,142 @@
                         android:layout_height="match_parent"
                         android:completionThreshold="1"
                         android:padding="18dp"
+                        android:background="@drawable/black_mobile_border"
                         android:textSize="15sp"
                         app:layout_constraintStart_toStartOf="parent"
+                        android:scrollbars="none"
                         app:layout_constraintTop_toTopOf="@+id/layoutState" />
 
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:id="@+id/layoutPostalCountry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:paddingBottom="100dp"
+                android:layout_marginTop="22dp"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@+id/layoutState">
 
-                <TextView
+                <LinearLayout
+                    android:id="@+id/l1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
                     android:id="@+id/txtPostal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:text="@string/postal"
                     android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputPostal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeColor="@color/black">
+
+                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                            android:id="@+id/editPostal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/black_mobile_border"
+                            android:completionThreshold="1"
+                            android:inputType="number"
+                            android:maxLength="4"
+                            android:padding="18dp"
+                            android:scrollbars="none"
+                            android:textSize="15sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/txtCountry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:background="@android:color/transparent"
+                        android:text="@string/country"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/inputCountry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        app:boxCornerRadiusBottomEnd="8dp"
+                        app:boxCornerRadiusBottomStart="8dp"
+                        app:boxCornerRadiusTopEnd="8dp"
+                        app:boxCornerRadiusTopStart="8dp"
+                        app:boxStrokeColor="@color/black">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/editCountry"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:completionThreshold="1"
+                            android:background="@drawable/black_mobile_border"
+                            android:inputType="none"
+                            android:padding="18dp"
+                            android:textSize="15sp"
+                            tools:ignore="LabelFor" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layoutSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:paddingBottom="146dp"
+                app:layout_constraintTop_toBottomOf="@+id/layoutPostalCountry">
+
+                <TextView
+                    android:id="@+id/txtSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:text="@string/select_description"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputPostal"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
-                    app:boxCornerRadiusBottomEnd="8dp"
-                    app:boxCornerRadiusBottomStart="8dp"
-                    app:boxCornerRadiusTopEnd="8dp"
-                    app:boxCornerRadiusTopStart="8dp"
-                    app:boxStrokeColor="@color/black"
-                    app:endIconDrawable="@drawable/baseline_keyboard_arrow_down_24"
-                    app:endIconMode="custom"
-                    app:boxStrokeWidth="1dp"
-                    app:layout_constraintEnd_toStartOf="@+id/inputCountry"
+                <Spinner
+                    style="@style/SpinnerTheme"
+                    android:id="@+id/editSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/spinner_with_dropdown_icon"
+                    android:scrollbars="none"
+                    android:padding="5dp"
+                    android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtPostal">
-
-                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                        android:id="@+id/editPostal"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:completionThreshold="1"
-                        android:inputType="number"
-                        android:padding="19dp"
-                        android:textSize="15sp"
-                        tools:ignore="LabelFor" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/txtCountry"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:background="@android:color/transparent"
-                    android:text="@string/country"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/txtPostal"
-                    app:layout_constraintTop_toTopOf="@+id/txtPostal" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/inputCountry"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
-                    app:boxCornerRadiusBottomEnd="8dp"
-                    app:boxCornerRadiusBottomStart="8dp"
-                    app:boxCornerRadiusTopEnd="8dp"
-                    app:boxCornerRadiusTopStart="8dp"
-                    app:boxStrokeColor="@color/black"
-                    app:endIconDrawable="@drawable/baseline_keyboard_arrow_down_24"
-                    app:endIconMode="custom"
-                    app:boxStrokeWidth="1dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/inputPostal"
-                    app:layout_constraintTop_toBottomOf="@+id/txtCountry">
-
-                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                        android:id="@+id/editCountry"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:completionThreshold="1"
-                        android:inputType="text"
-                        android:padding="19dp"
-                        android:textSize="15sp"
-                        tools:ignore="LabelFor" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
+                    app:layout_constraintTop_toBottomOf="@+id/txtSpinner"
+                    tools:ignore="LabelFor" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -576,8 +622,7 @@
         android:id="@+id/buttonContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginHorizontal="24dp"
         android:layout_marginBottom="32dp"
         android:gravity="center"
         android:orientation="horizontal"
@@ -588,7 +633,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_crimson"
-            android:text="Continue"
+            android:text="@string/btn_continue"
             android:textColor="@color/white"
             android:textSize="14sp" />
     </LinearLayout>

@@ -1,145 +1,244 @@
 package com.example.userinformation.dashboard
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Intent
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.speech.RecognizerIntent
 import android.view.View
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.menu.ActionMenuItemView
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.example.userinformation.Groceries.GroceriesActivity
 import com.example.userinformation.R
-import com.example.userinformation.activityLifeCycle.LifeCycleOFActivity
 import com.example.userinformation.cloth.Cloth
-import com.example.userinformation.customAdapter.CustomListView
 import com.example.userinformation.customViewForRecycleView.CARVActivity
-import com.example.userinformation.customdialogbox.CustomDialogBoxActivity
 import com.example.userinformation.dashboard.productdetails.ViewProductsActivity
-import com.example.userinformation.dashboard.task.UserInformationActivity
 import com.example.userinformation.databinding.ActivityMainBinding
 import com.example.userinformation.fragmentToActivity.FragmentToActivity
-import com.example.userinformation.informationform.emergency_contact_form.EmergencyContactFormActivity
 import com.example.userinformation.home.Home
 import com.example.userinformation.informationform.InformationFormActivity
 import com.example.userinformation.intent.IntentActivity
 import com.example.userinformation.pharmacy.Pharmacy
-import com.example.userinformation.timepicker.TimePickerActivity
 import com.example.userinformation.userdetails.LoginActivity
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.snackbar.Snackbar
 
 class DashBoardActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var topAppBar: MaterialToolbar
 
+    private lateinit var viewPager2: ViewPager2
+    private lateinit var handler: Handler
+    private lateinit var adapter: ImageViewAdapter
+    private lateinit var doLayout: LinearLayout
 
+    companion object {
+        val REQUEST_CODE_SPEECH_INPUT = 1
+    }
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
-//        setContentView(R.layout.activity_main)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        imageContainer()
+
+//        val gradientColors = listOf(
+//            R.color.pink,
+//            R.color.blue,
+//            R.color.green
+//        )
+        val gradientColors = listOf(
+            ContextCompat.getColor(this, R.color.pink),
+            ContextCompat.getColor(this, R.color.white),
+            ContextCompat.getColor(this, R.color.seek_bar_background)
+        )
+        val gradientAngles = listOf(
+            GradientDrawable.Orientation.BL_TR,
+            GradientDrawable.Orientation.BR_TL,
+            GradientDrawable.Orientation.TOP_BOTTOM
+        )
+
+        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+
+//
+//                val backgroundColor = gradientColors[position % gradientColors.size]
+//                viewPager2.setBackgroundColor(ContextCompat.getColor(this@DashBoardActivity, backgroundColor))
+
+                val gradientAngle = gradientAngles[position % gradientAngles.size]
+
+                val gradientDrawable = GradientDrawable(gradientAngle, gradientColors.toIntArray())
+                gradientDrawable.cornerRadius = resources.getDimension(R.dimen.card_corner_radius)
+
+                viewPager2.background = gradientDrawable
+
+                handler.removeCallbacks(runnable)
+                handler.postDelayed(runnable, 4000)
+                adapter.updateDotIndicator(position)
+            }
+        })
+
 
         topAppBar = findViewById(R.id.app_bar)
-        val fav = findViewById<ActionMenuItemView>(R.id.favorite)
+        val mic = findViewById<ActionMenuItemView>(R.id.microphone)
 
-        val search = findViewById<ActionMenuItemView>(R.id.search)
-        search.setOnClickListener{
-            Toast.makeText(this, "Search Click !", Toast.LENGTH_SHORT).show()
-        }
+//        val search = findViewById<ActionMenuItemView>(R.id.search)
+
         val logOut = findViewById<ActionMenuItemView>(R.id.logout)
         logOut.setOnClickListener{
-            Toast.makeText(this, "Search Click !", Toast.LENGTH_SHORT).show()
-                        val editor = getSharedPreferences("LoginInfo", MODE_PRIVATE).edit()
-                        editor.putBoolean("flag", false)
-                        editor.apply()
-
-                        startActivity(Intent(this, LoginActivity::class.java))
-        }
-        fav.setOnClickListener{
-            Toast.makeText(this, "Favorite Click!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, UserInformationActivity::class.java))
-
-        Snackbar.make(topAppBar, "Login Successfully", Snackbar.LENGTH_SHORT).setAction("close") {
-
-        }.show()
-        topAppBar.setNavigationOnClickListener {
-
-            Toast.makeText(this, "Navigation Click!", Toast.LENGTH_SHORT).show()
-
-            startActivity(Intent(this, ViewProductsActivity::class.java))
-
-//
-//            topAppBar.setOnMenuItemClickListener { item ->
-//                when (item.itemId) {
-//                    R.id.favorite -> {
-//                        Toast.makeText(this, "Favorite Click!", Toast.LENGTH_SHORT).show()
-//                        startActivity(Intent(this, UserInformationActivity::class.java))
-//                        true
-//                    }
-//
-//                    R.id.search -> {
-//                        Toast.makeText(this, "Search Click !", Toast.LENGTH_SHORT).show()
-//                        true
-//                    }
-//
-//                    R.id.logout -> {
-////                        Toast.makeText(this, "Search Click !", Toast.LENGTH_SHORT).show()
-//                        val editor = getSharedPreferences("LoginInfo", MODE_PRIVATE).edit()
-//                        editor.putBoolean("flag", false)
-//                        editor.apply()
-//
-//                        startActivity(Intent(this, LoginActivity::class.java))
-//
-//                        true
-//                    }
-//
-//                    else -> {
-//                        false
-//                    }
-//                }
-
-
-            }
-
+            logOutUser()
         }
 
-//        val intent = Intent(this, ServiceExample::class.java)
-//        ContextCompat.startForegroundService(this, intent)
+        mic.setOnClickListener {
+            speechRecognizer()
+
+        }
 //
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
+//        topAppBar.setOnMenuItemClickListener() {
+//            showMenu()
 //        }
     }
 
 
-//    private fun onTimeClicker(view: View) {
-//        if (view.id== R.id.timerpicker){
-//            startActivity(Intent(this, TimePickerActivity::class.java))
+//    override fun onOptionsItemSelected(item: MenuItem):Boolean{
+//
+//        return when(item.itemId){
+//            R.id.cloth -> showd()
+//            else ->super.onOptionsItemSelected(item)
 //        }
 //    }
 
-//    private fun onTimeClicker(timerpicker: Int) {
-//        if (timerpicker==R.id.timerpicker) {
-//            startActivity(Intent(this, TimePicker::class.java))
-//        }
-//    }
+    private fun showd(): Boolean {
+        startActivity(Intent(this, IntentActivity::class.java))
+        return true
+    }
+
+    private fun logOutUser() {
+        Toast.makeText(this, "Search Click !", Toast.LENGTH_SHORT).show()
+        val editor = getSharedPreferences("LoginInfo", MODE_PRIVATE).edit()
+        editor.putBoolean("flag", false)
+        editor.apply()
+
+        startActivity(Intent(this, LoginActivity::class.java))
+    }
+
+    private fun speechRecognizer() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
+        intent.putExtra(
+            RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+            RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+        )
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US")
+//            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "hi-IN")
+//            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "mr-IN")
+//            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "en-US, hi-IN, mr-IN")
+        intent.putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 1)
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Speak to text")
+        intent.putExtra(
+            RecognizerIntent.EXTRA_SPEECH_INPUT_COMPLETE_SILENCE_LENGTH_MILLIS,
+            1000
+        )
+        startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE_SPEECH_INPUT) {
+            if (resultCode == Activity.RESULT_OK && data != null) {
+                val result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                val speechResult = result?.get(0)
+                if (!speechResult.isNullOrEmpty()) {
+                    showMessage(speechResult)
+                }
+            }
+        }
+    }
+
+    private fun showMessage(message: String) {
+        val builder = AlertDialog.Builder(this)
+
+        builder.setMessage(message)
+            .setTitle("Speech Recognition Result")
+            .setPositiveButton("OKAY") { dialog, _ ->
+                dialog.dismiss()
+            }
+        val dialog = builder.create()
+        dialog.show()
+
+    }
+
+    override fun onPause() {
+        super.onPause()
+        handler.removeCallbacks(runnable)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        handler.postDelayed(runnable, 3000)
+    }
+
+    private val runnable = Runnable {
+        viewPager2.currentItem += 1
+    }
+
+    private fun imageContainer() {
+        viewPager2 = binding.viewPager
+
+        handler = Handler(Looper.myLooper()!!)
+        doLayout = binding.dotLayout
+
+        val listImage = listOf(
+            R.drawable.money,
+            R.drawable.specialoffer,
+            R.drawable.cloth
+        )
+
+        val title = listOf(
+            "ACTIVATE FINANCE AMOUNT",
+            "TODAY SPECIAL OFFER",
+            "CLOTH STORE"
+        )
+        val des = listOf(
+            "Minimum INR5000 financing amount is required",
+            "Festive season approaching means irresistible discounts and perfect gifts.",
+            "Stylish clothing for both men and women."
+        )
+        adapter = ImageViewAdapter(listImage, title, des, viewPager2, doLayout)
+        viewPager2.adapter = adapter
+
+        for (i in listImage.indices) {
+            val dot = ImageView(this)
+            dot.setImageResource(if (i == 0) R.drawable.selected_dot else R.drawable.unselected_dot)
+            val params = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            params.setMargins(8, 0, 8, 0) // Adjust margins as needed
+            doLayout.addView(dot, params)
+        }
+        viewPager2.offscreenPageLimit = 1
+        viewPager2.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+    }
+
     fun onCloth(view: View) {
         if (view.id == R.id.btnCloths) {
             startActivity(Intent(this, Cloth::class.java))
         }
     }
-
-//    fun onElectronics(view: View) {
-//        if (view.id == R.id.btn_ele) {
-//            startActivity(Intent(this, ElectronicsActivity::class.java))
-//        }
-//    }
 
     fun onForm(view: View){
         if (view.id==R.id.btnInfoForm){
@@ -152,11 +251,11 @@ class DashBoardActivity : AppCompatActivity() {
         }
     }
 
-    fun onGuardian(view: View) {
-        if (view.id == R.id.btn_guardian) {
-            startActivity(Intent(this, EmergencyContactFormActivity::class.java))
-        }
-    }
+//    fun onGuardian(view: View) {
+//        if (view.id == R.id.btn_guardian) {
+//            startActivity(Intent(this, EmergencyContactFormActivity::class.java))
+//        }
+//    }
 
     fun onPharmacy(view: View) {
         if (view.id == R.id.btn_pharmacy) {
@@ -170,40 +269,17 @@ class DashBoardActivity : AppCompatActivity() {
         }
     }
 
-    fun onPickMe(view: View) {
-        if (view.id == R.id.amazon) {
-            startActivity(Intent(this, TimePickerActivity::class.java))
-
-        }
-    }
-
-//    fun onShoes(view: View) {
-//        if (view.id==R.id.shoes){
-//            startActivity(Intent(this, Shoes::class.java))
+//    fun onPickMe(view: View) {
+//        if (view.id == R.id.amazon) {
+//            startActivity(Intent(this, TimePickerActivity::class.java))
+//
 //        }
 //    }
 
-//    fun onEmployee(view: View) {
-//        if (view.id==R.id.Employee){
-//            startActivity(Intent(this, Employee::class.java))
-//        }
-//    }
 
-//    fun onUser(view: View) {
-//        if(view.id==R.id.users){
-//            startActivity(Intent(this, UserDetails::class.java))
-//        }
-//    }
-
-//    fun onTextField(view: View) {
-//        if(view.id==R.id.textField){
-//            startActivity(Intent(this, InputFieldActivity::class.java))
-//        }
-//    }
-
-    fun onCustomAdaptor(view: View) {
+    fun onNotes(view: View) {
         if (view.id == R.id.customAdaptor) {
-            startActivity(Intent(this, CustomListView::class.java))
+            startActivity(Intent(this, ViewProductsActivity::class.java))
         }
     }
 
@@ -219,34 +295,22 @@ class DashBoardActivity : AppCompatActivity() {
         }
     }
 
-    fun onUserInfo(view: View) {
-        if (view.id == R.id.user_info) {
-            startActivity(Intent(this, LifeCycleOFActivity::class.java))
-        }
-    }
+//    fun onUserInfo(view: View) {
+//        if (view.id == R.id.user_info) {
+//            startActivity(Intent(this, LifeCycleOFActivity::class.java))
+//        }
+//    }
 
     fun onFragmentToActivity(view: View) {
         if (view.id == R.id.fragment) {
             startActivity(Intent(this, FragmentToActivity::class.java))
         }
     }
-
-//   fun onFragmentToFragmentSingleActivity(view: View){
-//       if (view.id==R.id.fragment_to_fragment_onSingle_Activity){
-//           startActivity(Intent(this, SingleActivity::class.java))
-//       }
-//   }
-//    fun onLayout(view: View){
-//        if (view.id==R.id.layout_id){
-//            startActivity(Intent(this,LinearLayoutActivity::class.java))
+//    fun onCustomDialog(view: View) {
+//        if (view.id == R.id.custom_dialog) {
+//            startActivity(Intent(this, CustomDialogBoxActivity::class.java))
 //        }
 //    }
-
-    fun onCustomDialog(view: View) {
-        if (view.id == R.id.custom_dialog) {
-            startActivity(Intent(this, CustomDialogBoxActivity::class.java))
-        }
-    }
 
 
 }

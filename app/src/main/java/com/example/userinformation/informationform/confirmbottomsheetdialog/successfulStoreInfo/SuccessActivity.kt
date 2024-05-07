@@ -18,4 +18,9 @@ class SuccessActivity : AppCompatActivity() {
             startActivity(Intent(this, DashBoardActivity::class.java))
         }
     }
+
+    override fun onBackPressed() {
+        finish()
+        super.onBackPressed()
+    }
 }

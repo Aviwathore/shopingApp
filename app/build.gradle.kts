@@ -74,8 +74,12 @@ dependencies {
 //    implementation (libs.masked.edittext)
 //    implementation (libs.multidex)
     implementation(libs.androidx.cardview)
+    implementation (libs.androidx.viewpager2)
+    implementation (libs.ambilwarna)
+
     implementation(libs.converter.gson)
    implementation(libs.masked.edittext)
+    implementation (libs.glide.v4110)
     implementation(libs.glide)
     implementation(libs.androidx.recyclerview)
     implementation(libs.androidx.navigation.fragment.ktx)

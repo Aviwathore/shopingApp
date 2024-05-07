@@ -3,7 +3,6 @@ package com.example.userinformation.informationform
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.graphics.Color
-import android.graphics.Rect
 import android.graphics.drawable.Drawable
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
@@ -14,17 +13,21 @@ import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
 import android.view.View
-import android.view.ViewTreeObserver
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
-import androidx.core.view.isVisible
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityInformationFormBinding
 import com.example.userinformation.informationform.confirmbottomsheetdialog.ConfirmBottomSheetDialog
-import com.example.userinformation.informationform.confirmbottomsheetdialog.CustomCountryArrayAdaptor
-import com.example.userinformation.informationform.dbHelper.FormDBHelper
-import com.example.userinformation.informationform.dbHelper.InformationFormDataClass
+import com.example.userinformation.informationform.confirmbottomsheetdialog.CustomCountryArrayAdapter
+import com.example.userinformation.informationform.customspinner.CustomSpinnerAdapter
+import com.example.userinformation.informationform.customspinner.HousingOption
+import com.example.userinformation.informationform.dbHelper.InformationFormDBHelper
+import com.example.userinformation.informationform.dbHelper.YourInformationDataClass
+import com.google.gson.Gson
 import java.util.Locale
 
 
@@ -33,165 +36,125 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityInformationFormBinding
     private var calendar = Calendar.getInstance(TimeZone.GMT_ZONE)
     private var confirm: ConfirmBottomSheetDialog? = null
-    private lateinit var dbHelper: FormDBHelper
+    private lateinit var dbHelper: InformationFormDBHelper
     private var isDatePickerShown = false
     private lateinit var images: Array<Drawable>
+    private lateinit var spinner: Spinner
+    private var selectedId: String = ""
+
     private val stateArray = arrayOf(
         "Assam",
         "Bihar",
         "Karnataka",
         "Goa",
         "Haryana",
-        "Nagaland",
-        "Ladakh",
-        "Maharashtra",
-        "Kerala",
         "Jharkhand",
-        "Punjab",
+        "Kerala",
+        "Ladakh",
+        "Lakshadweep",
+        "Maharashtra",
         "Manipur",
-        "Lakshadweep"
+        "Nagaland",
+        "Punjab"
     )
 
 
     private val countryArray = arrayOf(
+        "Afghanistan",
         "Armenia",
         "Australia",
         "Bangladesh",
+        "Barbados",
         "China",
-        "Afghanistan",
         "India",
-        "Malaysia",
-        "Barbados"
+        "Malaysia"
+
     )
     private val postalArray = arrayOf(
         "2021", "2022", "2023", "2024", "2025", "2026"
     )
 
-    @SuppressLint("SetTextI18n", "ClickableViewAccessibility")
+    @SuppressLint("SetTextI18n", "ClickableViewAccessibility", "RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityInformationFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val rootView = binding.root
-        binding.backButton.setOnClickListener {
-            finish()
-        }
-
+        dbHelper = InformationFormDBHelper(this)
         editTextHint()
         mandatoryFieldHighlighter()
-        binding.inputLayoutMobile.setBackgroundResource(R.drawable.black_mobile_border)
 
-        binding.editDateOfBirth.setOnClickListener {
-            if (!isDatePickerShown) {
-                showDateOfBirthPicker()
-                isDatePickerShown = true
-            }
+        imagesArray()
+
+        setUpDropdownAdapters()
+        selectedOnClickListener()
+
+        allOnFocusChangeListener()
+
+        addTextWatcher()
+
+        aadhaarTextWatcher()
+        spinner = binding.editSpinner
+        customDataSpinner()
+        spinnerItemSelected()
+
+
+        val tableSize = dbHelper.getTableSize()
+        Log.d("INFORMATION_TABLE_SIZE", "Size of: $tableSize bytes")
+
+        val contacts = dbHelper.getAllYourInfoFormDetails()
+        for (contact in contacts) {
+            Log.d("INFORMATION_DETAILS", contact.toString())
         }
+    }
 
-        val adapter = ArrayAdapter(
-            this@InformationFormActivity, android.R.layout.simple_dropdown_item_1line, stateArray
-        )
-        binding.editState.setAdapter(adapter)
+    private fun selectedOnClickListener() {
+        binding.backButton.setOnClickListener(this)
+        binding.editDateOfBirth.setOnClickListener(this)
+        binding.editState.setOnClickListener(this)
+        binding.editCountry.setOnClickListener(this)
+        binding.btnContinue.setOnClickListener(this)
+        binding.rdMale.setOnClickListener(this)
+        binding.rdFemale.setOnClickListener(this)
+    }
 
-        binding.editState.setOnClickListener {
-            binding.editState.showDropDown()
-            binding.editState.error = null
-        }
+    private fun addTextWatcher() {
+        addTextWatcher(binding.editFirst, R.drawable.border_color, R.drawable.black_mobile_border)
+        addTextWatcher(binding.editLast, R.drawable.border_color, R.drawable.black_mobile_border)
+        addTextWatcher(binding.editEmail, R.drawable.border_color, R.drawable.black_mobile_border)
+        mobileAddTextWatcher()
+    }
 
+    private fun spinnerItemSelected(){
+        Log.d("spinnerItemSelected", "CALL SPINNER FUN")
+        this.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
 
-        binding.editPostal.setOnClickListener {
-            binding.editPostal.showDropDown()
-            binding.editPostal.error = null
+                val selectedData: HousingOption =
+                    parent?.getItemAtPosition(position) as HousingOption
+                selectedId = selectedData.id
+//                selectedData[position]
+//                Log.d("selectedData", "============= $selectedData")
 
-        }
-        binding.editPostal.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                binding.editPostal.showDropDown()
-            }
-        }
-
-        binding.editCountry.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                // Check if the country field has focus and there's text in it
-                if (binding.editCountry.text.isEmpty()) {
-                    binding.editPostal.showDropDown()
-                } else {
-                    // If there's no text, clear focus to prevent the keyboard from opening
-                    binding.editCountry.clearFocus()
-                }
-            }
-        }
-        binding.editState.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                binding.editPostal.showDropDown()
-            }
-        }
-
-        val postalAdaptor = ArrayAdapter(
-            this@InformationFormActivity, android.R.layout.simple_dropdown_item_1line, postalArray
-        )
-
-        binding.editPostal.setAdapter(postalAdaptor)
-
-
-        images = arrayOf(
-            ResourcesCompat.getDrawable(resources, R.drawable.armenia, null),
-            ResourcesCompat.getDrawable(resources, R.drawable.australia, null),
-            ResourcesCompat.getDrawable(resources, R.drawable.bangladesh, null),
-            ResourcesCompat.getDrawable(resources, R.drawable.china, null),
-            ResourcesCompat.getDrawable(resources, R.drawable.afghanistan, null),
-            ResourcesCompat.getDrawable(resources, R.drawable.india, null),
-            ResourcesCompat.getDrawable(resources, R.drawable.malaysia, null),
-            ResourcesCompat.getDrawable(resources, R.drawable.barbados, null)
-
-
-        ).filterNotNull().toTypedArray()
-
-        val customAdapter = CustomCountryArrayAdaptor(
-            this@InformationFormActivity,
-            countryArray,
-            images
-        )
-
-        binding.editCountry.setAdapter(customAdapter)
-
-        binding.editCountry.setOnClickListener {
-            binding.editCountry.showDropDown()
-            binding.editCountry.error = null
-        }
-
-        binding.editMobile.onFocusChangeListener = View.OnFocusChangeListener { _, focus ->
-            if (focus) {
-                binding.linerLayout.setBackgroundResource(R.drawable.mobile_border_layout)
-            } else {
-                binding.linerLayout.setBackgroundResource(R.drawable.black_mobile_border)
             }
 
-        }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
 
-        binding.btnContinue.setOnClickListener {
-            if (checkValidation()) {
-                val formData = getData()
-                if (confirm != null && confirm!!.isVisible) {
-                    confirm!!.dismiss()
-                } else {
-                    confirm = ConfirmBottomSheetDialog.getInstance(formData)
-                    confirm!!.show(supportFragmentManager, "")
-                }
             }
         }
+    }
 
-        if (!::dbHelper.isInitialized) {
-            dbHelper = FormDBHelper(this)
-        }
-        showFormData()
 
+    private fun aadhaarTextWatcher() {
         binding.editReenterAadhaar.addTextChangedListener(object : TextWatcher {
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                Log.d("BEFORE TEXT CHANGE", "WHAT THINGS ARE DONN BE-FOUR TEXT CHANGE")
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -200,6 +163,11 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
                         binding.editReenterAadhaar.setSelection(start)
                     }
                     return
+                }
+                if (binding.editReenterAadhaar.length() <= 0) {
+                    binding.editReenterAadhaar.setBackgroundResource(R.drawable.border_color)
+                } else {
+                    binding.editReenterAadhaar.setBackgroundResource(R.drawable.black_mobile_border)
                 }
 
                 val cleanText = s.toString().replace("-", "")
@@ -217,7 +185,6 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
                     count > before -> {
                         14
                     }
-
                     else -> {
                         start - (before / 4)
 
@@ -235,30 +202,168 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             override fun afterTextChanged(s: Editable?) {
-                Log.d("AFTER TEXT CHANGE", "WHAT THINGS ARE DONN AFTER TEXT CHANGE")
             }
         })
+    }
 
-
-        rootView.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
-            override fun onGlobalLayout() {
-                // Determine whether the soft keyboard is visible
-                val isKeyboardVisible = isKeyboardVisible(rootView)
-
-                // Update the visibility of the continue button
-                binding.btnContinue.isVisible = !isKeyboardVisible
+    private fun mobileAddTextWatcher() {
+        binding.editMobile.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                Log.d("TAG", "onTextChanged: " + binding.editMobile.length())
+                if (binding.editMobile.length() != 10) {
+                    binding.linerLayout.setBackgroundResource(R.drawable.border_color)
+                } else {
+                    binding.linerLayout.setBackgroundResource(R.drawable.black_mobile_border)
+                }
+
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                //
+            }
+
         })
-
     }
 
-    private fun isKeyboardVisible(rootView: View): Boolean {
-        val SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD = 200
-        val r = Rect()
-        rootView.getWindowVisibleDisplayFrame(r)
-        val heightDiff = rootView.rootView.height - (r.bottom - r.top)
-        return heightDiff > SOFT_KEYBOARD_HEIGHT_DP_THRESHOLD
+    private fun allOnFocusChangeListener() {
+
+        binding.editPostal.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.editPostal.showDropDown()
+                binding.editPostal.setBackgroundResource(R.drawable.black_mobile_border)
+                binding.editPostal.error = null
+            }
+        }
+
+        binding.editCountry.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                showCountryDropDown()
+                binding.editCountry.setBackgroundResource(R.drawable.black_mobile_border)
+                binding.editCountry.error =null
+            }
+        }
+        binding.editState.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.editState.showDropDown()
+                binding.editState.setBackgroundResource(R.drawable.black_mobile_border)
+                binding.editState.error = null
+            }
+        }
+        binding.editMobile.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                binding.linerLayout.setBackgroundResource(R.drawable.black_mobile_border)
+            }
+        }
     }
+
+    fun addTextWatcher(editText: EditText, emptyDrawableResId: Int, filledDrawableResId: Int) {
+
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (editText.length() <= 0) {
+                    editText.setBackgroundResource(emptyDrawableResId)
+                } else {
+                    editText.setBackgroundResource(filledDrawableResId)
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+
+        })
+    }
+
+    private fun imagesArray() {
+        images = arrayOf(
+            ResourcesCompat.getDrawable(resources, R.drawable.afghanistan, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.armenia, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.australia, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.bangladesh, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.barbados, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.china, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.india, null),
+            ResourcesCompat.getDrawable(resources, R.drawable.malaysia, null)
+
+        ).filterNotNull().toTypedArray()
+    }
+
+    private fun customDataSpinner() {
+        val json = """
+        [{
+            "id": "8f3a6d9d-eeb2-4ac8-b688-7db4c2158aef",
+            "code": null,
+            "description": "Home owner",
+            "cbs_code": null,
+            "ordering": 1,
+            "sub_description": "Inheritance/not under mortgage"
+        }, {
+            "id": "8f3a6d9d-eeb2-4ac8-b688-7db4c2158aeh",
+            "code": null,
+            "description": "Home owner",
+            "cbs_code": null,
+            "ordering": 2,
+            "sub_description": "Still under mortgage"
+        }, {
+            "id": "8f3a6d9d-eeb2-4ac8-b688-7db4c2158aeg",
+            "code": null,
+            "description": "Living with parents/relatives",
+            "cbs_code": null,
+            "ordering": 3,
+            "sub_description": null
+        }, {
+            "id": "8f3a6d9d-eeb2-4ac8-b688-7db4c2158aei",
+            "code": null,
+            "description": "Tenant",
+            "cbs_code": null,
+            "ordering": 4,
+            "sub_description": null
+        }, {
+            "id": "8f3a6d9d-eeb2-4ac8-b688-7db4c2158aej",
+            "code": null,
+            "description": "Others",
+            "cbs_code": null,
+            "ordering": 5,
+            "sub_description": "Government quarters, company hostel, etc."
+        }]
+    """.trimIndent()
+
+        val housingOptions = Gson().fromJson(json, Array<HousingOption>::class.java)
+        val customSpinnerAdapter =
+            CustomSpinnerAdapter(this@InformationFormActivity, housingOptions)
+        spinner.adapter = customSpinnerAdapter
+    }
+
+    private fun setUpDropdownAdapters() {
+        val adapter = ArrayAdapter(
+            this@InformationFormActivity, android.R.layout.simple_dropdown_item_1line, stateArray
+        )
+        binding.editState.setAdapter(adapter)
+
+        val postalAdaptor = ArrayAdapter(
+            this@InformationFormActivity, android.R.layout.simple_dropdown_item_1line, postalArray
+        )
+
+        binding.editPostal.setAdapter(postalAdaptor)
+
+        val customAdapter = CustomCountryArrayAdapter(
+            this@InformationFormActivity,
+            countryArray,
+            images
+        )
+
+        binding.editCountry.setAdapter(customAdapter)
+    }
+
     private fun editTextHint() {
         binding.editFirst.hint = getString(R.string.first_name_hint)
         binding.editLast.hint = getString(R.string.last_name_hint)
@@ -284,67 +389,43 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
         highlightStar(binding.txtMobile, Color.RED)
         highlightStar(binding.txtPostal, Color.RED)
         highlightStar(binding.txtState, Color.RED)
+        highlightStar(binding.txtSpinner, Color.RED)
     }
 
-    private fun showFormData() {
-        val formStoreData = dbHelper.getFormData()
-        if (formStoreData.isNotEmpty()) {
-            val infoData = formStoreData[formStoreData.size - 1]
-            binding.editFirst.setText(infoData.first_name)
-            binding.editLast.setText(infoData.last_name)
-            binding.editMobile.setText(infoData.mobile)
-            binding.editPostal.setText(infoData.postal)
-            binding.editCountry.setText(infoData.country)
-            binding.editState.setText(infoData.state)
-            binding.editEmail.setText(infoData.email)
-            if (infoData.address.isNotEmpty()) {
-                binding.editAddress.setText(infoData.address)
-            } else {
-                binding.editAddress.setText("")
-            }
-
-            binding.editDateOfBirth.setText(infoData.date_of_birth)
-
-            if (infoData.gender == "Male") {
-                binding.rdMale.isChecked = true
-            } else if (infoData.gender == "Female") {
-                binding.rdFemale.isChecked = true
-            }
-        }
-    }
-
-
-    private fun getData(): InformationFormDataClass {
-        dbHelper = FormDBHelper(this)
+    private fun getData(): YourInformationDataClass {
         val first = binding.editFirst.text.toString().trim()
         val last = binding.editLast.text.toString().trim()
         val mobile = binding.editMobile.text.toString().trim()
-        val GenderCheckId = binding.rgGender.checkedRadioButtonId
+        val genderCheckId = binding.rgGender.checkedRadioButtonId
 
-        val gender = when (GenderCheckId) {
+        val gender = when (genderCheckId) {
             R.id.rdMale -> "Male"
             R.id.rdFemale -> "Female"
             else -> " "
         }
         val state = binding.editState.text.toString().trim()
-        val country = binding.editCountry.text.toString().trim()
+        val country = binding.editCountry.text.toString()
         val dateOfBirth = binding.editDateOfBirth.text.toString().trim()
         val address = binding.editAddress.text.toString().trim()
-        val postal = binding.editPostal.text.toString().trim()
+        val postal = binding.editPostal.text.toString()
         val email = binding.editEmail.text.toString().trim()
+        val aadhaar = binding.editReenterAadhaar.text.toString()
+        val selectedData: Any? = binding.editSpinner.selectedItem
 
-        return InformationFormDataClass(
-            0,
-            first,
-            last,
-            mobile,
-            gender,
-            state,
-            country,
-            dateOfBirth,
-            address,
-            postal,
-            email
+        Log.d("DATAA ", "=============$selectedData")
+        return YourInformationDataClass(
+            firstName = first,
+            lastName = last,
+            email = email,
+            mobileNumber = mobile,
+            dateOfBirth = dateOfBirth,
+            address = address,
+            aadhaarNumber = aadhaar,
+            gender = gender,
+            state = state,
+            postal = postal,
+            country = country,
+            spinnerData = selectedId
         )
     }
 
@@ -364,6 +445,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
 
         filedData.forEach { (inputFiled, errorMessage) ->
             val filed = inputFiled.text.toString().trim()
+            Log.d("TAG", "checkValidation: " + filed)
             if (filed.isEmpty()) {
                 inputFiled.error = errorMessage
                 inputFiled.setBackgroundResource(R.drawable.border_color)
@@ -372,20 +454,15 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
                 binding.inputPostal.endIconDrawable = null
                 binding.inputState.endIconDrawable = null
                 emptyFiled = true
-            } else {
-                inputFiled.error = null
             }
         }
 
-        if (binding.editMobile.text.toString().isEmpty()) {
-            binding.editMobile.error = "Mobile number is required"
+        if (binding.editMobile.length() != 10) {
+            binding.editMobile.error = "Must be 10 digit mobile number is required"
             binding.linerLayout.setBackgroundResource(R.drawable.border_color)
             emptyFiled = true
         }
-        if (binding.editMobile.length() != 10) {
-            binding.editMobile.error = "Must be 10 digit mobile number is required"
-            emptyFiled = true
-        }
+
         if (!isEmailValidate()) {
             binding.editEmail.error = "Invalid Email"
             binding.editEmail.setBackgroundResource(R.drawable.border_color)
@@ -394,8 +471,6 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
         if (!binding.rdMale.isChecked && !binding.rdFemale.isChecked) {
             binding.rgGender.setBackgroundResource(R.drawable.border_color)
             emptyFiled = true
-        }else{
-            binding.rgGender.setBackgroundResource(R.drawable.white_border)
         }
         if (binding.editReenterAadhaar.length() != 14) {
             binding.editReenterAadhaar.error = "Aadhaar number must be 12 digits long"
@@ -411,9 +486,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-
     private fun showDateOfBirthPicker() {
-
         val datePickerDialog = DatePickerDialog(
             this,
             { DatePicker, year, monthOfYear, dayOfMonth ->
@@ -421,9 +494,13 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
                 selectedDate.set(year, monthOfYear, dayOfMonth)
                 val dateFormat = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
                 val formatDate = dateFormat.format(selectedDate.time)
-
                 binding.editDateOfBirth.setText(formatDate)
-                binding.editDateOfBirth.error = null
+                if (binding.editDateOfBirth.length() <= 0) {
+                    binding.editDateOfBirth.setBackgroundResource(R.drawable.border_color)
+                } else {
+                    binding.editDateOfBirth.error = null
+                    binding.editDateOfBirth.setBackgroundResource(R.drawable.black_mobile_border)
+                }
             },
             calendar.get(Calendar.YEAR),
             calendar.get(Calendar.MONTH),
@@ -431,17 +508,73 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
         )
         datePickerDialog.datePicker.maxDate = System.currentTimeMillis()
         datePickerDialog.show()
-
         datePickerDialog.setOnDismissListener {
             isDatePickerShown = false
         }
     }
 
-    override fun onClick(v: View?) {
 
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.backButton -> finish()
+            R.id.btnContinue -> isValidated()
+            R.id.editCountry -> showCountryDropDown()
+            R.id.editPostal -> showPostalDropDown()
+            R.id.editState -> showStateDropDown()
+            R.id.editDateOfBirth -> showDaterPicker()
+            R.id.rdMale -> isMaleBoxClick()
+            R.id.rdFemale -> isFemaleClick()
+            else -> {}
+        }
 
     }
 
+    private fun isFemaleClick() {
+        if (binding.rdFemale.isChecked) {
+            binding.rgGender.setBackgroundResource(android.R.color.transparent)
+        }
+    }
+
+    private fun isMaleBoxClick() {
+        if (binding.rdMale.isChecked) {
+            binding.rgGender.setBackgroundResource(android.R.color.transparent)
+        }
+    }
+
+    private fun showDaterPicker() {
+        if (!isDatePickerShown) {
+            showDateOfBirthPicker()
+            isDatePickerShown = true
+        }
+    }
+
+    private fun showStateDropDown() {
+        binding.editState.showDropDown()
+        binding.editState.error = null
+    }
+
+    private fun showPostalDropDown() {
+        binding.editPostal.showDropDown()
+        binding.editPostal.error = null
+    }
+
+    private fun showCountryDropDown() {
+        binding.editCountry.showDropDown()
+        binding.editCountry.error = null
+    }
+
+    @SuppressLint("RestrictedApi")
+    private fun isValidated() {
+        if (checkValidation()) {
+            val formData = getData()
+            if (confirm != null && confirm!!.isVisible) {
+                confirm!!.dismiss()
+            } else {
+                confirm = ConfirmBottomSheetDialog.getInstance(formData)
+                confirm!!.show(supportFragmentManager, "")
+            }
+        }
+    }
 
 }
 

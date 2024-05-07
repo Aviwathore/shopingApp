@@ -1,100 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="34dp"
     tools:context=".intent.IntentActivity">
 
+    <SeekBar
+        android:id="@+id/seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_marginTop="24dp"
+        android:max="100"
+        android:progressDrawable="@drawable/seek_bar"
+        android:thumb="@drawable/seek_bar_thumb"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txt_seek_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seek_bar" />
     <TextView
         android:id="@+id/txt_intent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
         android:text="@string/intent_operations"
         android:textColor="@color/crimson"
         android:textSize="22sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seek_bar"
         android:textStyle="bold" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_open_webpage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txt_intent"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/white"
-        android:padding="20dp"
-        android:text="@string/open_webpage" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_open_call"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_open_webpage"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/white"
-        android:padding="20dp"
-        android:text="@string/open_call" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_open_camera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_open_call"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/white"
-        android:padding="20dp"
-        android:text="@string/open_camera" />
-
-    <EditText
-        android:id="@+id/edt_intent_text"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btn_open_camera"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/crimson"
-        android:textSize="14sp"
-        android:autofillHints="text"
-        android:hint="@string/enter_message"
-        android:inputType="text" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_send_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edt_intent_text"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="@color/white"
-        android:text="@string/send_data" />
-
-    <EditText
+    <LinearLayout
+        android:id="@+id/ll_card1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/call"
-        android:layout_below="@+id/btn_send_text"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="44dp"
-        android:layout_marginStart="44dp"
-        android:hint="@string/enter_number"
-        android:inputType="number"
-        android:maxLength="10"
-        android:autofillHints="creditCardNumber" />
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/txt_intent">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="@string/open_webpage"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="15dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_open_webpage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_crimson"
+                android:backgroundTint="@color/crimson"
+                android:padding="20dp"
+                android:text="@string/open_webpage"
+                android:textColor="@color/white" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="15dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_open_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_open_webpage"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_crimson"
+                android:padding="20dp"
+                android:text="@string/open_call"
+                android:textColor="@color/white" />
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_card2"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_call"
-        android:text="@string/call"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/black"
-        android:layout_below="@+id/call"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/ll_card1">
 
-</RelativeLayout>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="@string/open_webpage"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="15dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_open_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_crimson"
+                android:backgroundTint="@color/crimson"
+                android:padding="20dp"
+                android:text="@string/open_camera"
+                android:textColor="@color/white" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="15dp">
+
+            <EditText
+                android:id="@+id/edt_intent_text"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="12dp"
+                android:autofillHints="text"
+                android:hint="@string/enter_message"
+                android:inputType="text"
+                android:textColor="@color/crimson"
+                android:textSize="14sp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_send_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_crimson"
+                android:text="@string/send_data"
+                android:textColor="@color/white" />
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_card3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/ll_card2">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="@string/open_webpage"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="15dp">
+
+
+            <EditText
+                android:id="@+id/call"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:autofillHints="creditCardNumber"
+                android:hint="@string/enter_number"
+                android:inputType="number"
+                android:maxLength="10" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_crimson"
+                android:text="@string/call"
+                android:textColor="@color/white" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="15dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_txt_to_speech"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_open_webpage"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_crimson"
+                android:padding="20dp"
+                android:text="@string/text_to_speech"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_card4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/ll_card3">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="@string/open_webpage"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="15dp">
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_color_picker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/btn_crimson"
+                android:padding="20dp"
+                android:text="@string/color_picker"
+                android:textColor="@color/white" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="15dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_api_spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_open_webpage"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_crimson"
+                android:padding="20dp"
+                android:text="@string/api_spnner"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="49dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fragment_color_picker" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

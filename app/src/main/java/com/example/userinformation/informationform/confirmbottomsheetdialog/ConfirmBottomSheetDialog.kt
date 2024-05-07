@@ -10,15 +10,15 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import com.example.userinformation.R
 import com.example.userinformation.databinding.DialogConfirmationBinding
-import com.example.userinformation.informationform.InformationFormActivity
-import com.example.userinformation.informationform.dbHelper.FormDBHelper
-import com.example.userinformation.informationform.dbHelper.InformationFormDataClass
+import com.example.userinformation.informationform.dbHelper.InformationFormDBHelper
+import com.example.userinformation.informationform.dbHelper.YourInformationDataClass
 import com.example.userinformation.informationform.emergency_contact_form.EmergencyContactFormActivity
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class ConfirmBottomSheetDialog(private val formDataClass: InformationFormDataClass):BottomSheetDialogFragment() {
+class ConfirmBottomSheetDialog(private var formDataClass: YourInformationDataClass) :
+    BottomSheetDialogFragment() {
 
-    private lateinit var dbHelper: FormDBHelper
+    private lateinit var dbHelper: InformationFormDBHelper
 
     @SuppressLint("CutPasteId")
     override fun onCreateView(
@@ -31,32 +31,51 @@ class ConfirmBottomSheetDialog(private val formDataClass: InformationFormDataCla
 
 
         val context = requireContext()
-        dbHelper = FormDBHelper(context)
+        dbHelper = InformationFormDBHelper(context)
 
-        val first = formDataClass.first_name
-        Log.d("First", first)
-        val last =formDataClass.last_name
-        val mobile =formDataClass.mobile
+        val first = formDataClass.firstName
+        val last = formDataClass.lastName
+        val mobile = formDataClass.mobileNumber
         val gender = formDataClass.gender
         val state =formDataClass.state
         val country = formDataClass.country
-        val dateOfBirth = formDataClass.date_of_birth
+        val dateOfBirth = formDataClass.dateOfBirth
         val address = formDataClass.address
-        Log.d("ADDRESS", address)
         val postal = formDataClass.postal
         val email = formDataClass.email
+        val aadhaar = formDataClass.aadhaarNumber
+        val spinnerData = formDataClass.spinnerData
+        Log.d("spinnerData", "==============spinner data $spinnerData")
+
+
+        val data = YourInformationDataClass(
+            first,
+            last,
+            email,
+            mobile,
+            dateOfBirth,
+            address,
+            aadhaar,
+            gender,
+            state,
+            postal,
+            country,
+            spinnerData
+        )
 
         binding.yesBtn.setOnClickListener{
-            val data = InformationFormDataClass(0,first,last,mobile,gender,state,country,dateOfBirth,address,postal,email)
+
+
             if (!isDataAlreadyExist(data)) {
                 storeDataInDataBase(data)
-                Log.d("AFTER CLICK ON YES BUTTON", "DATA INSERT")
                 dismiss()
+            }else{
+                startActivity(Intent(context, EmergencyContactFormActivity::class.java))
+                dismiss()
+
             }
 
         }
-
-
 
         binding.editBtn.setOnClickListener(object :OnClickListener{
             override fun onClick(v: View?) {
@@ -69,19 +88,18 @@ class ConfirmBottomSheetDialog(private val formDataClass: InformationFormDataCla
                 dismiss()
             }
 
-
         })
         return rootView
     }
 
-    private fun isDataAlreadyExist(data: InformationFormDataClass): Boolean {
+    private fun isDataAlreadyExist(data: YourInformationDataClass): Boolean {
         val database = dbHelper.readableDatabase
-        val col = arrayOf("info_id")
-        val selection = "info_id =?"
-        val selectionArg = arrayOf(formDataClass.info_id.toString())
+        val col = arrayOf("mobile_number")
+        val selection = "mobile_number =?"
+        val selectionArg = arrayOf(data.mobileNumber)
 
         val cursor = database.query(
-            "Information",
+            "information",
             col,
             selection,
             selectionArg,
@@ -92,26 +110,19 @@ class ConfirmBottomSheetDialog(private val formDataClass: InformationFormDataCla
         val dataExist = cursor.count > 0
         cursor.close()
         database.close()
-        Log.d("DATA EXIST", "=============$dataExist ========== $selection======== $col")
         return dataExist
 
 
     }
 
-    private fun storeDataInDataBase(formDataClass: InformationFormDataClass) {
-        val returnId =dbHelper.insertData(formDataClass)
-
-        if (returnId!=1L){
-            Log.d("Data Insertion", "Data inserted successfully")
-            startActivity(Intent(context, EmergencyContactFormActivity::class.java))
-        }else{
-            startActivity(Intent(context, InformationFormActivity::class.java))
-        }
+    private fun storeDataInDataBase(formDataClass: YourInformationDataClass) {
+        startActivity(Intent(context, EmergencyContactFormActivity::class.java))
+        dbHelper.insertData(formDataClass)
     }
-
-    companion object{
-        fun getInstance(formDataClass: InformationFormDataClass) : ConfirmBottomSheetDialog {
+    companion object {
+        fun getInstance(formDataClass: YourInformationDataClass): ConfirmBottomSheetDialog {
             return ConfirmBottomSheetDialog(formDataClass)
         }
     }
+
 }
