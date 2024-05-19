@@ -1,71 +1,16 @@
-//package com.example.userinformation.practice
+package com.example.userinformation.practice
+
+import android.os.Bundle
+import android.os.PersistableBundle
+import androidx.appcompat.app.AppCompatActivity
+
 //
-//import android.annotation.SuppressLint
-//import android.os.Bundle
-//import android.os.Handler
-//import android.widget.ImageView
-//import android.widget.LinearLayout
-//import androidx.appcompat.app.AppCompatActivity
-//import androidx.viewpager2.widget.ViewPager2
-//import com.example.userinformation.R
-//import com.example.userinformation.databinding.ActivityPracticBinding
-//
-//class PracticActivity : AppCompatActivity() {
-//    private lateinit var binding :ActivityPracticBinding
-//    private lateinit var viewPager2: ViewPager2
-//    private lateinit var adapter: ImageAdapter
-//    private lateinit var dotLayout :LinearLayout
-////    private lateinit var listImage :ArrayList<Int>
-//
-//    private val handler = Handler()
-//    private val scrollRunnable = object : Runnable {
-//        override fun run() {
-//            val currentItem = viewPager2.currentItem
-//
-//            viewPager2.setCurrentItem(currentItem + 1, true)
-//            handler.postDelayed(this, 3000)
-//        }
-//
-//    }
-//    @SuppressLint("UseCompatLoadingForDrawables")
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        binding = ActivityPracticBinding.inflate(layoutInflater)
-//        setContentView(binding.root)
-//
-//        viewPager2 = binding.viewPager
-//        dotLayout = binding.dotLayout
-//
-//        adapter = ImageAdapter(dotLayout, viewPager2)
-//
-//        viewPager2.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//            override fun onPageSelected(position: Int) {
-//                super.onPageSelected(position)
-//                updatesDot(position)
-//            }
-//
-//        })
-//
-//        handler.postDelayed(scrollRunnable, 3000)
-//
-//    }
-//
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        handler.removeCallbacks(scrollRunnable)
-//    }
-//
-//    private fun updatesDot(position: Int) {
-//        for (i in 0 until dotLayout.childCount) {
-//            val dot = dotLayout.getChildAt(i)as ImageView
-//            dot.setImageResource(
-//                if (i == position % adapter.itemCount)
-//                    R.drawable.china
-//                else
-//                    R.drawable.malaysia
-//            )
-//        }
-//    }
-//
-//
-//}
+class PracticActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+
+        val json =""" {"products": [{"id": 1,"name": "Slim Fit Jeans","description": "Classic slim fit jeans for everyday wear.","price": 39.99, "image": "https://example.com/images/slim_fit_jeans.jpg","category": "Jeans"},{"id": 2,"name": "Striped Shirt","description": "Casual striped shirt made of breathable fabric.","price": 29.99,"image": "https://example.com/images/striped_shirt.jpg","category": "Shirts"},{"id": 3,"name": "Leather Jacket", "description": "Stylish leather jacket for a rugged look.","price": 99.99,"image": "https://example.com/images/leather_jacket.jpg","category": "Jackets"},{"id": 4,"name": "Sneakers", "description": "Comfortable sneakers for all-day wear.","price": 49.99,"image": "https://example.com/images/sneakers.jpg","category": "Shoes"},{"id": 5,"name": "Trench Coat","description": "Classic trench coat for a sophisticated look.","price": 79.99,"image": "https://example.com/images/trench_coat.jpg",       "category": "Jackets"},{"id": 6,"name": "Floral Dress","description": "Elegant floral dress perfect for any occasion.","price": 59.99,"image": "https://example.com/images/floral_dress.jpg","category": "Dresses"     },     {       "id": 7,       "name": "Denim Shorts",       "description": "Casual denim shorts for a laid-back look.",       "price": 24.99,       "image": "https://example.com/images/denim_shorts.jpg",       "category": "Shorts"     },     {       "id": 8,       "name": "Hoodie",       "description": "Cozy hoodie for chilly days.",       "price": 34.99,       "image": "https://example.com/images/hoodie.jpg",       "category": "Sweaters"     },     {       "id": 9,       "name": "Polo Shirt",       "description": "Classic polo shirt for a timeless look.",       "price": 19.99,       "image": "https://example.com/images/polo_shirt.jpg",       "category": "Shirts"     },     {       "id": 10,       "name": "High-Waisted Pants",       "description": "Trendy high-waisted pants for a stylish outfit.",       "price": 44.99,       "image": "https://example.com/images/high_waisted_pants.jpg",       "category": "Pants"     },     {       "id": 11,       "name": "Sweatshirt",       "description": "Comfortable sweatshirt for everyday wear.",       "price": 29.99,       "image": "https://example.com/images/sweatshirt.jpg",       "category": "Sweaters"     },     {       "id": 12,       "name": "Maxi Skirt",       "description": "Flowy maxi skirt for a bohemian vibe.",       "price": 39.99,       "image": "https://example.com/images/maxi_skirt.jpg",       "category": "Skirts"     },     {       "id": 13,       "name": "Blazer",       "description": "Tailored blazer for a professional look.",       "price": 69.99,       "image": "https://example.com/images/blazer.jpg",       "category": "Jackets"     },     {       "id": 14,       "name": "Ankle Boots",       "description": "Stylish ankle boots to elevate any outfit.",       "price": 54.99,       "image": "https://example.com/images/ankle_boots.jpg",       "category": "Shoes"     },     {       "id": 15,       "name": "T-Shirt",       "description": "Basic t-shirt for everyday comfort.",       "price": 14.99,       "image": "https://example.com/images/t_shirt.jpg",       "category": "Shirts"     },     {       "id": 16,       "name": "Midi Dress",       "description": "Versatile midi dress for various occasions.",       "price": 49.99,       "image": "https://example.com/images/midi_dress.jpg",       "category": "Dresses"     },     {       "id": 17,       "name": "Cargo Pants",       "description": "Functional cargo pants for outdoor activities.",       "price": 34.99,       "image": "https://example.com/images/cargo_pants.jpg",       "category": "Pants"     },     {       "id": 18,       "name": "Cardigan",       "description": "Lightweight cardigan for layering.",       "price": 24.99,       "image": "https://example.com/images/cardigan.jpg",       "category": "Sweaters"     },     {       "id": 19,       "name": "Suede Jacket",       "description": "Chic suede jacket for a trendy look.",       "price": 89.99,       "image": "https://example.com/images/suede_jacket.jpg",       "category": "Jackets"     },     {       "id": 20,       "name": "Chinos",       "description": "Classic chinos for a polished outfit.",       "price": 49.99,       "image": "https://example.com/images/chinos.jpg",       "category": "Pants"     }   ],   "categories": [     {       "id": 1,       "name": "Jeans"     },     {       "id": 2,       "name": "Shirts"     },     {       "id": 3,       "name": "Jackets"     },     {       "id": 4,       "name": "Shoes"     },     {       "id": 5,       "name": "Dresses"     },     {       "id": 6,       "name": "Shorts"     },     {       "id": 7,"""
+    }
+}
+

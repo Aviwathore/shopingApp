@@ -20,7 +20,6 @@ import com.example.userinformation.dashboard.DashBoardActivity
 import com.example.userinformation.databinding.ActivityIntentBinding
 import com.example.userinformation.intent.colorpicker.ColorPickerFragment
 import com.example.userinformation.intent.converttexttospeech.TextToSpeechFragment
-import com.example.userinformation.intent.housingoption.HousingOptionActivity
 
 class IntentActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -78,7 +77,11 @@ class IntentActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun callApi() {
-        startActivity(Intent(this, HousingOptionActivity::class.java))
+//        startActivity(Intent(this, HousingOptionActivity::class.java))
+        val fragment = BFragment()
+
+//       supportFragmentManager.beginTransaction().add(fragment,"new").commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_api, fragment).commit()
     }
 
     private fun selectSeekBar() {

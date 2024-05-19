@@ -7,12 +7,15 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import com.example.userinformation.cloth.clothproducts.model.ClothItem
+import com.example.userinformation.cloth.clothproducts.model.Rating
 
 class InformationFormDBHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, VERSION) {
+
     companion object {
         private const val DATABASE_NAME = "form_details.db"
-        private const val VERSION = 7
+        private const val VERSION = 10
         private const val TABLE_NAME = "information"
         private var FIRST_NAME = "first_name"
         private var LAST_NAME = "last_name"
@@ -34,6 +37,18 @@ class InformationFormDBHelper(context: Context) :
         private var RELATION_WITH_BANK_STAFF = "relation_with_bank_staff"
         private var BANK_STAFF_MOBILE_NUMBER = "bank_staff_mobile_number"
 
+        // Second Table
+
+        private const val CLOTH_TABLE_NAME = "cloth_info"
+        private var ID = "id"
+        private var TITLE = "title"
+        private var PRICE = "price"
+        private var DESCRIPTION = "description"
+        private var CATEGORY = "category"
+        private var IMAGE = "image"
+        private var RATE = "rate"
+        private var COUNT = "count"
+        private var IS_FAV = "is_fav"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -59,14 +74,29 @@ class InformationFormDBHelper(context: Context) :
                 "$BANK_STAFF_MOBILE_NUMBER TEXT)"
         db?.execSQL(createTable)
         Log.d("CREATED TABLE", "==============$createTable========$TABLE_NAME")
+
+        val createClothTable = "create table $CLOTH_TABLE_NAME(" +
+                "$ID INTEGER PRIMARY KEY AUTOINCREMENT," +
+                "$TITLE TEXT," +
+                "$PRICE DOUBLE," +
+                "$DESCRIPTION TEXT," +
+                "$CATEGORY TEXT," +
+                "$IMAGE TEXT," +
+                "$RATE DOUBLE," +
+                "$COUNT INTEGER," +
+                "$IS_FAV INTEGER" +
+                ")"
+        db?.execSQL(createClothTable)
+        Log.d("CREATED CLOTH TABLE", "==============$createClothTable========$CLOTH_TABLE_NAME")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-//        if (oldVersion<5){
-//            db?.execSQL("ALTER TABLE $TABLE_NAME ADD COLUMN $SPINNER_ITEM TEXT")
-//        }
-        db?.execSQL("drop table if exists $TABLE_NAME")
-        onCreate(db)
+
+        if (oldVersion < VERSION) {
+            db?.execSQL("drop table if exists $TABLE_NAME")
+            db?.execSQL("drop table if exists $CLOTH_TABLE_NAME")
+            onCreate(db)
+        }
     }
 
     fun insertData(data: YourInformationDataClass): Long {
@@ -258,6 +288,78 @@ class InformationFormDBHelper(context: Context) :
         }
         db.close()
         return infoList
+    }
+
+    fun insertClothItem(clothItem: ClothItem): String {
+
+        Log.d("TAG", "insertClothItem:-------------------------- ")
+        val db = this.writableDatabase
+        Log.d("TAG", "clothItem.title : " + clothItem.title)
+        val values = ContentValues().apply {
+            put(TITLE, clothItem.title)
+            put(PRICE, clothItem.price)
+            put(DESCRIPTION, clothItem.description)
+            put(CATEGORY, clothItem.category)
+            put(IMAGE, clothItem.image)
+            put(RATE, clothItem.rating.rate)
+            put(COUNT, clothItem.rating.count)
+            put(IS_FAV, 0)
+        }
+        val status = db.insert(CLOTH_TABLE_NAME, null, values).toString()
+        Log.d("TAG", "insertClothItem: $status")
+        db.close()
+
+        return status
+    }
+
+    @SuppressLint("Range")
+    fun getAllClothItems(): List<ClothItem> {
+        Log.d("TAG", "getAllClothItems:----------------------------- ")
+        val clothItemList = mutableListOf<ClothItem>()
+
+        val db = this.readableDatabase
+        val selectQuery = "SELECT * FROM $CLOTH_TABLE_NAME"
+
+        db.rawQuery(selectQuery, null).use { cursor ->
+            if (cursor.moveToFirst()) {
+                do {
+                    val id = cursor.getInt(cursor.getColumnIndex(ID))
+                    val title = cursor.getString(cursor.getColumnIndex(TITLE))
+                    val price = cursor.getDouble(cursor.getColumnIndex(PRICE))
+                    val description = cursor.getString(cursor.getColumnIndex(DESCRIPTION))
+                    val category = cursor.getString(cursor.getColumnIndex(CATEGORY))
+                    val image = cursor.getString(cursor.getColumnIndex(IMAGE))
+                    val rate = cursor.getDouble(cursor.getColumnIndex(RATE))
+                    val count = cursor.getInt(cursor.getColumnIndex(COUNT))
+                    val rating = Rating(rate, count)
+                    val isFAV = cursor.getInt(cursor.getColumnIndex(IS_FAV))
+                    Log.d("TAG", "isFAV           : " + isFAV)
+                    val clothItem =
+                        ClothItem(id, title, price, description, category, image, rating, isFAV)
+                    Log.d("TAG", "getAllClothItems: " + clothItem.is_fav)
+                    clothItemList.add(clothItem)
+                } while (cursor.moveToNext())
+            }
+        }
+
+        db.close()
+        return clothItemList
+    }
+
+    fun updateFavState(item: ClothItem) {
+
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(IS_FAV, item.is_fav)
+        }
+        val affectedRows = db.update(
+            CLOTH_TABLE_NAME,
+            values,
+            "$ID = ?",
+            arrayOf(item.id.toString())
+        )
+
+        db.close()
     }
 
 }

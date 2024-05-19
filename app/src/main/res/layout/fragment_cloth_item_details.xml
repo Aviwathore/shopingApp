@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:fitsSystemWindows="true"
+    tools:context=".cloth.clothproducts.clothitemdetails.ClothItemDetailsFragment">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/sv_product_details"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:scrollbars="none"
+        android:translationZ="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="130dp">
+
+            <include
+                android:id="@+id/layout_header"
+                layout="@layout/header_layout" />
+
+            <ImageView
+                android:id="@+id/img_cloth_item"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="24dp"
+                android:contentDescription="@string/cloth"
+                android:src="@drawable/cloth"
+                app:layout_constraintTop_toBottomOf="@id/layout_header"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <RelativeLayout
+                android:id="@+id/rl_cloth_category_rate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/cloth_des_background_layout"
+                android:elevation="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_cloth_item">
+
+                <TextView
+                    android:id="@+id/txt_cloth_item_category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="48dp"
+                    android:layout_toStartOf="@+id/cl_cloth_category_rate"
+                    android:ellipsize="end"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:text="bgggggggggggggggggghjjjjjjjjjjjjgggggggggbgggggggggggggggggghjjjjjjjjjjjjggggggggg"
+                    android:textColor="@color/gray"
+                    android:textSize="16sp" />
+                <!--        android:layout_toStartOf="@+id/cl_cloth_category_rate"-->
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cl_cloth_category_rate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/txt_cloth_item_category"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="48dp"
+                    android:layout_marginEnd="24dp">
+
+                    <TextView
+                        android:id="@+id/txt_cloth_item_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="4.5"
+                        android:textColor="@color/gray"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/img_rating_star"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/cloth"
+                        android:src="@drawable/baseline_star_24"
+                        app:layout_constraintEnd_toStartOf="@+id/txt_cloth_item_rate"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_cloth_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/cl_cloth_category_rate"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginEnd="24dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txt_cloth_item_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="16dp"
+                        android:text="Light Brown"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_total_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_cloth_item_title"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:id="@+id/txt_mrp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:text="@string/mrp"
+                            android:textColor="@color/gray"
+                            android:textSize="15sp" />
+
+                        <TextView
+                            android:id="@+id/txt_cloth_total_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@+id/txt_mrp"
+                            android:gravity="center_vertical"
+                            android:text="209"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txt_cloth_details"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl_total_price"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/cloth_details"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/txt_cloth_item_des"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_cloth_details"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="8dp"
+                        android:ellipsize="end"
+                        android:maxLines="3"
+                        android:text="Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi."
+                        android:textColor="@color/gray"
+                        android:textSize="16sp" />
+
+
+                    <View
+                        android:id="@+id/view_line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@+id/txt_cloth_item_des"
+                        android:layout_marginTop="16dp"
+                        android:background="#41928585" />
+
+                    <TextView
+                        android:id="@+id/txt_select_size"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/view_line"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/select_size"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <HorizontalScrollView
+                        android:id="@+id/horizontal_scrollview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/txt_select_size"
+                        android:layout_marginTop="8dp"
+                        android:fillViewport="true"
+                        android:scrollbars="none">
+
+                        <LinearLayout
+                            android:id="@+id/ll_select_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/s_size"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginEnd="12dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/size_option_layout"
+                                android:gravity="center"
+                                android:text="@string/s"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/m_size"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginEnd="12dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/size_option_layout"
+                                android:gravity="center"
+                                android:text="@string/m"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/l_size"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginEnd="12dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/size_option_layout"
+                                android:gravity="center"
+                                android:text="@string/l"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/xl_size"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginEnd="12dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/size_option_layout"
+                                android:gravity="center"
+                                android:text="@string/xl"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/xxl_size"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_marginEnd="12dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/size_option_layout"
+                                android:gravity="center"
+                                android:text="@string/xxl"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/xxxl_size"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="12dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/size_option_layout"
+                                android:gravity="center"
+                                android:text="@string/xxxl"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                    </HorizontalScrollView>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/cl_default_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontal_scrollview"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bottom_nav_item_background"
+                        android:paddingBottom="16dp">
+
+                        <LinearLayout
+                            android:id="@+id/ll_fit_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/fit"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/sustainable"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/ll_sub_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:orientation="horizontal"
+                            app:layout_constraintTop_toBottomOf="@+id/ll_fit_title">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/relaxed_fit"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/regular"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/txt_fabric"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16sp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/fabric"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/ll_sub_title" />
+
+                        <TextView
+                            android:id="@+id/txt_cotton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/cotton"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_fabric" />
+
+                        <TextView
+                            android:id="@+id/txt_product_details"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="24dp"
+                            android:text="@string/product_details"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_cotton" />
+
+                        <TextView
+                            android:id="@+id/txt_product_type1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/taupe_tshirt_for_men"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_product_details" />
+
+                        <TextView
+                            android:id="@+id/txt_product_type2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="3dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/printed"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_product_type1" />
+
+                        <TextView
+                            android:id="@+id/txt_product_type3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="3dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/regular_length"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_product_type2" />
+
+                        <TextView
+                            android:id="@+id/txt_product_type4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="3dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/round_neck"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_product_type3" />
+
+                        <TextView
+                            android:id="@+id/txt_product_type5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="3dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/shorts"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_product_type4" />
+
+                        <TextView
+                            android:id="@+id/txt_product_type6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="3dp"
+                            android:includeFontPadding="false"
+                            android:text="@string/kinnet"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_product_type5" />
+
+                        <TextView
+                            android:id="@+id/txt_size_fit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/size_fit"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_product_type6" />
+
+                        <TextView
+                            android:id="@+id/txt_relaxed_fit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/relaxed_fit"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_size_fit" />
+
+                        <TextView
+                            android:id="@+id/txt_model_size"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="6dp"
+                            android:text="@string/model_size"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_relaxed_fit" />
+
+                        <TextView
+                            android:id="@+id/txt_material_care"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:text="@string/material_care"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_model_size" />
+
+                        <TextView
+                            android:id="@+id/txt_perst_cloth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/perst_cloth"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_material_care" />
+
+                        <TextView
+                            android:id="@+id/txt_machine_wash"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="@string/machine_wash"
+                            android:textSize="16sp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/txt_perst_cloth" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_stamp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/cl_default_text"
+                        android:layout_marginTop="48dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="@string/cloth"
+                            android:src="@drawable/original" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:contentDescription="@string/cloth"
+                            android:src="@drawable/badge" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_stamp_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll_stamp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/genuine"
+                            android:textColor="@color/crimson"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="@string/quality"
+                            android:textColor="@color/crimson"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cloth_des_background_layout"
+        android:baselineAligned="false"
+        android:elevation="11dp"
+        android:orientation="horizontal"
+        android:padding="24dp"
+        android:translationZ="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_wishlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_white"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/img_fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/cloth"
+                android:src="@drawable/hearts"/>
+
+            <TextView
+                android:id="@+id/txt_wishlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/img_fav"
+                android:text="@string/wishlist"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_add_to_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_crimson"
+            android:gravity="center"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/img_bag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/cloth"
+                android:src="@drawable/baseline_shopping_bag_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="12dp"
+                android:layout_toEndOf="@+id/img_bag"
+                android:text="@string/add_to_cart"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

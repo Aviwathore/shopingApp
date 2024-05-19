@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:fitsSystemWindows="true"
+    tools:context=".cloth.clothproducts.ClothFragment">
+
+    <include
+        android:id="@+id/layout_header"
+        layout="@layout/header_layout" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_cloth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:translationZ="10dp"
+        android:paddingBottom="190dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_header"
+        tools:listitem="@layout/clothing_items" />
+
+    <include
+        android:id="@+id/bottom_navigation_item"
+        layout="@layout/bottom_navigation_layout" />
+
+    <FrameLayout
+        android:id="@+id/fragment_cloth_item_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:translationZ="10dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

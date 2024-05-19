@@ -61,4 +61,8 @@
         <item name="android:background">@drawable/spinner_dropdown_background</item>
         <item name="android:popupBackground">@drawable/spinner_dropdown_background</item>
     </style>
+    <style name="LikeButton" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/gray</item>
+        <item name="colorControlActivated">@color/crimson</item>
+    </style>
 </resources>
