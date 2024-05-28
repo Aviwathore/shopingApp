@@ -1,7 +1,8 @@
 package com.example.userinformation.cloth.clothproducts.adapter
 
 import android.annotation.SuppressLint
-import android.icu.text.NumberFormat
+import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,17 +13,20 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.userinformation.R
 import com.example.userinformation.cloth.clothproducts.model.ClothItem
-import java.util.Locale
+import com.example.userinformation.formatNumber.formatToIndianNumberingSystem
 
-class ClothAdapter(private var listener: OnItemClickListener) :
+class ClothAdapter(private var listener: OnItemClickListener, private val context: Context) :
     RecyclerView.Adapter<ClothAdapter.ClothViewHolder>() {
     private var clothList = emptyList<ClothItem>()
 
     companion object {
         const val CONVERSION_FACTOR = 83.50
     }
+
+    @SuppressLint("NotifyDataSetChanged")
     internal fun setClothItem(clothList: List<ClothItem>) {
         this.clothList = clothList
+        notifyDataSetChanged()
     }
 
     class ClothViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -35,7 +39,8 @@ class ClothAdapter(private var listener: OnItemClickListener) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClothViewHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.clothing_items, parent, false)
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.product_layout, parent, false)
 
         return ClothViewHolder(view)
     }
@@ -44,10 +49,9 @@ class ClothAdapter(private var listener: OnItemClickListener) :
         return clothList.size
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint("NotifyDataSetChanged", "Recycle")
     override fun onBindViewHolder(holder: ClothViewHolder, position: Int) {
         val item = clothList[position]
-
 
         Glide.with(holder.clothImage.context)
             .load(item.image)
@@ -55,25 +59,27 @@ class ClothAdapter(private var listener: OnItemClickListener) :
 
         holder.clothName.text = item.title
         val price = item.price
-        val total_price = price * CONVERSION_FACTOR
+        val totalPrice = price * CONVERSION_FACTOR
+
+        val formattedNumber = formatToIndianNumberingSystem(totalPrice.toLong())
+        holder.clothPrice.text = formattedNumber
 
         holder.clothRating.text = item.rating.rate.toString()
+        holder.like.setBackgroundResource(if (item.is_fav == 1) R.drawable.heart_pink else R.drawable.heart_white)
 
-        val formattedPrice =
-            NumberFormat.getCurrencyInstance(Locale("en", "IN")).format(total_price)
-        holder.clothPrice.text = formattedPrice
-
-        holder.like.setBackgroundResource(if (item.is_fav==1) R.drawable.heart_1 else R.drawable.hearts)
 
         holder.like.setOnClickListener {
+
             listener.addToFavClickListener(item, position)
         }
 
-        holder.itemView.setOnClickListener {
+        holder.clothImage.setOnClickListener {
+            Log.d("TAG", "onBindViewHolder: " + item.title)
             listener.onClothItemClickListener(item, position)
         }
 
     }
+
 
     interface OnItemClickListener {
         fun addToFavClickListener(item: ClothItem, position: Int)

@@ -43,6 +43,7 @@ android {
 dependencies {
 
     implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.animation.android)
     annotationProcessor(libs.androidx.room.compiler)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -50,32 +51,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-//    implementation (libs.retrofit)
     implementation(libs.retrofit)
-//    implementation (libs.converter.gson)
-//    implementation (libs.gson)
-
-    //noinspection UseTomlInstead
-//    implementation ("ru.egslava:MaskedEditText:1.0.5"
-
-//    implementation (libs.MaskedEditText)
-//    implementation(libs.maskedEditText)
-//    implementation(libs.masked.edittext)
-    //noinspection UseTomlInstead
-//    implementation("com.github.pinball83:masked-edittext:1.0.5")
-//    implementation(libs.pinball83.masked.edittext)
-//    implementation(libs.pinball83.masked.edittext)
-//    implementation(libs.material.v150)
 //    implementation (libs.countrycodepicker)
     implementation (libs.countrycodepicker)
-//    implementation (libs.countrycodepicker)
     implementation (libs.ccp)
-//    implementation(libs.maskedEditText)
-//    implementation (libs.masked.edittext)
-//    implementation (libs.multidex)
     implementation(libs.androidx.cardview)
     implementation (libs.androidx.viewpager2)
     implementation (libs.ambilwarna)
+    implementation(libs.androidx.swiperefreshlayout)
 
     implementation(libs.converter.gson)
    implementation(libs.masked.edittext)
@@ -85,6 +68,11 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.preference)
+    implementation(libs.glide)
+//    implementation (libs.smallbang)
+
+    implementation (libs.shimmer)
+    annotationProcessor (libs.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

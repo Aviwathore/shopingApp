@@ -1,66 +1,76 @@
-package com.example.userinformation.cloth.clothproducts.favouriteCloth
+package com.example.userinformation.wishlist
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.icu.text.NumberFormat
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
 import android.view.ViewGroup
-import android.widget.Toast
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.userinformation.R
-import com.example.userinformation.cloth.clothproducts.ClothFragment
+import com.example.userinformation.addtocart.AddToCartFragment
+import com.example.userinformation.cloth.clothproducts.ClothListFragment
 import com.example.userinformation.cloth.clothproducts.adapter.ClothAdapter
-import com.example.userinformation.cloth.clothproducts.clothitemdetails.ClothItemDetailsFragment
+import com.example.userinformation.cloth.clothproducts.clothitemdetails.ClothDetailsFragment
 import com.example.userinformation.cloth.clothproducts.model.ClothItem
 import com.example.userinformation.dashboard.DashBoardActivity
-import com.example.userinformation.databinding.FragmentFavouriteClothBinding
-import com.example.userinformation.informationform.dbHelper.InformationFormDBHelper
+import com.example.userinformation.databinding.FragmentWishlistBinding
+import com.example.userinformation.dbHelper.ProductDBHelper
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import java.util.Locale
 
-class FavouriteClothFragment : Fragment(), ClothAdapter.OnItemClickListener, OnClickListener {
+class WishListFragment : Fragment(), ClothAdapter.OnItemClickListener, OnClickListener {
 
-    private lateinit var binding: FragmentFavouriteClothBinding
+    private lateinit var binding: FragmentWishlistBinding
     private lateinit var adapter: ClothAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var dbHelper: InformationFormDBHelper
+    private lateinit var dbHelper: ProductDBHelper
     private lateinit var bottomNva: BottomNavigationView
     private var favouriteClothList: List<ClothItem> = listOf()
+    private lateinit var progressBar: ProgressBar
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentFavouriteClothBinding.inflate(inflater, container, false)
+        binding = FragmentWishlistBinding.inflate(inflater, container, false)
 
-        binding.layoutHeader.txtHeader.text = getString(R.string.MyProduct)
+        binding.layoutHeader.txtHeader.text = getString(R.string.WishlistCollections)
         binding.layoutHeader.buttonStart.setOnClickListener(this)
 
-        bottomNva = binding.bottomNavigationItem.bottomNavigationView
-        bottomNva.selectedItemId = R.id.navigation_fav
+       progressBar= binding.progressBar
 
-        adapter = ClothAdapter(this)
+        adapter = context?.let { ClothAdapter(this, it) }!!
         recyclerView = binding.recyclerViewList
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = adapter
 
+        bottomNva = binding.bottomNavigationItem.bottomNavigationView
+        bottomNva.selectedItemId = R.id.navigation_fav
         fetchFavouriteCloth()
+
         bottomNavigationItemSelected()
         return binding.root
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun fetchFavouriteCloth() {
-        dbHelper = InformationFormDBHelper(requireContext())
+        progressBar.visibility = View.VISIBLE
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            dbHelper = ProductDBHelper(requireContext())
 
         favouriteClothList = dbHelper.getAllClothItems()
 
         val filterFavCloth = favouriteClothList.filter { it.is_fav == 1 }
         adapter.setClothItem(filterFavCloth)
-
+            adapter.notifyDataSetChanged()
+            progressBar.visibility = View.GONE
+        }, 200)
     }
 
 
@@ -83,32 +93,18 @@ class FavouriteClothFragment : Fragment(), ClothAdapter.OnItemClickListener, OnC
 
         val bundle = Bundle()
 
-        bundle.putString("clothTitle", item.title)
-        bundle.putString("clothCategory", item.category)
-        bundle.putString("clothImg", item.image)
-        bundle.putString("clothRate", item.rating.rate.toString())
-
-        val price = item.price
-        val total_price = price * ClothAdapter.CONVERSION_FACTOR
-
-        val formattedPrice =
-            NumberFormat.getCurrencyInstance(Locale("en", "IN")).format(total_price)
-
-        bundle.putString("clothPrice", formattedPrice)
-        bundle.putString("clothDesc", item.description)
-
-        val clothInstance = ClothItemDetailsFragment()
+        bundle.putInt("clothId", item.id)
+        val clothInstance = ClothDetailsFragment()
 
         clothInstance.arguments = bundle
 
-        requireActivity().supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_cloth_item_detail, clothInstance, "Cloth Item Details")
-            .addToBackStack(null)
-            .commit()
+        val activityDash = activity as DashBoardActivity
+        activityDash.replaceFragment(clothInstance)
+
     }
 
     private fun updateFavStateItem(item: ClothItem) {
-        dbHelper.updateFavState(item)
+        dbHelper.updateFavState(item.id, item.is_fav)
     }
     private fun bottomNavigationItemSelected() {
 
@@ -121,14 +117,16 @@ class FavouriteClothFragment : Fragment(), ClothAdapter.OnItemClickListener, OnC
                 }
 
                 R.id.navigation_cart -> {
-                    Toast.makeText(context, "cart is clicked!!", Toast.LENGTH_SHORT).show()
+
+                    val dashBoardActivity = activity as DashBoardActivity
+                    dashBoardActivity.replaceFragment(AddToCartFragment())
+
                     true
                 }
 
-                R.id.navigation_profile -> {
-                    val fragment = ClothFragment()
-                    requireActivity().supportFragmentManager.beginTransaction()
-                        .replace(R.id.cloth_fragment, fragment).commit()
+                R.id.navigation_list -> {
+                    val dashBoardActivity = activity as DashBoardActivity
+                    dashBoardActivity.replaceFragment(ClothListFragment())
                     true
                 }
 
@@ -143,4 +141,5 @@ class FavouriteClothFragment : Fragment(), ClothAdapter.OnItemClickListener, OnC
             else ->{}
         }
     }
+
 }

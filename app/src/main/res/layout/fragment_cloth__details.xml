@@ -5,9 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:fitsSystemWindows="true"
-    tools:context=".cloth.clothproducts.clothitemdetails.ClothItemDetailsFragment">
+    tools:context=".cloth.clothproducts.clothitemdetails.ClothDetailsFragment">
 
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+<!--    <com.facebook.shimmer.ShimmerFrameLayout-->
+<!--        android:id="@+id/shimmer_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:orientation="vertical"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/sv_product_details"
@@ -15,7 +27,6 @@
         android:layout_height="0dp"
         android:fillViewport="true"
         android:scrollbars="none"
-        android:translationZ="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -274,13 +285,25 @@
 
                     </HorizontalScrollView>
 
+                    <TextView
+                        android:id="@+id/txt_size_error"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/horizontal_scrollview"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/please_select_size"
+                        android:textColor="@color/crimson"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/cl_default_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/horizontal_scrollview"
+                        android:layout_below="@+id/txt_size_error"
                         android:layout_marginTop="16dp"
-                        android:background="@drawable/bottom_nav_item_background"
+                        android:background="@drawable/default_background"
                         android:paddingBottom="16dp">
 
                         <LinearLayout
@@ -465,7 +488,7 @@
                             android:id="@+id/txt_model_size"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
+                            android:layout_marginStart="16dp"
                             android:layout_marginEnd="6dp"
                             android:text="@string/model_size"
                             android:textSize="16sp"
@@ -596,7 +619,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:contentDescription="@string/cloth"
-                android:src="@drawable/hearts"/>
+                android:src="@drawable/heart_white" />
 
             <TextView
                 android:id="@+id/txt_wishlist"
@@ -629,6 +652,7 @@
                 android:src="@drawable/baseline_shopping_bag_24" />
 
             <TextView
+                android:id="@+id/txt_add_to_cart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
@@ -640,6 +664,14 @@
                 android:textStyle="bold" />
         </RelativeLayout>
 
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:id="@+id/wishlist_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+

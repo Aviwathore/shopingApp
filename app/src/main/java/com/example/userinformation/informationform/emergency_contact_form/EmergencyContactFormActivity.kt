@@ -16,15 +16,15 @@ import androidx.room.RoomMasterTable
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityGuardianBinding
 import com.example.userinformation.informationform.confirmbottomsheetdialog.successfulStoreInfo.SuccessActivity
-import com.example.userinformation.informationform.dbHelper.EmergencyContactDataClass
-import com.example.userinformation.informationform.dbHelper.InformationFormDBHelper
+import com.example.userinformation.informationform.model.EmergencyContactDataClass
+import com.example.userinformation.dbHelper.ProductDBHelper
 import com.example.userinformation.informationform.emergency_contact_form.customeadaptor.CustomArrayAdapter
 import com.example.userinformation.informationform.highlightStar
 
 class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var binding: ActivityGuardianBinding
-    private lateinit var dbHelper: InformationFormDBHelper
+    private lateinit var dbHelper: ProductDBHelper
     private lateinit var images: Array<Drawable>
 
     private val relationshipWithContactArray = arrayOf(
@@ -99,7 +99,7 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
             showEmergencyDialog()
         }
 
-        dbHelper = InformationFormDBHelper(this)
+        dbHelper = ProductDBHelper(this)
         val tableSize = dbHelper.getTableSize()
         Log.d("EMERGENCY_TABLE_SIZE", "Size of ${RoomMasterTable.TABLE_NAME}: $tableSize bytes")
 

@@ -10,7 +10,7 @@ data class ClothItem(
     val title: String,
 
     @SerializedName("price")
-    val price: Double,
+    var price: Double,
 
     @SerializedName("description")
     val description: String,
@@ -24,7 +24,23 @@ data class ClothItem(
     @SerializedName("rating")
     val rating: Rating,
 
-    var is_fav: Int
+    var is_fav: Int,
+
+    val productSize: String,
+    var productCount: Int,
+    val subTotal: Long,
+    val deliveryCharge: Int,
+    val discount: Int,
+    val totalCost: Long,
+    val addToCart: Int,
+    val userAddress: String,
+    val orderConfirm: String,
+    val deliveryDate: String,
+    val orderId: Long,
+    val deliveryBy: String,
+    val atmCartNumber: Long,
+    val cvv: Int,
+    val validCartDate: String
 )
 
 data class Rating(

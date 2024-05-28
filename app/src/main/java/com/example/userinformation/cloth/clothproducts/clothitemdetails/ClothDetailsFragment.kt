@@ -10,21 +10,43 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.userinformation.R
-import com.example.userinformation.databinding.FragmentClothItemDetailsBinding
+import com.example.userinformation.addtocart.AddToCartFragment
+import com.example.userinformation.cloth.clothproducts.adapter.ClothAdapter
+import com.example.userinformation.cloth.clothproducts.model.ClothItem
+import com.example.userinformation.dashboard.DashBoardActivity
+import com.example.userinformation.databinding.FragmentClothDetailsBinding
+import com.example.userinformation.dbHelper.ProductDBHelper
+import com.example.userinformation.formatNumber.formatToIndianNumberingSystem
+import com.example.userinformation.vibretephone.vibratePhone
+import com.example.userinformation.wishlist.WishListFragment
 
-class ClothItemDetailsFragment : Fragment(), OnClickListener {
-    private var _binding: FragmentClothItemDetailsBinding? = null
+class ClothDetailsFragment : Fragment(), OnClickListener {
+    private var _binding: FragmentClothDetailsBinding? = null
     private val binding get() = _binding!!
-    private var selected = ""
-    private var isWishListed = 0
+    private var selectedProductSize = ""
+    private lateinit var dbHelper: ProductDBHelper
+    private var itemId = 0
+    private var itemFav = 0
+    private var itemCost = 0.0
+    private var itemAddToCart = 0
+    private var clothItem: ClothItem? = null
+    private var isAddToCart = false
+    private var stockCount = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentClothItemDetailsBinding.inflate(inflater, container, false)
+        _binding = FragmentClothDetailsBinding.inflate(inflater, container, false)
+        binding.layoutHeader.buttonEnd.setImageResource(R.drawable.heart_white)
+        binding.layoutHeader.buttonEnd.visibility = View.VISIBLE
+
         binding.layoutHeader.buttonStart.setOnClickListener(this)
+        binding.layoutHeader.buttonEnd.setOnClickListener(this)
+
+        binding.rlAddToCart.setOnClickListener(this)
+
         binding.sSize.setOnClickListener(this)
         binding.mSize.setOnClickListener(this)
         binding.lSize.setOnClickListener(this)
@@ -33,39 +55,58 @@ class ClothItemDetailsFragment : Fragment(), OnClickListener {
         binding.xxxlSize.setOnClickListener(this)
         binding.rlWishlist.setOnClickListener(this)
 
-        val itemTitle = arguments?.getString("clothTitle")
-        val itemCategory = arguments?.getString("clothCategory")
-        val itemImage = arguments?.getString("clothImg")
-        val itemRate = arguments?.getString("clothRate")
-        val itemDesc = arguments?.getString("clothDesc")
-        val itemPrice = arguments?.getString("clothPrice")
+        dbHelper = ProductDBHelper(requireContext())
 
-        binding.txtClothItemTitle.text = itemTitle
-        binding.txtClothItemRate.text = itemRate
-        binding.txtClothItemCategory.text = itemCategory
-        binding.txtClothItemDes.text = itemDesc
-        binding.txtClothTotalPrice.text = itemPrice
+        itemId = arguments?.getInt("clothId") ?: -1
 
-        Glide.with(requireContext())
-            .load(itemImage)
-            .into(binding.imgClothItem)
+        clothItem = dbHelper.getObjectById(itemId)
+        if (clothItem != null) {
+            binding.txtClothItemCategory.text = clothItem!!.category
+            binding.txtClothItemRate.text = clothItem!!.rating.rate.toString()
+            binding.txtClothItemDes.text = clothItem!!.description
+            binding.txtClothItemTitle.text = clothItem!!.title
 
-//        listedItemsStyle()
+            val price = clothItem!!.price
+            itemCost = price * ClothAdapter.CONVERSION_FACTOR
+            val formattedNumber = formatToIndianNumberingSystem(itemCost.toLong())
+            binding.txtClothTotalPrice.text = formattedNumber
+
+            Glide.with(requireContext())
+                .load(clothItem!!.image)
+                .into(binding.imgClothItem)
+            itemFav = clothItem!!.is_fav
+            itemAddToCart = clothItem!!.addToCart
+
+            selectedProductSize = clothItem!!.productSize
+
+            stockCount = clothItem!!.rating.count
+
+        }
+        if (itemFav == 1) {
+            binding.imgFav.setImageResource(R.drawable.heart_pink)
+            binding.txtWishlist.text = getString(R.string.wishlisted)
+        } else {
+            binding.imgFav.setImageResource(R.drawable.heart_white)
+            binding.txtWishlist.text = getString(R.string.wishlist)
+
+        }
+
+        if (itemAddToCart == 1) {
+            binding.txtAddToCart.text = getString(R.string.go_to_cart)
+            isAddToCart = true
+        } else {
+            binding.txtAddToCart.text = getString(R.string.add_to_cart)
+            selectedProductSize = ""
+        }
+
+        checkSelectedSize(selectedProductSize)
+
         return binding.root
     }
 
-//    private fun listedItemsStyle() {
-//        dotStyle(binding.txtProductType1, Color.BLACK, 1.5f)
-//        dotStyle(binding.txtProductType2, Color.BLACK, 1.5f)
-//        dotStyle(binding.txtProductType3, Color.BLACK, 1.5f)
-//        dotStyle(binding.txtProductType4, Color.BLACK, 1.5f)
-//        dotStyle(binding.txtProductType5, Color.BLACK, 1.5f)
-//        dotStyle(binding.txtProductType6, Color.BLACK, 1.5f)
-//
-//    }
 
-    private fun checkSelectedSize(size: String) {
-        selected = size
+    private fun checkSelectedSize(size: String): Boolean {
+        selectedProductSize = size
         when (size) {
             getString(R.string.s) -> {
                 binding.sSize.setBackgroundResource(R.drawable.selected_size_layout)
@@ -81,6 +122,7 @@ class ClothItemDetailsFragment : Fragment(), OnClickListener {
                 binding.xxlSize.setTextColor(Color.BLACK)
                 binding.xxxlSize.setBackgroundResource(R.drawable.size_option_layout)
                 binding.xxxlSize.setTextColor(Color.BLACK)
+                return true
             }
 
             getString(R.string.m) -> {
@@ -97,6 +139,7 @@ class ClothItemDetailsFragment : Fragment(), OnClickListener {
                 binding.xxlSize.setTextColor(Color.BLACK)
                 binding.xxxlSize.setBackgroundResource(R.drawable.size_option_layout)
                 binding.xxxlSize.setTextColor(Color.BLACK)
+                return true
             }
 
             getString(R.string.l) -> {
@@ -113,6 +156,7 @@ class ClothItemDetailsFragment : Fragment(), OnClickListener {
                 binding.xxlSize.setTextColor(Color.BLACK)
                 binding.xxxlSize.setBackgroundResource(R.drawable.size_option_layout)
                 binding.xxxlSize.setTextColor(Color.BLACK)
+                return true
             }
 
             getString(R.string.xl) -> {
@@ -129,6 +173,7 @@ class ClothItemDetailsFragment : Fragment(), OnClickListener {
                 binding.xxlSize.setTextColor(Color.BLACK)
                 binding.xxxlSize.setBackgroundResource(R.drawable.size_option_layout)
                 binding.xxxlSize.setTextColor(Color.BLACK)
+                return true
             }
 
             getString(R.string.xxl) -> {
@@ -145,6 +190,7 @@ class ClothItemDetailsFragment : Fragment(), OnClickListener {
                 binding.sSize.setTextColor(Color.BLACK)
                 binding.xxxlSize.setBackgroundResource(R.drawable.size_option_layout)
                 binding.xxxlSize.setTextColor(Color.BLACK)
+                return true
             }
 
             getString(R.string.xxxl) -> {
@@ -161,47 +207,127 @@ class ClothItemDetailsFragment : Fragment(), OnClickListener {
                 binding.xxlSize.setTextColor(Color.BLACK)
                 binding.sSize.setBackgroundResource(R.drawable.size_option_layout)
                 binding.sSize.setTextColor(Color.BLACK)
+                return true
             }
 
             else -> {}
         }
+        return false
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
 
-            R.id.button_start -> requireActivity().supportFragmentManager.popBackStack()
-            R.id.s_size -> checkSelectedSize(getString(R.string.s))
+            R.id.button_start -> {
+                requireActivity().supportFragmentManager.popBackStack()
+            }
 
-            R.id.m_size -> checkSelectedSize(getString(R.string.m))
 
-            R.id.l_size -> checkSelectedSize(getString(R.string.l))
-            R.id.xl_size -> checkSelectedSize(getString(R.string.xl))
+            R.id.button_end -> {
+                val favFragment = WishListFragment()
+                val bundle = Bundle()
+                bundle.putInt("clothId", itemId)
+                favFragment.arguments = bundle
 
-            R.id.xxl_size -> checkSelectedSize(getString(R.string.xxl))
+                val activityDash= activity as DashBoardActivity
+                activityDash.replaceFragment(favFragment)
+            }
 
-            R.id.xxxl_size -> checkSelectedSize(getString(R.string.xxxl))
+            R.id.s_size -> {
+                checkSelectedSize(getString(R.string.s))
+                hideSizeError()
+            }
 
-            R.id.rl_wishlist -> wishListedItem()
+            R.id.m_size -> {
+                checkSelectedSize(getString(R.string.m))
+                hideSizeError()
+            }
 
+            R.id.l_size -> {
+                checkSelectedSize(getString(R.string.l))
+                hideSizeError()
+            }
+
+            R.id.xl_size -> {
+                checkSelectedSize(getString(R.string.xl))
+                hideSizeError()
+            }
+
+            R.id.xxl_size -> {
+                checkSelectedSize(getString(R.string.xxl))
+                hideSizeError()
+            }
+
+            R.id.xxxl_size -> {
+                checkSelectedSize(getString(R.string.xxxl))
+                hideSizeError()
+            }
+
+            R.id.rl_wishlist ->{
+                wishListedItem()
+            }
+
+            R.id.rl_add_to_cart -> {
+                if (!isAddToCart) {
+                    addToCart()
+                } else {
+                    dbHelper.updateStockCount(itemId, stockCount - 1)
+
+                    val detailsFragment = activity as DashBoardActivity
+                    detailsFragment.replaceFragment(AddToCartFragment())
+                    isAddToCart = false
+
+                }
+
+            }
             else -> {}
         }
     }
 
+
     @SuppressLint("UseCompatLoadingForDrawables", "NotifyDataSetChanged")
     private fun wishListedItem() {
-        isWishListed = if (isWishListed == 0) 1 else 0
 
-        val drawableResource = if (isWishListed == 0) {
+        dbHelper = ProductDBHelper(requireContext())
+
+        itemFav = if (itemFav == 1) 0 else 1
+        dbHelper.updateFavState(itemId, itemFav)
+
+        if (itemFav == 1) {
+            binding.txtWishlist.text = getString(R.string.wishlisted)
+            binding.imgFav.setImageResource(R.drawable.herts_pink)
+        } else {
             binding.txtWishlist.text = getString(R.string.wishlist)
-            R.drawable.hearts
+            binding.imgFav.setImageResource(R.drawable.heart_white)
+        }
+
+    }
+
+    private fun addToCart() {
+
+        val isSelectedSize = checkSelectedSize(selectedProductSize)
+
+
+        if (isSelectedSize) {
+            hideSizeError()
+
+            dbHelper.updateProductSize(itemId, selectedProductSize)
+            if (!isAddToCart) {
+                dbHelper.updateAddToCartCount(itemId, 1)
+            }
+            binding.txtAddToCart.text = getString(R.string.go_to_cart)
+            dbHelper.updateAddToCartStatus(itemId, 1)
+            isAddToCart = true
 
         } else {
-            binding.txtWishlist.text = getString(R.string.wishlisted)
-            R.drawable.heart_1
+            context?.let { vibratePhone(it, 300) }
+            binding.txtSizeError.visibility = View.VISIBLE
         }
-        binding.imgFav.setImageResource(drawableResource)
 
+    }
+
+    private fun hideSizeError() {
+        binding.txtSizeError.visibility = View.GONE
     }
 
 

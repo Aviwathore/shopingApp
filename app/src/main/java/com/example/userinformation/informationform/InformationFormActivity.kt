@@ -25,8 +25,8 @@ import com.example.userinformation.informationform.confirmbottomsheetdialog.Conf
 import com.example.userinformation.informationform.confirmbottomsheetdialog.CustomCountryArrayAdapter
 import com.example.userinformation.informationform.customspinner.CustomSpinnerAdapter
 import com.example.userinformation.informationform.customspinner.HousingOption
-import com.example.userinformation.informationform.dbHelper.InformationFormDBHelper
-import com.example.userinformation.informationform.dbHelper.YourInformationDataClass
+import com.example.userinformation.dbHelper.ProductDBHelper
+import com.example.userinformation.informationform.model.YourInformationDataClass
 import com.google.gson.Gson
 import java.util.Locale
 
@@ -36,7 +36,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityInformationFormBinding
     private var calendar = Calendar.getInstance(TimeZone.GMT_ZONE)
     private var confirm: ConfirmBottomSheetDialog? = null
-    private lateinit var dbHelper: InformationFormDBHelper
+    private lateinit var dbHelper: ProductDBHelper
     private var isDatePickerShown = false
     private lateinit var images: Array<Drawable>
     private lateinit var spinner: Spinner
@@ -81,7 +81,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityInformationFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        dbHelper = InformationFormDBHelper(this)
+        dbHelper = ProductDBHelper(this)
         editTextHint()
         mandatoryFieldHighlighter()
 

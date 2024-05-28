@@ -3,10 +3,8 @@ package com.example.userinformation.splashscreen
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.AsyncTask
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -62,10 +60,12 @@ class SplashScreenActivity : AppCompatActivity() {
 
             if (check){
                 startActivity(Intent(this@SplashScreenActivity, DashBoardActivity::class.java))
+                finish()
             }else{
                 startActivity(Intent(this@SplashScreenActivity, LoginActivity::class.java))
+                finish()
             }
-            }
+        }
 
     }
 

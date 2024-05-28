@@ -314,6 +314,7 @@
     <string name="s">S</string>
     <string name="total_price">Total Price</string>
     <string name="add_to_cart">Add to Cart</string>
+    <string name="my_Cart">My Cart</string>
     <string name="mrp">MRP</string>
     <string name="fit">Fit</string>
     <string name="sustainable">Sustainable</string>
@@ -339,6 +340,36 @@
     <string name="wishlist">Wishlist</string>
     <string name="cart">Cart</string>
     <string name="MyProduct">My Product</string>
+    <string name="WishlistCollections">Wishlist &amp; Collections</string>
+    <string name="please_select_size">Please select size</string>
+    <string name="brown_jacket">Brown Jacket</string>
+    <string name="_83_90">83.97</string>
+    <string name="size">Size :\t</string>
+    <string name="_1">1</string>
+    <string name="go_to_cart">Go to Cart</string>
+    <string name="price_details">PRICE DETAILS (</string>
+    <string name="item"> Item )</string>
+    <string name="total_mrp">Total MRP</string>
+    <string name="discount_on_mrp">Discount on MRP</string>
+    <string name="shipping_fee">Shipping Fee</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="proceed_to_checkout">Proceed to Checkout</string>
+    <string name="bag">Bag</string>
+    <string name="oops_no_product_added_to_cart">Oops!! No Product Added to Cart</string>
+    <string name="hey_it_feels_so_light">Hey, it feels so light!</string>
+    <string name="add_some_items">There is nothing in your cart. Let\'s add some items.</string>
+    <string name="add_some_wishlist_product">There is nothing in your wishlist. Let\'s add some items.</string>
+    <string name="_0_0">0.00</string>
+    <string name="free">FREE</string>
+    <string name="genuine_products">Genuine Products</string>
+    <string name="contactless_delivery">\u2022 Contactless Delivery</string>
+    <string name="secure_payment">\u2022 Secure Payment</string>
+    <string name="you_re_saving_300_on_this_order">You\'re saving <b>\u20B9 300</b> on this order</string>
+    <string name="deliver_to">Deliver to :</string>
+    <string name="pune">pune</string>
+    <string name="change">Change</string>
+    <string name="enter_delivery_details">Enter Delivery Details</string>
+    <string name="add_new_adress">Add New Address</string>
     <!--    hereby confirm that I have reviewed the all details and confirm their accuracy-->
     <!--    spinner state-->
 

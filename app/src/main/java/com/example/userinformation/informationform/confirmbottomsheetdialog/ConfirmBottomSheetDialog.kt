@@ -10,15 +10,15 @@ import android.view.View.OnClickListener
 import android.view.ViewGroup
 import com.example.userinformation.R
 import com.example.userinformation.databinding.DialogConfirmationBinding
-import com.example.userinformation.informationform.dbHelper.InformationFormDBHelper
-import com.example.userinformation.informationform.dbHelper.YourInformationDataClass
+import com.example.userinformation.dbHelper.ProductDBHelper
 import com.example.userinformation.informationform.emergency_contact_form.EmergencyContactFormActivity
+import com.example.userinformation.informationform.model.YourInformationDataClass
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class ConfirmBottomSheetDialog(private var formDataClass: YourInformationDataClass) :
     BottomSheetDialogFragment() {
 
-    private lateinit var dbHelper: InformationFormDBHelper
+    private lateinit var dbHelper: ProductDBHelper
 
     @SuppressLint("CutPasteId")
     override fun onCreateView(
@@ -31,7 +31,7 @@ class ConfirmBottomSheetDialog(private var formDataClass: YourInformationDataCla
 
 
         val context = requireContext()
-        dbHelper = InformationFormDBHelper(context)
+        dbHelper = ProductDBHelper(context)
 
         val first = formDataClass.firstName
         val last = formDataClass.lastName
