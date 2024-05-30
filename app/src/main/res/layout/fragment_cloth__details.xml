@@ -5,12 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:clickable="true"
     tools:context=".cloth.clothproducts.clothitemdetails.ClothDetailsFragment">
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_constraintTop_toTopOf="parent">
 
 <!--    <com.facebook.shimmer.ShimmerFrameLayout-->
 <!--        android:id="@+id/shimmer_view"-->
@@ -666,8 +662,6 @@
 
 
     </LinearLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 
     <FrameLayout
         android:id="@+id/wishlist_frame_layout"

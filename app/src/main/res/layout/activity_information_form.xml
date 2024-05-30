@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/white"
     android:fitsSystemWindows="true"
     tools:context=".informationform.InformationFormActivity">
 
@@ -478,6 +478,7 @@
                         android:padding="18dp"
                         android:background="@drawable/black_mobile_border"
                         android:textSize="15sp"
+                        android:dropDownHeight="150dp"
                         app:layout_constraintStart_toStartOf="parent"
                         android:scrollbars="none"
                         app:layout_constraintTop_toTopOf="@+id/layoutState" />
@@ -520,18 +521,21 @@
                         app:boxCornerRadiusTopStart="8dp"
                         app:boxStrokeColor="@color/black">
 
-                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        <AutoCompleteTextView
                             android:id="@+id/editPostal"
-                            android:layout_width="match_parent"
+                            android:layout_width="fill_parent"
                             android:layout_height="match_parent"
                             android:layout_marginEnd="6dp"
                             android:background="@drawable/black_mobile_border"
                             android:completionThreshold="1"
-                            android:inputType="number"
+                            android:inputType="none"
+                            android:dropDownHeight="150dp"
                             android:maxLength="4"
                             android:padding="18dp"
-                            android:scrollbars="none"
-                            android:textSize="15sp" />
+                            android:textSize="15sp"
+                            android:minHeight="?android:attr/listPreferredItemHeightSmall"
+                            android:scrollbars="vertical"
+                            tools:ignore="LabelFor"/>
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
@@ -573,6 +577,8 @@
                             android:background="@drawable/black_mobile_border"
                             android:inputType="none"
                             android:padding="18dp"
+                            android:focusable="false"
+                            android:dropDownHeight="150dp"
                             android:textSize="15sp"
                             tools:ignore="LabelFor" />
                     </com.google.android.material.textfield.TextInputLayout>

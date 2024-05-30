@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.speech.RecognizerIntent
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -24,7 +25,7 @@ import com.example.userinformation.Groceries.GroceriesActivity
 import com.example.userinformation.R
 import com.example.userinformation.addtocart.AddToCartFragment
 import com.example.userinformation.cloth.clothproducts.ClothListFragment
-import com.example.userinformation.cloth.clothproducts.model.ClothItem
+import com.example.userinformation.model.ClothItem
 import com.example.userinformation.customViewForRecycleView.CARVActivity
 import com.example.userinformation.dashboard.productdetails.ViewProductsActivity
 import com.example.userinformation.databinding.ActivityMainBinding
@@ -62,6 +63,7 @@ class DashBoardActivity : AppCompatActivity() {
 
     @SuppressLint("CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("TAG", "onCreate: ---------------dashboardactivity")
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -220,6 +222,8 @@ class DashBoardActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         handler.postDelayed(runnable, 3000)
+        Log.d("TAG", "onResume: -----------dashboard")
+        binding.bottomNavigationItem.bottomNavigationView.selectedItemId = R.id.navigation_home
     }
 
 
@@ -346,12 +350,10 @@ class DashBoardActivity : AppCompatActivity() {
                 R.id.navigation_list -> {
 
                     replaceFragment(ClothListFragment())
-
                     true
                 }
 
                 R.id.navigation_fav -> {
-
                     replaceFragment(WishListFragment())
                     true
                 }
@@ -359,7 +361,6 @@ class DashBoardActivity : AppCompatActivity() {
                 R.id.navigation_cart -> {
 
                     replaceFragment(AddToCartFragment())
-
                     true
                 }
 
@@ -369,19 +370,38 @@ class DashBoardActivity : AppCompatActivity() {
     }
     fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.cloth_fragment, fragment)
+        transaction.replace(R.id.cloth_fragment, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
 
+//        when (fragment) {
+//            is ClothListFragment -> bottomNav.selectedItemId = R.id.navigation_list
+//            is WishListFragment -> bottomNav.selectedItemId = R.id.navigation_fav
+//            is AddToCartFragment -> bottomNav.selectedItemId = R.id.navigation_cart
+//        }
     }
 
     override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount > 0) {
             supportFragmentManager.popBackStack()
 
+            Log.d("TAG", "onBackPressed: supportFragmentManager ---------${supportFragmentManager.fragments}")
+
+//            supportFragmentManager.addOnBackStackChangedListener {
+//                val currentFragment = supportFragmentManager.fragments.lastOrNull()
+//
+//                // Check if the fragment is not null and log its name
+//                currentFragment?.let {
+//                    val fragmentName = it::class.java.simpleName // Using class name// Alternatively, use it.tag if you want the tag
+//                    Log.d("TAG", "onBackPressed: current fragment name ---------$fragmentName")
+//                }
+//
+//                // Remove the listener to avoid duplicate calls
+//                supportFragmentManager.removeOnBackStackChangedListener(this)
+//            }
         } else {
             super.onBackPressed()
-            finish()
+//            finish()
         }
     }
 }

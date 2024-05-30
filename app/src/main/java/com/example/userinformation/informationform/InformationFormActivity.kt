@@ -21,11 +21,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.res.ResourcesCompat
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityInformationFormBinding
+import com.example.userinformation.dbHelper.ProductDBHelper
 import com.example.userinformation.informationform.confirmbottomsheetdialog.ConfirmBottomSheetDialog
 import com.example.userinformation.informationform.confirmbottomsheetdialog.CustomCountryArrayAdapter
 import com.example.userinformation.informationform.customspinner.CustomSpinnerAdapter
 import com.example.userinformation.informationform.customspinner.HousingOption
-import com.example.userinformation.dbHelper.ProductDBHelper
 import com.example.userinformation.informationform.model.YourInformationDataClass
 import com.google.gson.Gson
 import java.util.Locale
@@ -99,6 +99,11 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
         customDataSpinner()
         spinnerItemSelected()
 
+        binding.editPostal.setOnClickListener{
+            binding.editPostal.showDropDown()
+            binding.editPostal.setBackgroundResource(R.drawable.black_mobile_border)
+            binding.editPostal.error = null
+        }
 
         val tableSize = dbHelper.getTableSize()
         Log.d("INFORMATION_TABLE_SIZE", "Size of: $tableSize bytes")
@@ -164,7 +169,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
                     }
                     return
                 }
-                if (binding.editReenterAadhaar.length() <= 0) {
+                if (binding.editReenterAadhaar.length() != 14) {
                     binding.editReenterAadhaar.setBackgroundResource(R.drawable.border_color)
                 } else {
                     binding.editReenterAadhaar.setBackgroundResource(R.drawable.black_mobile_border)
@@ -260,7 +265,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun addTextWatcher(editText: EditText, emptyDrawableResId: Int, filledDrawableResId: Int) {
+    private fun addTextWatcher(editText: EditText, emptyDrawableResId: Int, filledDrawableResId: Int) {
 
         editText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -306,6 +311,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
         val customSpinnerAdapter =
             CustomSpinnerAdapter(this@InformationFormActivity, housingOptions)
         spinner.adapter = customSpinnerAdapter
+
     }
 
     private fun setUpDropdownAdapters() {
@@ -368,7 +374,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
             R.id.rdFemale -> "Female"
             else -> " "
         }
-        val state = binding.editState.text.toString().trim()
+        val state = binding.editState.text.toString()
         val country = binding.editCountry.text.toString()
         val dateOfBirth = binding.editDateOfBirth.text.toString().trim()
         val address = binding.editAddress.text.toString().trim()
@@ -410,7 +416,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
 
         filedData.forEach { (inputFiled, errorMessage) ->
             val filed = inputFiled.text.toString().trim()
-            Log.d("TAG", "checkValidation: " + filed)
+
             if (filed.isEmpty()) {
                 inputFiled.error = errorMessage
                 inputFiled.setBackgroundResource(R.drawable.border_color)
@@ -438,6 +444,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
             emptyFiled = true
         }
         if (binding.editReenterAadhaar.length() != 14) {
+            binding.editEmail.setBackgroundResource(R.drawable.border_color)
             binding.editReenterAadhaar.error = "Aadhaar number must be 12 digits long"
             emptyFiled = true
         }

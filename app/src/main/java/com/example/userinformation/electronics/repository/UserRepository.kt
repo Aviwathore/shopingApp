@@ -7,8 +7,7 @@ import com.example.userinformation.electronics.model.User
 
 class UserRepository(private val userDao: UserDao)  {
 
-    val getAllUser : LiveData<List<User>> = userDao.getAllUser()
-
+    val allUsers: LiveData<List<User>> = userDao.getAllUser()
     suspend fun addUser(user: User){
         userDao.addUser(user)
     }

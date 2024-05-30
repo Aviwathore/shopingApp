@@ -1,6 +1,6 @@
 package com.example.userinformation.cloth.clothproducts.api
 
-import com.example.userinformation.cloth.clothproducts.model.ClothItem
+import com.example.userinformation.model.ClothItem
 import retrofit2.Call
 import retrofit2.http.GET
 

@@ -7,10 +7,10 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import com.example.userinformation.cloth.clothproducts.model.ClothItem
-import com.example.userinformation.cloth.clothproducts.model.Rating
 import com.example.userinformation.informationform.model.EmergencyContactDataClass
 import com.example.userinformation.informationform.model.YourInformationDataClass
+import com.example.userinformation.model.ClothItem
+import com.example.userinformation.model.Rating
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -20,7 +20,7 @@ class ProductDBHelper(context: Context) :
 
     companion object {
         private const val DATABASE_NAME = "form_details.db"
-        private const val VERSION = 14
+        private const val VERSION = 16
         private const val TABLE_NAME = "information"
         private var FIRST_NAME = "first_name"
         private var LAST_NAME = "last_name"
@@ -33,7 +33,7 @@ class ProductDBHelper(context: Context) :
         private var STATE = "state"
         private var POSTAL = "postal"
         private var COUNTRY = "country"
-        private var SPINNER_ITEM= "spinner_item"
+        private var SPINNER_ITEM = "spinner_item"
         private var EMERGENCY_CONTACT = "emergency_contact"
         private var CONTACT_NUMBER = "contact_number"
         private var RELATIONSHIP = "relationship"
@@ -493,6 +493,7 @@ class ProductDBHelper(context: Context) :
         db.close()
     }
 
+
     @SuppressLint("Range")
     fun getObjectById(itemId: Int): ClothItem? {
         var clothItem: ClothItem? = null
@@ -580,6 +581,7 @@ class ProductDBHelper(context: Context) :
 
         db.close()
     }
+
     @SuppressLint("Range")
     fun getProductCount(itemId: Int): Int {
         val db = this.readableDatabase
@@ -606,6 +608,7 @@ class ProductDBHelper(context: Context) :
         db.close()
 
     }
+
     @SuppressLint("Range")
     fun getStockCount(itemId: Int): Int {
         val db = this.readableDatabase
@@ -620,4 +623,48 @@ class ProductDBHelper(context: Context) :
         return 0
     }
 
+//    fun updateTotalPrice(itemId: Int, itemTotalAmount: Double) {
+//        val db = this.writableDatabase
+//
+//        val values = ContentValues().apply {
+//            put(TOTAL_COST, itemTotalAmount)
+//        }
+//        db.update(
+//            CLOTH_TABLE_NAME,
+//            values,
+//            "$ID =?",
+//            arrayOf(itemId.toString())
+//        )
+//        db.close()
+//    }
+
+    fun updateTotalMRP(totalCost: Long) {
+        val db = writableDatabase
+        val contentValues = ContentValues().apply {
+            put(TOTAL_COST, totalCost)
+        }
+        db.update(CLOTH_TABLE_NAME, contentValues, null, null)
+        db.close()
+    }
+
+    @SuppressLint("Range")
+    fun getTotalPrice(): Double {
+        val db = this.readableDatabase
+        val selectQuery = "SELECT SUM($TOTAL_COST) FROM $CLOTH_TABLE_NAME WHERE $ADD_TO_CART = 1"
+        val cursor = db.rawQuery(selectQuery, null)
+
+        var totalPrice = 0.00
+
+        if (cursor.moveToFirst()) {
+
+            totalPrice = cursor.getDouble(cursor.getColumnIndex(TOTAL_COST))
+
+            cursor.close()
+
+            return totalPrice
+
+        }
+
+        return 0.00
+    }
 }

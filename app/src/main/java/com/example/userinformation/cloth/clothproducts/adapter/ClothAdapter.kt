@@ -12,8 +12,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.userinformation.R
-import com.example.userinformation.cloth.clothproducts.model.ClothItem
 import com.example.userinformation.formatNumber.formatToIndianNumberingSystem
+import com.example.userinformation.model.ClothItem
 
 class ClothAdapter(private var listener: OnItemClickListener, private val context: Context) :
     RecyclerView.Adapter<ClothAdapter.ClothViewHolder>() {
@@ -61,7 +61,7 @@ class ClothAdapter(private var listener: OnItemClickListener, private val contex
         val price = item.price
         val totalPrice = price * CONVERSION_FACTOR
 
-        val formattedNumber = formatToIndianNumberingSystem(totalPrice.toLong())
+        val formattedNumber = formatToIndianNumberingSystem(totalPrice.toDouble())
         holder.clothPrice.text = formattedNumber
 
         holder.clothRating.text = item.rating.rate.toString()

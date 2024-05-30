@@ -1,6 +1,6 @@
-package com.example.userinformation.cloth.clothproducts.model
-
+package com.example.userinformation.model
 import com.google.gson.annotations.SerializedName
+
 
 data class ClothItem(
     @SerializedName("id")

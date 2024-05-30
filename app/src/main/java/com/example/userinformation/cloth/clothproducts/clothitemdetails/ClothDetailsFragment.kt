@@ -3,6 +3,7 @@ package com.example.userinformation.cloth.clothproducts.clothitemdetails
 import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
@@ -12,11 +13,11 @@ import com.bumptech.glide.Glide
 import com.example.userinformation.R
 import com.example.userinformation.addtocart.AddToCartFragment
 import com.example.userinformation.cloth.clothproducts.adapter.ClothAdapter
-import com.example.userinformation.cloth.clothproducts.model.ClothItem
 import com.example.userinformation.dashboard.DashBoardActivity
 import com.example.userinformation.databinding.FragmentClothDetailsBinding
 import com.example.userinformation.dbHelper.ProductDBHelper
 import com.example.userinformation.formatNumber.formatToIndianNumberingSystem
+import com.example.userinformation.model.ClothItem
 import com.example.userinformation.vibretephone.vibratePhone
 import com.example.userinformation.wishlist.WishListFragment
 
@@ -37,7 +38,7 @@ class ClothDetailsFragment : Fragment(), OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        Log.d("TAG", "onCreate: ---------------cloth details fragment")
         _binding = FragmentClothDetailsBinding.inflate(inflater, container, false)
         binding.layoutHeader.buttonEnd.setImageResource(R.drawable.heart_white)
         binding.layoutHeader.buttonEnd.visibility = View.VISIBLE
@@ -68,7 +69,7 @@ class ClothDetailsFragment : Fragment(), OnClickListener {
 
             val price = clothItem!!.price
             itemCost = price * ClothAdapter.CONVERSION_FACTOR
-            val formattedNumber = formatToIndianNumberingSystem(itemCost.toLong())
+            val formattedNumber = formatToIndianNumberingSystem(itemCost)
             binding.txtClothTotalPrice.text = formattedNumber
 
             Glide.with(requireContext())
@@ -330,6 +331,10 @@ class ClothDetailsFragment : Fragment(), OnClickListener {
         binding.txtSizeError.visibility = View.GONE
     }
 
+    override fun onDestroyView() {
+        Log.d("TAG", "onDestroy: ------------clothdetails")
+        super.onDestroyView()
+    }
 
 }
 

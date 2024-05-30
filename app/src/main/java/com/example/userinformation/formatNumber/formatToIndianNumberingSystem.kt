@@ -5,7 +5,7 @@ import java.text.NumberFormat
 import java.util.Currency
 import java.util.Locale
 
-fun formatToIndianNumberingSystem(number: Long): String {
+fun formatToIndianNumberingSystem(number: Double): String {
     val formatter = NumberFormat.getInstance(Locale("en", "IN")) as DecimalFormat
     formatter.applyPattern("##,##,###")
     val formattedNumber = formatter.format(number)

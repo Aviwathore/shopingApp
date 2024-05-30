@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
@@ -18,10 +19,10 @@ import com.example.userinformation.R
 import com.example.userinformation.addtocart.AddToCartFragment
 import com.example.userinformation.cloth.clothproducts.adapter.ClothAdapter
 import com.example.userinformation.cloth.clothproducts.clothitemdetails.ClothDetailsFragment
-import com.example.userinformation.cloth.clothproducts.model.ClothItem
 import com.example.userinformation.dashboard.DashBoardActivity
 import com.example.userinformation.databinding.FragmentClothlistBinding
 import com.example.userinformation.dbHelper.ProductDBHelper
+import com.example.userinformation.model.ClothItem
 import com.example.userinformation.wishlist.WishListFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -42,7 +43,7 @@ class ClothListFragment : Fragment(), OnClickListener, ClothAdapter.OnItemClickL
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
+        Log.d("TAG", "onCreate: ---------------cloth list fragment")
         _binding = FragmentClothlistBinding.inflate(inflater, container, false)
 
         binding.layoutHeader.buttonEnd.visibility = View.GONE
@@ -80,8 +81,11 @@ class ClothListFragment : Fragment(), OnClickListener, ClothAdapter.OnItemClickL
             when (it.itemId) {
                 R.id.navigation_fav -> {
 
+
                     val dashBoardActivity = activity as DashBoardActivity
                     dashBoardActivity.replaceFragment(WishListFragment())
+
+
 
                     true
                 }
@@ -108,6 +112,7 @@ class ClothListFragment : Fragment(), OnClickListener, ClothAdapter.OnItemClickL
         when (v?.id) {
             R.id.button_start -> {
                 startActivity(Intent(context, DashBoardActivity::class.java))
+                bottomNavigationView.selectedItemId = R.id.navigation_home
             }
             else -> {}
         }
@@ -118,18 +123,18 @@ class ClothListFragment : Fragment(), OnClickListener, ClothAdapter.OnItemClickL
         progressBar.visibility = View.VISIBLE
 
         Handler(Looper.getMainLooper()).postDelayed({
-        dbHelper = ProductDBHelper(requireContext())
+            dbHelper = ProductDBHelper(requireContext())
 
-        clothItemList = dbHelper.getAllClothItems().toMutableList()
+            clothItemList = dbHelper.getAllClothItems().toMutableList()
 
 
-        val filterItem =
-            clothItemList.filter { it.category == "men's clothing" || it.category == "women's clothing" }
+            val filterItem =
+                clothItemList.filter { it.category == "men's clothing" || it.category == "women's clothing" }
 
-        adapter.setClothItem(filterItem)
-        adapter.notifyDataSetChanged()
-        progressBar.visibility = View.GONE
-        swipeRefreshLayout.isRefreshing = false
+            adapter.setClothItem(filterItem)
+            adapter.notifyDataSetChanged()
+            progressBar.visibility = View.GONE
+            swipeRefreshLayout.isRefreshing = false
         }, 200)
 
     }
@@ -170,9 +175,22 @@ class ClothListFragment : Fragment(), OnClickListener, ClothAdapter.OnItemClickL
         dbHelper.updateFavState(item.id, item.is_fav)
     }
 
-    override fun onResume() {
-        super.onResume()
+//    override fun onResume() {
+//        Log.d("TAG", "onResume: -----------clothlist")
+//        super.onResume()
+//
+//    }
 
+    override fun onDestroyView() {
+        Log.d("TAG", "onDestroy: ------------clothlist")
+        super.onDestroyView()
+    }
+
+    override fun onResume() {
+//        binding.bottomNavigationItemView.bottomNavigationView.selectedItemId = R.id.navigation_list
+        Log.d("TAG", "onResume:$$$$$$$$$$$$$$$$$ ----------clothlist")
+//        binding.bottomNavigationItemView.bottomNavigationView.menu.getItem(R.id.navigation_fav).isChecked= true
+        super.onResume()
     }
 
 

@@ -11,9 +11,9 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.userinformation.R
-import com.example.userinformation.cloth.clothproducts.model.ClothItem
 import com.example.userinformation.dbHelper.ProductDBHelper
 import com.example.userinformation.formatNumber.formatToIndianNumberingSystem
+import com.example.userinformation.model.ClothItem
 
 class AddToCartAdapter(
     private val context: Context, private val countChangedListener:
@@ -70,9 +70,9 @@ class AddToCartAdapter(
         holder.productSize.text = item.productSize
         holder.productCount.text = item.productCount.toString()
         price = item.price
-        totalPrice = price * CONVERSION_FACTOR
+        totalPrice = (price * CONVERSION_FACTOR)
 
-        formattedNumber = formatToIndianNumberingSystem(totalPrice.toLong())
+        formattedNumber = formatToIndianNumberingSystem(totalPrice)
         holder.productPrice.text = formattedNumber
 
         holder.productCountIncrement.setOnClickListener {

@@ -51,7 +51,7 @@
             android:gravity="center"
             android:text="@string/add_some_items"
             android:textColor="@color/gray"
-            android:textSize="13sp"
+            android:textSize="12sp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

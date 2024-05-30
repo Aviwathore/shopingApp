@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
@@ -18,10 +19,10 @@ import com.example.userinformation.addtocart.AddToCartFragment
 import com.example.userinformation.cloth.clothproducts.ClothListFragment
 import com.example.userinformation.cloth.clothproducts.adapter.ClothAdapter
 import com.example.userinformation.cloth.clothproducts.clothitemdetails.ClothDetailsFragment
-import com.example.userinformation.cloth.clothproducts.model.ClothItem
 import com.example.userinformation.dashboard.DashBoardActivity
 import com.example.userinformation.databinding.FragmentWishlistBinding
 import com.example.userinformation.dbHelper.ProductDBHelper
+import com.example.userinformation.model.ClothItem
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class WishListFragment : Fragment(), ClothAdapter.OnItemClickListener, OnClickListener {
@@ -43,6 +44,9 @@ class WishListFragment : Fragment(), ClothAdapter.OnItemClickListener, OnClickLi
         binding.layoutHeader.buttonStart.setOnClickListener(this)
 
        progressBar= binding.progressBar
+
+        binding.emptyProductLayout.txtNoProductSelectedMessage.text= getString(R.string.add_some_wishlist_product)
+        binding.emptyProductLayout.imgEmptyBag.setImageResource(R.drawable.wishlist)
 
         adapter = context?.let { ClothAdapter(this, it) }!!
         recyclerView = binding.recyclerViewList
@@ -67,9 +71,21 @@ class WishListFragment : Fragment(), ClothAdapter.OnItemClickListener, OnClickLi
         favouriteClothList = dbHelper.getAllClothItems()
 
         val filterFavCloth = favouriteClothList.filter { it.is_fav == 1 }
-        adapter.setClothItem(filterFavCloth)
-            adapter.notifyDataSetChanged()
-            progressBar.visibility = View.GONE
+
+            if (filterFavCloth.isEmpty()) {
+                binding.emptyProductLayout.root.visibility = View.VISIBLE
+                binding.bottomNavigationItem.bottomNavigationView.visibility = View.GONE
+                binding.recyclerViewList.visibility = View.GONE
+            }
+            else{
+                adapter.setClothItem(filterFavCloth)
+                adapter.notifyDataSetChanged()
+                progressBar.visibility = View.GONE
+               binding.emptyProductLayout.root.visibility = View.GONE
+//                 binding.bottomNavigationItem.bottomNavigationView.visibility = View.VISIBLE
+                binding.recyclerViewList.visibility = View.VISIBLE
+            }
+
         }, 200)
     }
 
@@ -84,6 +100,13 @@ class WishListFragment : Fragment(), ClothAdapter.OnItemClickListener, OnClickLi
             }
         }
         val filterFavCloth = favouriteClothList.filter { it.is_fav==1 }
+
+        if (filterFavCloth.isEmpty()) {
+            binding.emptyProductLayout.root.visibility = View.VISIBLE
+            binding.bottomNavigationItem.bottomNavigationView.visibility = View.GONE
+            binding.recyclerViewList.visibility = View.GONE
+        }
+
         adapter.setClothItem(filterFavCloth)
         adapter.notifyDataSetChanged()
 
@@ -137,9 +160,26 @@ class WishListFragment : Fragment(), ClothAdapter.OnItemClickListener, OnClickLi
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.button_start -> activity?.onBackPressed()
+            R.id.button_start -> {
+                activity?.onBackPressed()
+//                requireActivity().supportFragmentManager.popBackStack()
+                bottomNva.selectedItemId = R.id.navigation_list
+            }
             else ->{}
         }
+    }
+    override fun onDestroyView() {
+        Log.d("TAG", "onDestroy: ------------wishlist")
+        super.onDestroyView()
+    }
+    override fun onResume() {
+        Log.d("TAG", "onResume:$$$$$$$$$$$$$$$$$ ----------wishlist")
+//        binding.bottomNavigationItem.bottomNavigationView.selectedItemId = R.id.navigation_fav
+        super.onResume()
+//        bottomNavigationView.menu.getItem(POSITION).isChecked = true
+
+//        binding.bottomNavigationItem.bottomNavigationView.menu.getItem(R.id.navigation_fav).isChecked= true
+
     }
 
 }
