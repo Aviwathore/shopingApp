@@ -20,7 +20,7 @@ class ProductDBHelper(context: Context) :
 
     companion object {
         private const val DATABASE_NAME = "form_details.db"
-        private const val VERSION = 16
+        private const val VERSION = 18
         private const val TABLE_NAME = "information"
         private var FIRST_NAME = "first_name"
         private var LAST_NAME = "last_name"
@@ -66,9 +66,10 @@ class ProductDBHelper(context: Context) :
         private var DELIVERY_DATE = "deliveryDate"
         private var DELIVERY_BY = "deliveryBy"
         private var ORDER_ID = "orderId"
-        private var ATM_CART_NUMBER = "atmCartNumber"
-        private var CVV = "cvv"
-        private var VALIDATE_CART_DATE = "validCartDate"
+        private var CARD_NUMBER = "atmCartNumber"
+        private var CARD_EXPIRY_DATE = "validCartDate"
+        private var CARD_HOLDER_NAME = "cardHolderName"
+        private var PAYMENT_TYPE = "paymentType"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -93,6 +94,7 @@ class ProductDBHelper(context: Context) :
                 "$RELATION_WITH_BANK_STAFF TEXT," +
                 "$BANK_STAFF_MOBILE_NUMBER TEXT)"
         db?.execSQL(createTable)
+        Log.d("TAG", "onCreate: ==================Info table")
 
         val createClothTable = "create table $CLOTH_TABLE_NAME(" +
                 "$ID INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -116,11 +118,13 @@ class ProductDBHelper(context: Context) :
                 "$DELIVERY_DATE TEXT," +
                 "$ORDER_ID LONG," +
                 "$DELIVERY_BY TEXT," +
-                "$ATM_CART_NUMBER LONG," +
-                "$CVV INTEGER," +
-                "$VALIDATE_CART_DATE TEXT" +
+                "$CARD_NUMBER LONG," +
+                "$CARD_EXPIRY_DATE TEXT," +
+                "$CARD_HOLDER_NAME TEXT," +
+                "$PAYMENT_TYPE TEXT" +
                 ")"
         db?.execSQL(createClothTable)
+        Log.d("TAG", "onCreate: ==================cloth_table")
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -324,7 +328,7 @@ class ProductDBHelper(context: Context) :
 
     fun insertClothItem(clothItem: ClothItem): String {
 
-        val db = this.writableDatabase
+        val db = writableDatabase
         val values = ContentValues().apply {
             put(TITLE, clothItem.title)
             put(PRICE, clothItem.price)
@@ -346,9 +350,10 @@ class ProductDBHelper(context: Context) :
             put(DELIVERY_DATE, clothItem.deliveryDate)
             put(ORDER_ID, clothItem.orderId)
             put(DELIVERY_BY, clothItem.deliveryBy)
-            put(ATM_CART_NUMBER, clothItem.atmCartNumber)
-            put(CVV, clothItem.cvv)
-            put(VALIDATE_CART_DATE, clothItem.validCartDate)
+            put(CARD_NUMBER, clothItem.cartNumber)
+            put(CARD_EXPIRY_DATE, clothItem.cardExpiryDate)
+            put(CARD_HOLDER_NAME, clothItem.cardHolderName)
+            put(PAYMENT_TYPE, clothItem.paymentType)
 
         }
         val status = db.insert(CLOTH_TABLE_NAME, null, values).toString()
@@ -371,11 +376,11 @@ class ProductDBHelper(context: Context) :
     fun getAllClothItems(): List<ClothItem> {
         val clothItemList = mutableListOf<ClothItem>()
 
-        val db = this.readableDatabase
-        val selectQuery = "SELECT * FROM $CLOTH_TABLE_NAME"
+        val db = readableDatabase
+        val cursor = db.rawQuery("SELECT * FROM $CLOTH_TABLE_NAME", null)
 
-        db.rawQuery(selectQuery, null).use { cursor ->
-            while (cursor?.moveToNext() == true) {
+        cursor.use { cursor ->
+            while (cursor.moveToNext()) {
                 val id = cursor.getInt(cursor.getColumnIndex(ID))
                 val title = cursor.getString(cursor.getColumnIndex(TITLE))
                 val price = cursor.getDouble(cursor.getColumnIndex(PRICE))
@@ -402,15 +407,17 @@ class ProductDBHelper(context: Context) :
                     cursor.getString(cursor.getColumnIndex(DELIVERY_DATE)) ?: "00-00-00"
                 val orderId = cursor.getLong(cursor.getColumnIndex(ORDER_ID))
                 val deliveryBy = cursor.getString(cursor.getColumnIndex(DELIVERY_BY)) ?: "null"
-                val atmCartNumber = cursor.getLong(cursor.getColumnIndex(ATM_CART_NUMBER))
-                val cvv = cursor.getInt(cursor.getColumnIndex(CVV))
-                val validCartDate =
-                    cursor.getString(cursor.getColumnIndex(VALIDATE_CART_DATE)) ?: "00-00-00"
+                val atmCartNumber = cursor.getLong(cursor.getColumnIndex(CARD_NUMBER))
+                val cardExpiryDate =
+                    cursor.getString(cursor.getColumnIndex(CARD_EXPIRY_DATE)) ?: "00-00-00"
+                val cardHolderName =
+                    cursor.getString(cursor.getColumnIndex(CARD_HOLDER_NAME)) ?: "null"
+                val paymentType = cursor.getString(cursor.getColumnIndex(PAYMENT_TYPE)) ?: "null"
                 Log.d(
                     "TAG",
                     "useraddress -$userAddress------------------orderconfirm ------------$orderConfirm" +
                             "-----deliverydate-----------$deliveryDate------------- orderid----------$orderId--------- deliveryby--------------$deliveryBy" +
-                            "---------atmcartnumber-------$atmCartNumber------------cvv--$cvv------------validcartdate--------_$validCartDate"
+                            "---------atmcartnumber-------$atmCartNumber----------------------validcartdate--------_$cardExpiryDate -------------- $cardHolderName"
                 )
                 val clothItem =
                     ClothItem(
@@ -434,9 +441,10 @@ class ProductDBHelper(context: Context) :
                         deliveryDate,
                         orderId,
                         deliveryBy,
-                        atmCartNumber,
-                        cvv,
-                        validCartDate
+                        atmCartNumber.toString(),
+                        cardExpiryDate,
+                        cardHolderName,
+                        paymentType
                     )
                 clothItemList.add(clothItem)
             }
@@ -529,10 +537,12 @@ class ProductDBHelper(context: Context) :
                     cursor.getString(cursor.getColumnIndex(DELIVERY_DATE)) ?: "00-00-00"
                 val orderId = cursor.getLong(cursor.getColumnIndex(ORDER_ID))
                 val deliveryBy = cursor.getString(cursor.getColumnIndex(DELIVERY_BY)) ?: "null"
-                val atmCartNumber = cursor.getLong(cursor.getColumnIndex(ATM_CART_NUMBER))
-                val cvv = cursor.getInt(cursor.getColumnIndex(CVV))
-                val validCartDate =
-                    cursor.getString(cursor.getColumnIndex(VALIDATE_CART_DATE)) ?: "00-00-00"
+                val atmCartNumber = cursor.getString(cursor.getColumnIndex(CARD_NUMBER))
+                val cardExpiryDate =
+                    cursor.getString(cursor.getColumnIndex(CARD_EXPIRY_DATE)) ?: "00-00-00"
+                val cardHolderName =
+                    cursor.getString(cursor.getColumnIndex(CARD_HOLDER_NAME)) ?: "null"
+                val paymentType = cursor.getString(cursor.getColumnIndex(PAYMENT_TYPE)) ?: "null"
 
                 clothItem =
                     ClothItem(
@@ -557,8 +567,9 @@ class ProductDBHelper(context: Context) :
                         orderId,
                         deliveryBy,
                         atmCartNumber,
-                        cvv,
-                        validCartDate
+                        cardExpiryDate,
+                        cardHolderName,
+                        paymentType
                     )
 
             }
@@ -623,20 +634,6 @@ class ProductDBHelper(context: Context) :
         return 0
     }
 
-//    fun updateTotalPrice(itemId: Int, itemTotalAmount: Double) {
-//        val db = this.writableDatabase
-//
-//        val values = ContentValues().apply {
-//            put(TOTAL_COST, itemTotalAmount)
-//        }
-//        db.update(
-//            CLOTH_TABLE_NAME,
-//            values,
-//            "$ID =?",
-//            arrayOf(itemId.toString())
-//        )
-//        db.close()
-//    }
 
     fun updateTotalMRP(totalCost: Long) {
         val db = writableDatabase
@@ -647,6 +644,32 @@ class ProductDBHelper(context: Context) :
         db.close()
     }
 
+    fun updateCardHolderDetails(
+        cardHolderName: String,
+        cardNumber: String,
+        cardExpiryDate: String
+    ) {
+
+        val db = writableDatabase
+        val contentValues = ContentValues().apply {
+            put(CARD_HOLDER_NAME, cardHolderName)
+            put(CARD_NUMBER, cardNumber)
+            put(CARD_EXPIRY_DATE, cardExpiryDate)
+        }
+
+        db.update(CLOTH_TABLE_NAME, contentValues, null, null)
+        db.close()
+    }
+
+    fun updatePaymentType(paymentType:String){
+        val db = writableDatabase
+        val contentValues = ContentValues().apply {
+            put(PAYMENT_TYPE, paymentType)
+        }
+
+        db.update(CLOTH_TABLE_NAME, contentValues, null, null)
+        db.close()
+    }
     @SuppressLint("Range")
     fun getTotalPrice(): Double {
         val db = this.readableDatabase

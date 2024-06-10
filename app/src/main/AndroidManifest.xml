@@ -19,7 +19,7 @@
         android:maxSdkVersion="32" />
 
     <application
-        android:allowBackup="false"
+        android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:enableOnBackInvokedCallback="true"
         android:fullBackupContent="@xml/backup_rules"
@@ -161,13 +161,15 @@
             android:exported="false" />
         <activity
             android:name=".cloth.Cloth"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".userdetails.RegistrationActivity"
             android:exported="false" />
         <activity
             android:name=".dashboard.DashBoardActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".userdetails.LoginActivity"
             android:exported="true" />

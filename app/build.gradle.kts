@@ -71,12 +71,17 @@ dependencies {
     implementation(libs.glide)
 //    implementation (libs.smallbang)
 
+//    implementation (libs.monthandyearpicker)
     implementation (libs.shimmer)
     annotationProcessor (libs.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
+    implementation (libs.android.stubutton)
+//    implementation (libs.slidingbutton.v200)
+    implementation("com.github.mhdmoh:swipe-button:1.0.3")
+    implementation (libs.slidetoact)
+//    implementation(libs.proswipebutton)
 //    kapt ("androidx.room:room-compiler:2.5.1")
 
 }

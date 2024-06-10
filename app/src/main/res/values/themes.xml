@@ -66,4 +66,14 @@
         <item name="colorControlActivated">@color/crimson</item>
     </style>
 
+
+<!--    <style name="DatePickerSpinnerTheme" parent="Theme.AppCompat.Light.Dialog">-->
+<!--        <item name="android:datePickerStyle">@style/DatePickerSpinner</item>-->
+<!--    </style>-->
+
+<!--    <style name="DatePickerSpinner" parent="">-->
+<!--        <item name="android:datePickerMode">spinner</item>-->
+<!--    </style>-->
+
+
 </resources>

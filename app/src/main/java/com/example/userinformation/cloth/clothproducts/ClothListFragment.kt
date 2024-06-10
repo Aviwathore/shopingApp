@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
@@ -38,12 +37,10 @@ class ClothListFragment : Fragment(), OnClickListener, ClothAdapter.OnItemClickL
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
     private lateinit var progressBar: ProgressBar
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.d("TAG", "onCreate: ---------------cloth list fragment")
         _binding = FragmentClothlistBinding.inflate(inflater, container, false)
 
         binding.layoutHeader.buttonEnd.visibility = View.GONE
@@ -81,12 +78,8 @@ class ClothListFragment : Fragment(), OnClickListener, ClothAdapter.OnItemClickL
             when (it.itemId) {
                 R.id.navigation_fav -> {
 
-
                     val dashBoardActivity = activity as DashBoardActivity
                     dashBoardActivity.replaceFragment(WishListFragment())
-
-
-
                     true
                 }
 
@@ -101,7 +94,6 @@ class ClothListFragment : Fragment(), OnClickListener, ClothAdapter.OnItemClickL
                     dashBoardActivity.replaceFragment(AddToCartFragment())
                     true
                 }
-
                 else -> false
             }
         }
@@ -126,8 +118,6 @@ class ClothListFragment : Fragment(), OnClickListener, ClothAdapter.OnItemClickL
             dbHelper = ProductDBHelper(requireContext())
 
             clothItemList = dbHelper.getAllClothItems().toMutableList()
-
-
             val filterItem =
                 clothItemList.filter { it.category == "men's clothing" || it.category == "women's clothing" }
 
@@ -151,7 +141,6 @@ class ClothListFragment : Fragment(), OnClickListener, ClothAdapter.OnItemClickL
         clothItemList = dbHelper.getAllClothItems()
         val filterItem =
             clothItemList.filter { it.category == "men's clothing" || it.category == "women's clothing" }
-
         adapter.setClothItem(filterItem)
         adapter.notifyDataSetChanged()
 
@@ -175,21 +164,11 @@ class ClothListFragment : Fragment(), OnClickListener, ClothAdapter.OnItemClickL
         dbHelper.updateFavState(item.id, item.is_fav)
     }
 
-//    override fun onResume() {
-//        Log.d("TAG", "onResume: -----------clothlist")
-//        super.onResume()
-//
-//    }
-
     override fun onDestroyView() {
-        Log.d("TAG", "onDestroy: ------------clothlist")
         super.onDestroyView()
     }
 
     override fun onResume() {
-//        binding.bottomNavigationItemView.bottomNavigationView.selectedItemId = R.id.navigation_list
-        Log.d("TAG", "onResume:$$$$$$$$$$$$$$$$$ ----------clothlist")
-//        binding.bottomNavigationItemView.bottomNavigationView.menu.getItem(R.id.navigation_fav).isChecked= true
         super.onResume()
     }
 

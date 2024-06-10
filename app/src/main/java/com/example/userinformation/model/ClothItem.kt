@@ -38,9 +38,10 @@ data class ClothItem(
     val deliveryDate: String,
     val orderId: Long,
     val deliveryBy: String,
-    val atmCartNumber: Long,
-    val cvv: Int,
-    val validCartDate: String
+    val cartNumber: String,
+    val cardExpiryDate: String,
+    val cardHolderName: String,
+    val paymentType:String
 )
 
 data class Rating(

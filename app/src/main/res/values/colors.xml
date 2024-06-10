@@ -19,5 +19,6 @@
     <dimen name="seek_bar_thumb_size">20dp</dimen>
     <dimen name="card_corner_radius">10dp</dimen>
     <dimen name="spinner_background_radius">20dp</dimen>
+    <dimen name="date_picker_width">600dp</dimen>
 
 </resources>

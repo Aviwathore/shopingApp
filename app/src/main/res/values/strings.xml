@@ -383,7 +383,7 @@
     <string name="total">Total</string>
     <string name="continue_to_payment">Continue to Payment</string>
     <string name="payment_option">Payment Option :</string>
-    <string name="credit_card">Credit card</string>
+    <string name="credit_card">Credit card\t\t</string>
     <string name="continues">Continue</string>
     <string name="payment_done">Payment Done Successfully</string>
     <string name="payment_success">Payment Success</string>
@@ -391,6 +391,36 @@
     <string name="total_payment">Total Payment</string>
     <string name="client_designation">Client Designation</string>
     <string name="debit_cart">Debit Cart</string>
+    <string name="credit_Card">Credit Card</string>
+    <string name="card_holder_name">Card holder name</string>
+    <string name="expiry_date">Expiry date :</string>
+    <string name="card_holder_names">Card Holder Name</string>
+    <string name="card_number">Card Number</string>
+    <string name="expiry_dates">EXPIRY DATE</string>
+    <string name="cvv">CVV</string>
+    <string name="pay">Pay</string>
+    <string name="_000">000</string>
+    <string name="hashtag">####-####-####-####</string>
+    <string name="hash">##/##</string>
+    <string name="enter_card_holder_name">Enter card holder name</string>
+    <string name="enter_card_number">Enter card number</string>
+    <string name="selecte_expiry_date">expiry date</string>
+    <string name="select_expiry_date">Select expiry date</string>
+    <string name="valid_from">VALID FROM:</string>
+    <string name="valid_upto">VALID UPTO:</string>
+    <string name="valid_uptoo">Valid Upto</string>
+    <string name="valid_froms">Valid From</string>
+    <string name="select_valid_from_date">Valid date</string>
+    <string name="cvv_hash">###</string>
+    <string name="payment_successful">Payment Successful!</string>
+    <string name="thank_you_for_your_purchase">Thank you for your purchase.</string>
+    <string name="view_order">View Order</string>
+    <string name="view_e_recipt">View E-Receipt</string>
+    <string name="payment">Payment</string>
+    <string name="cash">Cash\t\t</string>
+    <string name="transication_details">Transaction Details</string>
+    <string name="done">Done</string>
+    <string name="rohini">Rohini</string>
     <!--    hereby confirm that I have reviewed the all details and confirm their accuracy-->
     <!--    spinner state-->
 
