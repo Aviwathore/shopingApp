@@ -14,6 +14,7 @@
         android:layout_height="wrap_content"
         android:paddingBottom="28dp">
 
+
         <TextView
             android:id="@+id/sign_up_text1"
             android:layout_width="match_parent"

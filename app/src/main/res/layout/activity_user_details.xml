@@ -11,6 +11,7 @@
     android:orientation="vertical"
     tools:context=".user.UserDetails">
 
+
     <TextView
         android:id="@+id/userSession"
         android:layout_width="match_parent"

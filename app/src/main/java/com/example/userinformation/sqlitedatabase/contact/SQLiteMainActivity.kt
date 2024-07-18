@@ -28,6 +28,7 @@ class SQLiteMainActivity : AppCompatActivity() {
 
          */
 
+
         // create arraylist for store fetch data
 
         dbHelper = MyDBHelper(this)

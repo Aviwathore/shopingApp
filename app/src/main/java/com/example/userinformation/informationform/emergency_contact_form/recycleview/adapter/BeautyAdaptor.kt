@@ -35,4 +35,5 @@ class BeautyAdaptor(private val beautyList: ArrayList<String>,
     override fun getItemCount(): Int {
         return  beautyList.size
     }
+
 }

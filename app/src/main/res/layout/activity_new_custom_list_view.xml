@@ -11,6 +11,7 @@
     tools:context=".customAdapter.singlePage.NewCustomListView">
 
     <ImageView
+
         android:id="@+id/profile_img"
         android:layout_width="100dp"
         android:layout_height="100dp"

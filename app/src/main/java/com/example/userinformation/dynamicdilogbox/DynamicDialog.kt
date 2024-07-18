@@ -2,7 +2,6 @@ package com.example.userinformation.dynamicdilogbox
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -23,6 +22,7 @@ class DynamicDialog : DialogFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         arguments?.let {
             mainTitle = it.getString("mainTitle", "")
             title = it.getString("title", "")

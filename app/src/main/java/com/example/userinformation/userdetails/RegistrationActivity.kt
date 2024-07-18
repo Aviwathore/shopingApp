@@ -1,16 +1,11 @@
 package com.example.userinformation.userdetails
 
 import android.annotation.SuppressLint
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
-import android.view.Gravity
 import android.view.View
-import android.view.ViewGroup
-import android.view.Window
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.R
@@ -41,6 +36,7 @@ class RegistrationActivity : AppCompatActivity() {
         emailFocusListener()
         nameFocusListener()
         passwordFocusListener()
+
         phoneFocusListener()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

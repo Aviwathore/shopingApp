@@ -28,6 +28,7 @@ class TextToSpeechFragment : Fragment() {
 
         textToSpeech = TextToSpeech(requireContext()){status ->
             if (status !=TextToSpeech.ERROR){
+
                 textToSpeech.language= Locale.UK
             }
         }

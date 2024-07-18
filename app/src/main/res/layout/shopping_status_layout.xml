@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/txt_bag"
             android:text="@string/bag"
+
             android:textStyle="bold"
             android:textColor="@color/gray" />
 

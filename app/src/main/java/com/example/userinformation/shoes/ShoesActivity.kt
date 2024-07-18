@@ -23,6 +23,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+
 val BASE_URL = "https://placeholder-url.com/"
 class Shoes : AppCompatActivity() {
     val userList = mutableListOf<UserInfo>()

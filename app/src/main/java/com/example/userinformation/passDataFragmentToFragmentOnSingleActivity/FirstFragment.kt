@@ -25,6 +25,7 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
 //        binding = FragmentFirstBinding.inflate(layoutInflater)
 
         // Inflate the layout for this fragment

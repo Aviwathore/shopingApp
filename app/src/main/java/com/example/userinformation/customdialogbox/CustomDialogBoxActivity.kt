@@ -26,6 +26,7 @@ class CustomDialogBoxActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
 
+
         fragment.dismissDialog()
     }
 }

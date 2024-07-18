@@ -33,6 +33,7 @@ class DataConformationActivity : AppCompatActivity() {
 //        registrationActivity.contactId.setText(editor.getString("contact", null))
 //        registrationActivity.idSignUpPassword.setText(editor.getString("password", null))
 
+
         val manager = PreferenceManager.getDefaultSharedPreferences(this)
         listener = SharedPreferences.OnSharedPreferenceChangeListener { sharedPreferences, key ->
             if (key.equals("change_UI")) {

@@ -1,11 +1,7 @@
 package com.example.userinformation.customViewForRecycleView.fragment
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityCustomRecyclerViewBinding
 
 class CustomRecyclerViewActivity : AppCompatActivity() {

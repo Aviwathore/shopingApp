@@ -25,6 +25,7 @@ class FragmentOne : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+
 //        binding = FragmentOneBinding.inflate(layoutInflater)
 //        binding.root
 //

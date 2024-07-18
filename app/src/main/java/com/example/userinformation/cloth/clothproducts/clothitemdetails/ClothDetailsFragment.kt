@@ -37,8 +37,8 @@ class ClothDetailsFragment : Fragment(), OnClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View {
-        Log.d("TAG", "onCreate: ---------------cloth details fragment")
         _binding = FragmentClothDetailsBinding.inflate(inflater, container, false)
         binding.layoutHeader.buttonEnd.setImageResource(R.drawable.heart_white)
         binding.layoutHeader.buttonEnd.visibility = View.VISIBLE
@@ -82,6 +82,9 @@ class ClothDetailsFragment : Fragment(), OnClickListener {
 
             stockCount = clothItem!!.rating.count
 
+        }
+        else{
+            Log.d("TAG", "onCreateView: ------------- cloth item is empty")
         }
         if (itemFav == 1) {
             binding.imgFav.setImageResource(R.drawable.heart_pink)
@@ -332,7 +335,6 @@ class ClothDetailsFragment : Fragment(), OnClickListener {
     }
 
     override fun onDestroyView() {
-        Log.d("TAG", "onDestroy: ------------clothdetails")
         super.onDestroyView()
     }
 

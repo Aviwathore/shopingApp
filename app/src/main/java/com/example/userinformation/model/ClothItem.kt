@@ -21,6 +21,7 @@ data class ClothItem(
     @SerializedName("image")
     val image: String,
 
+
     @SerializedName("rating")
     val rating: Rating,
 
@@ -41,7 +42,10 @@ data class ClothItem(
     val cartNumber: String,
     val cardExpiryDate: String,
     val cardHolderName: String,
-    val paymentType:String
+    val paymentType: String,
+    val isActive: Int,
+    val isCompleted: Int,
+    val isCancelled: Int
 )
 
 data class Rating(

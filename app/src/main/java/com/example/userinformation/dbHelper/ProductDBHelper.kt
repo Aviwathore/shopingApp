@@ -18,9 +18,10 @@ import java.util.Locale
 class ProductDBHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, VERSION) {
 
+
     companion object {
         private const val DATABASE_NAME = "form_details.db"
-        private const val VERSION = 18
+        private const val VERSION = 19
         private const val TABLE_NAME = "information"
         private var FIRST_NAME = "first_name"
         private var LAST_NAME = "last_name"
@@ -70,6 +71,9 @@ class ProductDBHelper(context: Context) :
         private var CARD_EXPIRY_DATE = "validCartDate"
         private var CARD_HOLDER_NAME = "cardHolderName"
         private var PAYMENT_TYPE = "paymentType"
+        private var Is_ACTIVE = "isActive"
+        private var IS_COMPLETED = "isCompleted"
+        private var IS_CANCELLED = "isCancelled"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
@@ -121,7 +125,10 @@ class ProductDBHelper(context: Context) :
                 "$CARD_NUMBER LONG," +
                 "$CARD_EXPIRY_DATE TEXT," +
                 "$CARD_HOLDER_NAME TEXT," +
-                "$PAYMENT_TYPE TEXT" +
+                "$PAYMENT_TYPE TEXT," +
+                "$Is_ACTIVE INTEGER," +
+                "$IS_COMPLETED INTEGER," +
+                "$IS_CANCELLED INTEGER" +
                 ")"
         db?.execSQL(createClothTable)
         Log.d("TAG", "onCreate: ==================cloth_table")
@@ -354,6 +361,9 @@ class ProductDBHelper(context: Context) :
             put(CARD_EXPIRY_DATE, clothItem.cardExpiryDate)
             put(CARD_HOLDER_NAME, clothItem.cardHolderName)
             put(PAYMENT_TYPE, clothItem.paymentType)
+            put(Is_ACTIVE, clothItem.isActive)
+            put(IS_COMPLETED, clothItem.isCompleted)
+            put(IS_CANCELLED, clothItem.isCancelled)
 
         }
         val status = db.insert(CLOTH_TABLE_NAME, null, values).toString()
@@ -407,18 +417,16 @@ class ProductDBHelper(context: Context) :
                     cursor.getString(cursor.getColumnIndex(DELIVERY_DATE)) ?: "00-00-00"
                 val orderId = cursor.getLong(cursor.getColumnIndex(ORDER_ID))
                 val deliveryBy = cursor.getString(cursor.getColumnIndex(DELIVERY_BY)) ?: "null"
-                val atmCartNumber = cursor.getLong(cursor.getColumnIndex(CARD_NUMBER))
+                val atmCartNumber = cursor.getString(cursor.getColumnIndex(CARD_NUMBER)) ?: "null"
                 val cardExpiryDate =
                     cursor.getString(cursor.getColumnIndex(CARD_EXPIRY_DATE)) ?: "00-00-00"
                 val cardHolderName =
                     cursor.getString(cursor.getColumnIndex(CARD_HOLDER_NAME)) ?: "null"
                 val paymentType = cursor.getString(cursor.getColumnIndex(PAYMENT_TYPE)) ?: "null"
-                Log.d(
-                    "TAG",
-                    "useraddress -$userAddress------------------orderconfirm ------------$orderConfirm" +
-                            "-----deliverydate-----------$deliveryDate------------- orderid----------$orderId--------- deliveryby--------------$deliveryBy" +
-                            "---------atmcartnumber-------$atmCartNumber----------------------validcartdate--------_$cardExpiryDate -------------- $cardHolderName"
-                )
+                val orderIsActive = cursor.getInt(cursor.getColumnIndex(Is_ACTIVE))
+                val orderIsCompleted = cursor.getInt(cursor.getColumnIndex(IS_COMPLETED))
+                val orderIsCancelled = cursor.getInt(cursor.getColumnIndex(IS_CANCELLED))
+
                 val clothItem =
                     ClothItem(
                         id,
@@ -441,10 +449,13 @@ class ProductDBHelper(context: Context) :
                         deliveryDate,
                         orderId,
                         deliveryBy,
-                        atmCartNumber.toString(),
+                        atmCartNumber,
                         cardExpiryDate,
                         cardHolderName,
-                        paymentType
+                        paymentType,
+                        orderIsActive,
+                        orderIsCompleted,
+                        orderIsCancelled
                     )
                 clothItemList.add(clothItem)
             }
@@ -507,71 +518,99 @@ class ProductDBHelper(context: Context) :
         var clothItem: ClothItem? = null
 
         val db = this.readableDatabase
-        val selectQuery = "SELECT * FROM $CLOTH_TABLE_NAME  WHERE $ID=?"
+        if (db != null) {
+            val selectQuery = "SELECT * FROM $CLOTH_TABLE_NAME  WHERE $ID=?"
 
-        db.rawQuery(selectQuery, arrayOf(itemId.toString())).use { cursor ->
-            while (cursor?.moveToNext() == true) {
-                val id = cursor.getInt(cursor.getColumnIndex(ID))
-                val title = cursor.getString(cursor.getColumnIndex(TITLE))
-                val price = cursor.getDouble(cursor.getColumnIndex(PRICE))
-                val description = cursor.getString(cursor.getColumnIndex(DESCRIPTION))
-                val category = cursor.getString(cursor.getColumnIndex(CATEGORY))
-                val image = cursor.getString(cursor.getColumnIndex(IMAGE))
-                val rate = cursor.getDouble(cursor.getColumnIndex(RATE))
-                val count = cursor.getInt(cursor.getColumnIndex(COUNT))
-                val rating = Rating(rate, count)
-                val isFAV = cursor.getInt(cursor.getColumnIndex(IS_FAV))
-                val productSize =
-                    cursor.getString(cursor.getColumnIndex(PRODUCT_SIZE)) ?: "Default Size"
-                val productCount = cursor.getInt(cursor.getColumnIndex(PRODUCT_COUNT))
-                val subTotal = cursor.getLong(cursor.getColumnIndex(SUB_TOTAL))
-                val deliveryCharge = cursor.getInt(cursor.getColumnIndex(DELIVERY_CHARGE))
-                val discount = cursor.getInt(cursor.getColumnIndex(DISCOUNT))
-                val totalCost = cursor.getLong(cursor.getColumnIndex(TOTAL_COST))
+            db.rawQuery(selectQuery, arrayOf(itemId.toString())).use { cursor ->
+                if (cursor != null) {
+                    while (cursor.moveToNext()) {
+                        val id = cursor.getInt(cursor.getColumnIndexOrThrow(ID))
+                        val title = cursor.getString(cursor.getColumnIndexOrThrow(TITLE))
+                        val price = cursor.getDouble(cursor.getColumnIndexOrThrow(PRICE))
+                        val description =
+                            cursor.getString(cursor.getColumnIndexOrThrow(DESCRIPTION))
+                        val category = cursor.getString(cursor.getColumnIndexOrThrow(CATEGORY))
+                        val image = cursor.getString(cursor.getColumnIndexOrThrow(IMAGE))
+                        val rate = cursor.getDouble(cursor.getColumnIndexOrThrow(RATE))
+                        val count = cursor.getInt(cursor.getColumnIndexOrThrow(COUNT))
+                        val rating = Rating(rate, count)
+                        val isFAV = cursor.getInt(cursor.getColumnIndexOrThrow(IS_FAV))
+                        val productSize =
+                            cursor.getString(cursor.getColumnIndexOrThrow(PRODUCT_SIZE))
+                                ?: "Default Size"
+                        val productCount =
+                            cursor.getInt(cursor.getColumnIndexOrThrow(PRODUCT_COUNT))
+                        val subTotal = cursor.getLong(cursor.getColumnIndexOrThrow(SUB_TOTAL))
+                        val deliveryCharge =
+                            cursor.getInt(cursor.getColumnIndexOrThrow(DELIVERY_CHARGE))
+                        val discount = cursor.getInt(cursor.getColumnIndexOrThrow(DISCOUNT))
+                        val totalCost = cursor.getLong(cursor.getColumnIndexOrThrow(TOTAL_COST))
 
-                val addToCart = cursor.getInt(cursor.getColumnIndex(ADD_TO_CART))
-                val userAddress = cursor.getString(cursor.getColumnIndex(USER_ADDRESS)) ?: "null"
-                val orderConfirm =
-                    cursor.getString(cursor.getColumnIndex(ORDER_CONFIRM)) ?: "00-00-00"
-                val deliveryDate =
-                    cursor.getString(cursor.getColumnIndex(DELIVERY_DATE)) ?: "00-00-00"
-                val orderId = cursor.getLong(cursor.getColumnIndex(ORDER_ID))
-                val deliveryBy = cursor.getString(cursor.getColumnIndex(DELIVERY_BY)) ?: "null"
-                val atmCartNumber = cursor.getString(cursor.getColumnIndex(CARD_NUMBER))
-                val cardExpiryDate =
-                    cursor.getString(cursor.getColumnIndex(CARD_EXPIRY_DATE)) ?: "00-00-00"
-                val cardHolderName =
-                    cursor.getString(cursor.getColumnIndex(CARD_HOLDER_NAME)) ?: "null"
-                val paymentType = cursor.getString(cursor.getColumnIndex(PAYMENT_TYPE)) ?: "null"
+                        val addToCart = cursor.getInt(cursor.getColumnIndexOrThrow(ADD_TO_CART))
+                        val userAddress =
+                            cursor.getString(cursor.getColumnIndexOrThrow(USER_ADDRESS)) ?: "null"
+                        val orderConfirm =
+                            cursor.getString(cursor.getColumnIndexOrThrow(ORDER_CONFIRM))
+                                ?: "00-00-00"
+                        val deliveryDate =
+                            cursor.getString(cursor.getColumnIndexOrThrow(DELIVERY_DATE))
+                                ?: "00-00-00"
+                        val orderId = cursor.getLong(cursor.getColumnIndexOrThrow(ORDER_ID))
+                        val deliveryBy =
+                            cursor.getString(cursor.getColumnIndexOrThrow(DELIVERY_BY)) ?: "null"
+                        val atmCartNumber =
+                            cursor.getString(cursor.getColumnIndexOrThrow(CARD_NUMBER)) ?: "null"
+                        val cardExpiryDate =
+                            cursor.getString(cursor.getColumnIndexOrThrow(CARD_EXPIRY_DATE))
+                                ?: "00-00-00"
+                        val cardHolderName =
+                            cursor.getString(cursor.getColumnIndexOrThrow(CARD_HOLDER_NAME))
+                                ?: "null"
+                        val paymentType =
+                            cursor.getString(cursor.getColumnIndexOrThrow(PAYMENT_TYPE)) ?: "null"
+                        val orderIsActive = cursor.getInt(cursor.getColumnIndexOrThrow(Is_ACTIVE))
+                        val orderIsCompleted =
+                            cursor.getInt(cursor.getColumnIndexOrThrow(IS_COMPLETED))
+                        val orderIsCancelled =
+                            cursor.getInt(cursor.getColumnIndexOrThrow(IS_CANCELLED))
 
-                clothItem =
-                    ClothItem(
-                        id,
-                        title,
-                        price,
-                        description,
-                        category,
-                        image,
-                        rating,
-                        isFAV,
-                        productSize,
-                        productCount,
-                        subTotal,
-                        deliveryCharge,
-                        discount,
-                        totalCost,
-                        addToCart,
-                        userAddress,
-                        orderConfirm,
-                        deliveryDate,
-                        orderId,
-                        deliveryBy,
-                        atmCartNumber,
-                        cardExpiryDate,
-                        cardHolderName,
-                        paymentType
-                    )
+                        Log.d(
+                            "TAG",
+                            "getObjectById: --------------orderIsActive=======> $orderIsActive==orderIsCompleted==========>$orderIsCompleted====>orderIsCancelled=>$orderIsCancelled"
+                        )
 
+                        clothItem =
+                            ClothItem(
+                                id,
+                                title,
+                                price,
+                                description,
+                                category,
+                                image,
+                                rating,
+                                isFAV,
+                                productSize,
+                                productCount,
+                                subTotal,
+                                deliveryCharge,
+                                discount,
+                                totalCost,
+                                addToCart,
+                                userAddress,
+                                orderConfirm,
+                                deliveryDate,
+                                orderId,
+                                deliveryBy,
+                                atmCartNumber,
+                                cardExpiryDate,
+                                cardHolderName,
+                                paymentType,
+                                orderIsActive,
+                                orderIsCompleted,
+                                orderIsCancelled
+                            )
+                    }
+                }
             }
         }
         return clothItem
@@ -648,7 +687,7 @@ class ProductDBHelper(context: Context) :
         cardHolderName: String,
         cardNumber: String,
         cardExpiryDate: String
-    ) {
+    ): Int {
 
         val db = writableDatabase
         val contentValues = ContentValues().apply {
@@ -657,8 +696,10 @@ class ProductDBHelper(context: Context) :
             put(CARD_EXPIRY_DATE, cardExpiryDate)
         }
 
-        db.update(CLOTH_TABLE_NAME, contentValues, null, null)
+        val rowAffected = db.update(CLOTH_TABLE_NAME, contentValues, null, null)
         db.close()
+
+        return rowAffected
     }
 
     fun updatePaymentType(paymentType:String){
@@ -670,24 +711,198 @@ class ProductDBHelper(context: Context) :
         db.update(CLOTH_TABLE_NAME, contentValues, null, null)
         db.close()
     }
-    @SuppressLint("Range")
-    fun getTotalPrice(): Double {
-        val db = this.readableDatabase
-        val selectQuery = "SELECT SUM($TOTAL_COST) FROM $CLOTH_TABLE_NAME WHERE $ADD_TO_CART = 1"
-        val cursor = db.rawQuery(selectQuery, null)
 
-        var totalPrice = 0.00
+    fun updateOrderConfirmStatus(
+        oldAddToCartStatus: Int,
+        newAddToCardStatus: Int,
+        itemOrderConfirm: String,
+        isActive: Int,
+        isCompleted: Int,
+        isCancelled: Int
+    ) {
 
-        if (cursor.moveToFirst()) {
-
-            totalPrice = cursor.getDouble(cursor.getColumnIndex(TOTAL_COST))
-
-            cursor.close()
-
-            return totalPrice
-
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put(ADD_TO_CART, newAddToCardStatus)
+            put(ORDER_CONFIRM, itemOrderConfirm)
+            put(Is_ACTIVE, isActive)
+            put(IS_COMPLETED, isCompleted)
+            put(IS_CANCELLED, isCancelled)
         }
+        db.update(
+            CLOTH_TABLE_NAME,
+            values,
+            "$ADD_TO_CART = ?",
+            arrayOf(oldAddToCartStatus.toString())
+        )
 
-        return 0.00
+        db.close()
+    }
+    @SuppressLint("Range")
+    fun getProductByAddToCardStatus(itemAddToCardStatus: Int): ClothItem? {
+        var clothItem: ClothItem? = null
+
+        val db = this.readableDatabase
+        val selectQuery = "SELECT * FROM $CLOTH_TABLE_NAME  WHERE $ADD_TO_CART=?"
+
+        db.rawQuery(selectQuery, arrayOf(itemAddToCardStatus.toString())).use { cursor ->
+            while (cursor?.moveToNext() == true) {
+                val id = cursor.getInt(cursor.getColumnIndex(ID))
+                val title = cursor.getString(cursor.getColumnIndex(TITLE))
+                val price = cursor.getDouble(cursor.getColumnIndex(PRICE))
+                val description = cursor.getString(cursor.getColumnIndex(DESCRIPTION))
+                val category = cursor.getString(cursor.getColumnIndex(CATEGORY))
+                val image = cursor.getString(cursor.getColumnIndex(IMAGE))
+                val rate = cursor.getDouble(cursor.getColumnIndex(RATE))
+                val count = cursor.getInt(cursor.getColumnIndex(COUNT))
+                val rating = Rating(rate, count)
+                val isFAV = cursor.getInt(cursor.getColumnIndex(IS_FAV))
+                val productSize =
+                    cursor.getString(cursor.getColumnIndex(PRODUCT_SIZE)) ?: "Default Size"
+                val productCount = cursor.getInt(cursor.getColumnIndex(PRODUCT_COUNT))
+                val subTotal = cursor.getLong(cursor.getColumnIndex(SUB_TOTAL))
+                val deliveryCharge = cursor.getInt(cursor.getColumnIndex(DELIVERY_CHARGE))
+                val discount = cursor.getInt(cursor.getColumnIndex(DISCOUNT))
+                val totalCost = cursor.getLong(cursor.getColumnIndex(TOTAL_COST))
+
+                val addToCart = cursor.getInt(cursor.getColumnIndex(ADD_TO_CART))
+                val userAddress = cursor.getString(cursor.getColumnIndex(USER_ADDRESS)) ?: "null"
+                val orderConfirm =
+                    cursor.getString(cursor.getColumnIndex(ORDER_CONFIRM)) ?: "00-00-00"
+                val deliveryDate =
+                    cursor.getString(cursor.getColumnIndex(DELIVERY_DATE)) ?: "00-00-00"
+                val orderId = cursor.getLong(cursor.getColumnIndex(ORDER_ID))
+                val deliveryBy = cursor.getString(cursor.getColumnIndex(DELIVERY_BY)) ?: "null"
+                val atmCartNumber = cursor.getString(cursor.getColumnIndex(CARD_NUMBER)) ?: "null"
+                val cardExpiryDate =
+                    cursor.getString(cursor.getColumnIndex(CARD_EXPIRY_DATE)) ?: "00-00-00"
+                val cardHolderName =
+                    cursor.getString(cursor.getColumnIndex(CARD_HOLDER_NAME)) ?: "null"
+                val paymentType = cursor.getString(cursor.getColumnIndex(PAYMENT_TYPE)) ?: "null"
+
+                val orderIsActive = cursor.getInt(cursor.getColumnIndex(Is_ACTIVE))
+                val orderIsCompleted = cursor.getInt(cursor.getColumnIndex(IS_COMPLETED))
+                val orderIsCancelled = cursor.getInt(cursor.getColumnIndex(IS_CANCELLED))
+
+                clothItem =
+                    ClothItem(
+                        id,
+                        title,
+                        price,
+                        description,
+                        category,
+                        image,
+                        rating,
+                        isFAV,
+                        productSize,
+                        productCount,
+                        subTotal,
+                        deliveryCharge,
+                        discount,
+                        totalCost,
+                        addToCart,
+                        userAddress,
+                        orderConfirm,
+                        deliveryDate,
+                        orderId,
+                        deliveryBy,
+                        atmCartNumber,
+                        cardExpiryDate,
+                        cardHolderName,
+                        paymentType,
+                        orderIsActive,
+                        orderIsCompleted,
+                        orderIsCancelled
+                    )
+
+            }
+        }
+        return clothItem
+    }
+
+    @SuppressLint("Range")
+    fun getOrderActiveProduct(itemOrderStatus: String): List<ClothItem> {
+        val clothItems = mutableListOf<ClothItem>()
+
+        val db = this.readableDatabase
+        val selectQuery = "SELECT * FROM $CLOTH_TABLE_NAME  WHERE $ORDER_CONFIRM=?"
+
+        db.rawQuery(selectQuery,
+            arrayOf(itemOrderStatus.toString())
+        ).use { cursor ->
+            while (cursor?.moveToNext() == true) {
+                val id = cursor.getInt(cursor.getColumnIndex(ID))
+                val title = cursor.getString(cursor.getColumnIndex(TITLE))
+                val price = cursor.getDouble(cursor.getColumnIndex(PRICE))
+                val description = cursor.getString(cursor.getColumnIndex(DESCRIPTION))
+                val category = cursor.getString(cursor.getColumnIndex(CATEGORY))
+                val image = cursor.getString(cursor.getColumnIndex(IMAGE))
+                val rate = cursor.getDouble(cursor.getColumnIndex(RATE))
+                val count = cursor.getInt(cursor.getColumnIndex(COUNT))
+                val rating = Rating(rate, count)
+                val isFAV = cursor.getInt(cursor.getColumnIndex(IS_FAV))
+                val productSize =
+                    cursor.getString(cursor.getColumnIndex(PRODUCT_SIZE)) ?: "Default Size"
+                val productCount = cursor.getInt(cursor.getColumnIndex(PRODUCT_COUNT))
+                val subTotal = cursor.getLong(cursor.getColumnIndex(SUB_TOTAL))
+                val deliveryCharge = cursor.getInt(cursor.getColumnIndex(DELIVERY_CHARGE))
+                val discount = cursor.getInt(cursor.getColumnIndex(DISCOUNT))
+                val totalCost = cursor.getLong(cursor.getColumnIndex(TOTAL_COST))
+
+                val addToCart = cursor.getInt(cursor.getColumnIndex(ADD_TO_CART))
+                val userAddress = cursor.getString(cursor.getColumnIndex(USER_ADDRESS)) ?: "null"
+                val orderConfirm =
+                    cursor.getString(cursor.getColumnIndex(ORDER_CONFIRM)) ?: "00-00-00"
+                val deliveryDate =
+                    cursor.getString(cursor.getColumnIndex(DELIVERY_DATE)) ?: "00-00-00"
+                val orderId = cursor.getLong(cursor.getColumnIndex(ORDER_ID))
+                val deliveryBy = cursor.getString(cursor.getColumnIndex(DELIVERY_BY)) ?: "null"
+                val atmCartNumber = cursor.getString(cursor.getColumnIndex(CARD_NUMBER)) ?: "null"
+                val cardExpiryDate =
+                    cursor.getString(cursor.getColumnIndex(CARD_EXPIRY_DATE)) ?: "00-00-00"
+                val cardHolderName =
+                    cursor.getString(cursor.getColumnIndex(CARD_HOLDER_NAME)) ?: "null"
+                val paymentType = cursor.getString(cursor.getColumnIndex(PAYMENT_TYPE)) ?: "null"
+
+                val orderIsActive = cursor.getInt(cursor.getColumnIndex(Is_ACTIVE))
+                val orderIsCompleted = cursor.getInt(cursor.getColumnIndex(IS_COMPLETED))
+                val orderIsCancelled = cursor.getInt(cursor.getColumnIndex(IS_CANCELLED))
+
+                val clothItem =
+                    ClothItem(
+                        id,
+                        title,
+                        price,
+                        description,
+                        category,
+                        image,
+                        rating,
+                        isFAV,
+                        productSize,
+                        productCount,
+                        subTotal,
+                        deliveryCharge,
+                        discount,
+                        totalCost,
+                        addToCart,
+                        userAddress,
+                        orderConfirm,
+                        deliveryDate,
+                        orderId,
+                        deliveryBy,
+                        atmCartNumber,
+                        cardExpiryDate,
+                        cardHolderName,
+                        paymentType,
+                        orderIsActive,
+                        orderIsCompleted,
+                        orderIsCancelled
+                    )
+
+                clothItems.add(clothItem)
+            }
+        }
+        db.close()
+        return clothItems
     }
 }

@@ -43,6 +43,7 @@ class IntentActivity : AppCompatActivity(), View.OnClickListener {
         binding.btnColorPicker.setOnClickListener(this)
         binding.btnApiSpinner.setOnClickListener(this)
 
+
         selectSeekBar()
     }
     private fun call() {

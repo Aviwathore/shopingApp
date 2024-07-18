@@ -30,6 +30,7 @@ class WishListFragment : Fragment(), ClothAdapter.OnItemClickListener, OnClickLi
     private lateinit var binding: FragmentWishlistBinding
     private lateinit var adapter: ClothAdapter
     private lateinit var recyclerView: RecyclerView
+
     private lateinit var dbHelper: ProductDBHelper
     private lateinit var bottomNva: BottomNavigationView
     private var favouriteClothList: List<ClothItem> = listOf()

@@ -12,3 +12,4 @@ fun formatToIndianNumberingSystem(number: Double): String {
     val currencySymbol = Currency.getInstance("INR").symbol
     return "$currencySymbol$formattedNumber"
 }
+

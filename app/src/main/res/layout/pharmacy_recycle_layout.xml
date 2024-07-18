@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/pharmacy_id"
             android:orientation="vertical"
+
             android:padding="30dp">
 
             <TextView

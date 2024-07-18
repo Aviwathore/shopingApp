@@ -5,3 +5,4 @@ data class HomeList(var name :String, var price :Double){
         return "$name                                             $price"
     }
 }
+

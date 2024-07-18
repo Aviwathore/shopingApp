@@ -1,4 +1,4 @@
-package com.example.userinformation.paymentdetails.adapter
+package com.example.userinformation.checkOutPaymentdetails.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -19,6 +19,7 @@ class CartProductAdapter(
             LayoutInflater.from(parent.context),
             parent,
             false
+
         )
 
         return ViewHolder(binding)

@@ -1,4 +1,4 @@
-package com.example.userinformation.paymentdetails
+package com.example.userinformation.checkOutPaymentdetails
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,19 +11,19 @@ import android.widget.RadioButton
 import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.userinformation.PaymentSuccessFragment
 import com.example.userinformation.R
 import com.example.userinformation.cardoptionforpayment.CreditCardFragment
+import com.example.userinformation.checkOutPaymentdetails.adapter.CartProductAdapter
 import com.example.userinformation.dashboard.DashBoardActivity
-import com.example.userinformation.databinding.FragmentPaymentDetailsBinding
+import com.example.userinformation.databinding.FragmentCheckOutPaymentDetailsBinding
 import com.example.userinformation.dbHelper.ProductDBHelper
 import com.example.userinformation.formatNumber.formatToIndianNumberingSystem
 import com.example.userinformation.model.ClothItem
-import com.example.userinformation.paymentdetails.adapter.CartProductAdapter
+import com.example.userinformation.paymentsuccess.PaymentSuccessFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
-class PaymentDetailsFragment : Fragment(), OnClickListener, CartProductAdapter.OnProductChangedListener {
-    private lateinit var binding: FragmentPaymentDetailsBinding
+class CheckOutPaymentDetailsFragment : Fragment(), OnClickListener, CartProductAdapter.OnProductChangedListener {
+    private lateinit var binding: FragmentCheckOutPaymentDetailsBinding
     private lateinit var dbHelper: ProductDBHelper
     private var cartProductList: MutableList<ClothItem> = mutableListOf()
     private var filterProduct: List<ClothItem> = listOf()
@@ -32,11 +32,12 @@ class PaymentDetailsFragment : Fragment(), OnClickListener, CartProductAdapter.O
     override fun onCreateView(
 
         inflater: LayoutInflater, container: ViewGroup?,
+
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPaymentDetailsBinding.inflate(layoutInflater, container, false)
+        binding = FragmentCheckOutPaymentDetailsBinding.inflate(layoutInflater, container, false)
 
-        binding.headerLayout.txtHeader.text = getString(R.string.payment_details)
+        binding.headerLayout.txtHeader.text = getString(R.string.checkout)
         binding.headerLayout.buttonStart.setOnClickListener(this)
         binding.rlProceedCheckout.setOnClickListener(this)
 
@@ -45,7 +46,11 @@ class PaymentDetailsFragment : Fragment(), OnClickListener, CartProductAdapter.O
         cartProductList = dbHelper.getAllClothItems().toMutableList()
 
         filterProduct = cartProductList.filter { it.addToCart == 1 }
-        fetchCartProductDetails()
+
+        if (filterProduct.isNotEmpty()){
+
+            fetchCartProductDetails()
+        }
         setupRecyclerView()
         return binding.root
     }
@@ -127,6 +132,7 @@ class PaymentDetailsFragment : Fragment(), OnClickListener, CartProductAdapter.O
 
                 continueButton.setOnClickListener {
                     dbHelper.updatePaymentType(cashButton.text.toString())
+                    dbHelper.updateOrderConfirmStatus(1,0,"yes",1,0,0)
                     val dashBoardActivity = activity as DashBoardActivity
                     dashBoardActivity.replaceFragment(PaymentSuccessFragment())
                     bottomSheetDialog?.dismiss()

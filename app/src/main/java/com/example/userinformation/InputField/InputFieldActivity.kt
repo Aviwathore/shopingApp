@@ -31,6 +31,7 @@ class InputFieldActivity : AppCompatActivity() {
         fragment.showDialog(supportFragmentManager, "mydialogbox")
 //        fragment.dismissDialog()
 
+
         // checkbox code
             binding.idjava.setOnCheckedChangeListener{buttonView, isChecked ->
 

@@ -36,6 +36,7 @@ class MyFragment private constructor():DialogFragment() {
         if (fragmentManager.findFragmentByTag(tag)==null){
             show(fragmentManager,tag)
         }
+
     }
 
     fun dismissDialog(){

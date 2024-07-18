@@ -26,6 +26,7 @@ class PaymentSuccessfulFragment : Fragment() {
         binding.headerLayout.buttonStart.visibility = View.GONE
         binding.headerLayout.txtHeader.text = getString(R.string.payment_details)
 
+
         dbHelper = ProductDBHelper(requireContext())
 
         val user = dbHelper.getObjectById(11)

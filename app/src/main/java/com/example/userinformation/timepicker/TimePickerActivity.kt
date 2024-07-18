@@ -12,7 +12,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityTimePickerBinding
-import com.google.android.material.button.MaterialButton
 
 class TimePickerActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTimePickerBinding
@@ -32,6 +31,7 @@ class TimePickerActivity : AppCompatActivity() {
         selectTime = findViewById(R.id.selectTime)
 
         pickTime.setOnClickListener {
+
 
             val clock = Calendar.getInstance()
 

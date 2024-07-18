@@ -11,10 +11,10 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.userinformation.R
-import com.example.userinformation.informationform.emergency_contact_form.recycleview.adapter.BeautyAdaptor
-import com.example.userinformation.informationform.emergency_contact_form.recycleview.api.BeautyInterface
 import com.example.userinformation.databinding.ActivityBeautyBinding
 import com.example.userinformation.home.recycleviewapi.model.HomeToDo
+import com.example.userinformation.informationform.emergency_contact_form.recycleview.adapter.BeautyAdaptor
+import com.example.userinformation.informationform.emergency_contact_form.recycleview.api.BeautyInterface
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -44,6 +44,7 @@ class Beauty : AppCompatActivity() {
 //        alertDialog.show()
 
         loadToDoListData()
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

@@ -27,6 +27,7 @@ class ClothAdapter(private var listener: OnItemClickListener, private val contex
     internal fun setClothItem(clothList: List<ClothItem>) {
         this.clothList = clothList
         notifyDataSetChanged()
+
     }
 
     class ClothViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

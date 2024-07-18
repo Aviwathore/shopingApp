@@ -6,3 +6,4 @@ data class BeautyList(var name:String, var price: Double)
         return "$name                                             $price"
     }
 }
+

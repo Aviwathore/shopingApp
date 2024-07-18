@@ -37,6 +37,7 @@ class CustomArrayAdapter(
         val textView = rowView.findViewById<TextView>(R.id.text)
 //        Log.d("VIEW ID", "================$textView")
         val imageView = rowView.findViewById<ImageView>(R.id.image)
+
 //        Log.d("IMAGE VIEW", "=================$imageView")
 
         if (position in values.indices && position in images.indices) {

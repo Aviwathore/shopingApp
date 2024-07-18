@@ -13,6 +13,7 @@ public class ChannelServiceClass extends Application {
 
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
 
+
         NotificationChannel setNotificationChannel = new NotificationChannel(
                 // this all are prototype
                 myChannelId, "Service Example",

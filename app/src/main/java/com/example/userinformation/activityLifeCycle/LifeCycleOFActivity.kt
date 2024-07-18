@@ -20,6 +20,7 @@ class LifeCycleOFActivity : AppCompatActivity() {
 
     }
 
+
     override fun onResume() {
         super.onResume()
         Toast.makeText(this,"I AM onResume",Toast.LENGTH_SHORT).show()

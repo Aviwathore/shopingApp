@@ -23,6 +23,7 @@ class MyDBHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, nu
 //        db.execSQL("create table "+ TABLE_NAME +
 //        "("+ KEY_ID+ "INTEGER PRIMARY KEY AUTOINCREMENT,"+ KEY_NAME+ "TEXT," + KEY_CONTACT_NUMBER+"TEXT" +")");
 
+
         val createTable = "create table $TABLE_NAME"+
                 "($KEY_ID INTEGER PRIMARY KEY AUTOINCREMENT ," +
                 "$KEY_NAME TEXT ,"+

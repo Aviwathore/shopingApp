@@ -42,6 +42,7 @@ class CustomSpinnerAdapter(context: Context, private val housingOptions: Array<H
     }
 }
 
+
 //private class DropdownAdapter(context: Context, housingOptions: Array<HousingOption>) :
 //    ArrayAdapter<HousingOption>(context, R.layout.custom_spinner_dropdown_item, housingOptions) {
 //

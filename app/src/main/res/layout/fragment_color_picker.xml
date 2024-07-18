@@ -15,6 +15,7 @@
         android:layout_marginTop="24dp"
         android:gravity="center_horizontal"
         android:text="@string/select_color"
+
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"

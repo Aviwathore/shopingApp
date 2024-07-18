@@ -9,6 +9,7 @@
     tools:context=".wishlist.WishListFragment">
 
     <include
+
         android:id="@+id/layout_header"
         layout="@layout/header_layout" />
 

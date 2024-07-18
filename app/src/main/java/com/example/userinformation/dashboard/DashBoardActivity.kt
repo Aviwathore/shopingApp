@@ -25,7 +25,6 @@ import com.example.userinformation.Groceries.GroceriesActivity
 import com.example.userinformation.R
 import com.example.userinformation.addtocart.AddToCartFragment
 import com.example.userinformation.cloth.clothproducts.ClothListFragment
-import com.example.userinformation.model.ClothItem
 import com.example.userinformation.customViewForRecycleView.CARVActivity
 import com.example.userinformation.dashboard.productdetails.ViewProductsActivity
 import com.example.userinformation.databinding.ActivityMainBinding
@@ -35,6 +34,8 @@ import com.example.userinformation.home.Home
 import com.example.userinformation.informationform.InformationFormActivity
 import com.example.userinformation.informationform.emergency_contact_form.EmergencyContactFormActivity
 import com.example.userinformation.intent.IntentActivity
+import com.example.userinformation.model.ClothItem
+import com.example.userinformation.myorders.MyOrdersFragment
 import com.example.userinformation.pharmacy.Pharmacy
 import com.example.userinformation.userdetails.LoginActivity
 import com.example.userinformation.wishlist.WishListFragment
@@ -134,6 +135,7 @@ class DashBoardActivity : AppCompatActivity() {
 
         bottomNavigationItemSelected()
 
+
     }
 
     private fun topAppBarItem() {
@@ -146,6 +148,10 @@ class DashBoardActivity : AppCompatActivity() {
                 }
                 R.id.nav_cart -> {
                     replaceFragment(AddToCartFragment())
+                    true
+                }
+                R.id.nav_orders ->{
+                    replaceFragment(MyOrdersFragment())
                     true
                 }
 

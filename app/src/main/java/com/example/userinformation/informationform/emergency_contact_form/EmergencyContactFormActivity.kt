@@ -15,11 +15,11 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.room.RoomMasterTable
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityGuardianBinding
-import com.example.userinformation.informationform.confirmbottomsheetdialog.successfulStoreInfo.SuccessActivity
-import com.example.userinformation.informationform.model.EmergencyContactDataClass
 import com.example.userinformation.dbHelper.ProductDBHelper
+import com.example.userinformation.informationform.confirmbottomsheetdialog.successfulStoreInfo.SuccessActivity
 import com.example.userinformation.informationform.emergency_contact_form.customeadaptor.CustomArrayAdapter
 import com.example.userinformation.informationform.highlightStar
+import com.example.userinformation.informationform.model.EmergencyContactDataClass
 
 class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -34,6 +34,7 @@ class EmergencyContactFormActivity : AppCompatActivity(), View.OnClickListener {
         "Mother",
         "Brother",
         "Sister"
+
     )
 
     private val anyRelationshipWithBankStaff = arrayOf(

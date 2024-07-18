@@ -9,6 +9,7 @@
     android:fitsSystemWindows="true"
     tools:context=".informationform.InformationFormActivity">
 
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"

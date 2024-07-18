@@ -20,6 +20,7 @@ class CustomListView : AppCompatActivity() {
         binding= ActivityCustomListViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
         val image = intArrayOf(
             R.drawable.pc, R.drawable.cloth, R.drawable.beauty, R.drawable.amazon_logo, R.drawable.groceries, R.drawable.makeup, R.drawable.pharmacy
         )

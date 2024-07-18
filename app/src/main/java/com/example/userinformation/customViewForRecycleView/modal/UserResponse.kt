@@ -20,3 +20,4 @@ data class Data(
     @SerializedName("avatar")
     val avatar :String
 )
+

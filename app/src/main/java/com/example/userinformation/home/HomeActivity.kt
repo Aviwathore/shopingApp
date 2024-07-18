@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.DialogTitle
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,7 +17,6 @@ import com.example.userinformation.home.recycleviewapi.adapter.HomeAdaptor
 import com.example.userinformation.home.recycleviewapi.api.HomeInterface
 import com.example.userinformation.home.recycleviewapi.api.OnDeleteItemClickListener
 import com.example.userinformation.home.recycleviewapi.model.HomeToDo
-import com.example.userinformation.textbottomsheetdialogbox.CustomTextBottomSheetDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -48,6 +45,7 @@ class Home : AppCompatActivity(), OnDeleteItemClickListener, DynamicDialogInterf
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
     }
 
     private fun loadToDoListData() {

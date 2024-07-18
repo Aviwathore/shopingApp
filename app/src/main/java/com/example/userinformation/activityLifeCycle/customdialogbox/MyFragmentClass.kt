@@ -18,6 +18,7 @@ class MyFragmentClass :DialogFragment() {
 
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

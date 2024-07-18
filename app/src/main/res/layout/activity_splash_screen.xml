@@ -23,6 +23,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
+
             android:id="@+id/imageView"
             android:layout_width="240dp"
             android:layout_height="240dp"

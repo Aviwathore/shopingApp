@@ -3,11 +3,7 @@ package com.example.userinformation.dashboard.productdetails
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.userinformation.R
 import com.example.userinformation.dashboard.productdetails.dbhelper.ProductDB
 import com.example.userinformation.databinding.ActivityUpdateProductBinding
 
@@ -27,6 +23,7 @@ class UpdateProductActivity : AppCompatActivity() {
 
         binding.editUpdateId.setText(productId.toString())
         binding.editUpdateName.setText(productName.toString())
+
         binding.editUpdateCategory.setText(productCategory.toString())
 
         // disable

@@ -3,10 +3,7 @@ package com.example.userinformation.fragmentToActivity
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.EditText
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.userinformation.R
 import com.example.userinformation.databinding.ActivityFragmentToBinding
 
@@ -23,6 +20,7 @@ class FragmentToActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         customerEditName= binding.idCustomerName
+
         customerEditContact = binding.idCustomerContact
 
         // declared fragment transaction
@@ -31,6 +29,7 @@ class FragmentToActivity : AppCompatActivity() {
 
         val fragmentManager = supportFragmentManager.beginTransaction()
         val myFragment = FragmentOne()
+
 
 
         binding.btnCustomerDataSend.setOnClickListener{

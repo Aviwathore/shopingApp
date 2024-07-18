@@ -16,6 +16,7 @@
         android:text="@string/are_you_sure_you_want_to_remove_this_details"
         android:textColor="@color/crimson"
         android:textSize="18sp"
+
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

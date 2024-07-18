@@ -16,6 +16,7 @@ class NewCustomListView : AppCompatActivity() {
         setContentView(binding.root)
 
 
+
         val name =intent.getStringExtra("name")
         val img = intent.getIntExtra("image", R.drawable.cloth)
         val message =intent.getStringExtra("lastmessage")

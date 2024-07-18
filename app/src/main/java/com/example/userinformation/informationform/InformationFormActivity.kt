@@ -40,6 +40,7 @@ class InformationFormActivity : AppCompatActivity(), View.OnClickListener {
     private var isDatePickerShown = false
     private lateinit var images: Array<Drawable>
     private lateinit var spinner: Spinner
+
     private var selectedId: String = ""
 
     private val stateArray = arrayOf(

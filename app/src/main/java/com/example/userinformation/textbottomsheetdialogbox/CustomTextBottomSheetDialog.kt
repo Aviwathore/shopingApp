@@ -30,6 +30,7 @@ class CustomTextBottomSheetDialog : BottomSheetDialogFragment() {
             }
 
         })
+
         return view
     }
     companion object {

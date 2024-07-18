@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.userinformation.R
 import com.example.userinformation.addtocart.adapter.AddToCartAdapter
+import com.example.userinformation.checkOutPaymentdetails.CheckOutPaymentDetailsFragment
 import com.example.userinformation.dashboard.DashBoardActivity
 import com.example.userinformation.databinding.FragmentAddToCartBinding
 import com.example.userinformation.dbHelper.ProductDBHelper
 import com.example.userinformation.formatNumber.formatToIndianNumberingSystem
 import com.example.userinformation.model.ClothItem
-import com.example.userinformation.paymentdetails.PaymentDetailsFragment
 import com.example.userinformation.wishlist.WishListFragment
 
 class AddToCartFragment : Fragment(),
@@ -69,7 +69,7 @@ class AddToCartFragment : Fragment(),
             dbHelper.updateTotalMRP(totalCost)
             val dashBoardActivity= activity as DashBoardActivity
 
-            dashBoardActivity.replaceFragment(PaymentDetailsFragment())
+            dashBoardActivity.replaceFragment(CheckOutPaymentDetailsFragment())
         }
         return binding.root
 
@@ -91,6 +91,9 @@ class AddToCartFragment : Fragment(),
             binding.emptyProductLayout.root.visibility = View.VISIBLE
             binding.svCart.visibility = View.GONE
             binding.rlProceedCheckout.visibility = View.GONE
+
+
+
 
         } else {
             val productPrice = filterProduct.sumOf { it.price * it.productCount }

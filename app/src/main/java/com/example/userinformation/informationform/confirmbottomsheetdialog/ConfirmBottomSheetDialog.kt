@@ -34,6 +34,7 @@ class ConfirmBottomSheetDialog(private var formDataClass: YourInformationDataCla
         dbHelper = ProductDBHelper(context)
 
         val first = formDataClass.firstName
+
         val last = formDataClass.lastName
         val mobile = formDataClass.mobileNumber
         val gender = formDataClass.gender

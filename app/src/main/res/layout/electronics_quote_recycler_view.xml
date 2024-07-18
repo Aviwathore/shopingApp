@@ -8,6 +8,7 @@
     tools:ignore="ScrollViewCount">
 
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/electronics_card_view"
         android:layout_width="match_parent"

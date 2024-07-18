@@ -41,6 +41,7 @@ class GroceriesActivity : AppCompatActivity() {
         responseA= (findViewById(R.id.response_id) as? TextView)!!
 
         button.setOnClickListener {
+
             createToDo(
                 nameEdt.text.toString(),
                 jobEdt.text.toString()

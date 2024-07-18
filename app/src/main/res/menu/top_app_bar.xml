@@ -14,12 +14,12 @@
         app:showAsAction="ifRoom"
         />
 
-<!--    <item-->
-<!--        android:id="@+id/search"-->
-<!--        android:title="@string/search"-->
-<!--        android:icon="@drawable/baseline_search_24"-->
-<!--        app:showAsAction="ifRoom"-->
-<!--        />-->
+    <item
+        android:id="@+id/nav_orders"
+        android:title="@string/my_orders"
+        android:icon="@drawable/cube"
+        app:showAsAction="ifRoom"
+        />
 
 <!--   <item android:id="@+id/cloth" android:title="@string/cloth" />-->
 <!--    <item android:id="@+id/notes" android:title="@string/intent" />-->

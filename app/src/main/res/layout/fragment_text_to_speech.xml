@@ -8,6 +8,7 @@
     android:fitsSystemWindows="true"
     tools:context=".intent.converttexttospeech.TextToSpeechFragment">
 
+
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/txt_text_to_speech"
         android:layout_width="match_parent"

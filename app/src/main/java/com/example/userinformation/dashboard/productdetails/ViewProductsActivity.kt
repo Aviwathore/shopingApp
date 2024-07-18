@@ -33,6 +33,7 @@ class ProductAdapter: RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {
 
     fun setOnDeleteProductClickListener(listener:OnDeleteProductClickListener){
 
+
         deleteItemClickListener=listener
     }
     class ProductViewHolder(item: View) : RecyclerView.ViewHolder(item) {

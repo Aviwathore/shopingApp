@@ -1,4 +1,4 @@
-package com.example.userinformation
+package com.example.userinformation.paymentsuccess
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,8 +10,10 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import com.example.userinformation.R
 import com.example.userinformation.dashboard.DashBoardActivity
 import com.example.userinformation.databinding.FragmentPaymentSuccessBinding
+import com.example.userinformation.myorders.MyOrdersFragment
 import com.example.userinformation.paymentsuccessful.PaymentSuccessfulFragment
 
 class PaymentSuccessFragment : Fragment(), OnClickListener {
@@ -22,7 +24,6 @@ class PaymentSuccessFragment : Fragment(), OnClickListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Log.i("TAG", "onCreateView: ---------------------backpress")
 
         _binding = FragmentPaymentSuccessBinding.inflate(layoutInflater, container, false)
 
@@ -33,6 +34,7 @@ class PaymentSuccessFragment : Fragment(), OnClickListener {
         binding.headerLayout.buttonEnd.setImageResource(R.drawable.close)
         binding.headerLayout.buttonEnd.setOnClickListener(this)
         binding.btnViewEReceipt.setOnClickListener(this)
+        binding.btnViewOrder.setOnClickListener(this)
 
         return binding.root
     }
@@ -66,6 +68,11 @@ class PaymentSuccessFragment : Fragment(), OnClickListener {
 
                 val dashBoardActivity = activity as DashBoardActivity
                 dashBoardActivity.replaceFragment(PaymentSuccessfulFragment())
+            }
+
+            R.id.btn_view_order ->{
+                val dashBoardActivity = activity as DashBoardActivity
+                dashBoardActivity.replaceFragment(MyOrdersFragment())
             }
 
         }

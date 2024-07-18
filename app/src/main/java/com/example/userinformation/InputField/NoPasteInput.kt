@@ -28,6 +28,7 @@ fun EditText.disablePaste() {
     setOnLongClickListener { true }
     setTextIsSelectable(false)
     setTextKeepState(text)
+
     customSelectionActionModeCallback = object : android.view.ActionMode.Callback {
         override fun onActionItemClicked(
             mode: android.view.ActionMode?,

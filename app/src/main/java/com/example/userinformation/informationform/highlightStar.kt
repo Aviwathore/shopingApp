@@ -21,3 +21,4 @@ fun highlightStar(view: TextView, color: Int) {
 //    view.setText(spannableString, false)
     view.text = spannableString
 }
+

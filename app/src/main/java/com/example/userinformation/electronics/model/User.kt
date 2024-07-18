@@ -15,3 +15,4 @@ data class User(
     @ColumnInfo(name = "last_name")
     val lastName: String?
 )
+

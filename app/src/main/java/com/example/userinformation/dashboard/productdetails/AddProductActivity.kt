@@ -20,6 +20,7 @@ class AddProductActivity : AppCompatActivity() {
 
         binding.btnSaveProduct.setOnClickListener {
 
+
             dbHelper = ProductDB(this)
             val name = binding.editProductName.text.toString()
             val category = binding.editProductCategory.text.toString()

@@ -1,15 +1,13 @@
 package com.example.userinformation.userdetails
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.userinformation.dashboard.DashBoardActivity
 import com.example.userinformation.R
+import com.example.userinformation.dashboard.DashBoardActivity
 import com.example.userinformation.databinding.ActivityLoginBinding
 import com.example.userinformation.textbottomsheetdialogbox.CustomTextBottomSheetDialog
 
@@ -34,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
                 .setText(savedUsername)
             binding.editPassword.
             setText(savedPassword)
+
 
         }else{
             showLoginScreen()

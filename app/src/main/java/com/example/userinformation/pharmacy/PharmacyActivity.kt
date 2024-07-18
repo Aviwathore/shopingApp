@@ -35,6 +35,7 @@ class Pharmacy : AppCompatActivity() {
         }
     }
 
+
     private fun jasonPars() {
         val retrofitBuilder =Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(BASE_URL).build().create(PharmacyJSONInterface::class.java)
         val retrofitData = retrofitBuilder.getUserNested()

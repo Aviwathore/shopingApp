@@ -8,3 +8,4 @@ data class HousingOption(
     val description: String,
     val subDescription: String?
 )
+

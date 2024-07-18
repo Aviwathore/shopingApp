@@ -21,6 +21,7 @@ class SecondFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_second, container, false)
 
+
         textMessage = view.findViewById(R.id.id_fragment_second)
         val data = arguments?.getString("textMessage")
 

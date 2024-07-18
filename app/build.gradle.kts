@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.gms.google-services")
+
 //    id("kotlin-kapt")
 }
 
@@ -28,6 +30,7 @@ android {
             )
         }
     }
+
     buildFeatures {
         viewBinding = true
     }
@@ -44,6 +47,8 @@ dependencies {
 
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.animation.android)
+    implementation(libs.firebase.messaging)
+    implementation(libs.core.ktx)
     annotationProcessor(libs.androidx.room.compiler)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -83,5 +88,9 @@ dependencies {
     implementation (libs.slidetoact)
 //    implementation(libs.proswipebutton)
 //    kapt ("androidx.room:room-compiler:2.5.1")
+
+    implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation(libs.okhttp)
 
 }

@@ -14,6 +14,7 @@
 //    companion object {
 //
 //        private const val DATABASE_NAME = "fashion.DB"
+
 //        private const val VERSION = 1
 //        private const val TABLE_NAME = "cloth_info"
 //

@@ -10,3 +10,4 @@ data class UserInfo(
     val gender: String,
     val course:String
 )
+

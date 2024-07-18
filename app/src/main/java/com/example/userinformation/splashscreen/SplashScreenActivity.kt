@@ -35,6 +35,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     private fun startHeavyTask() {
 
+
         LongOperation().execute()
     }
 

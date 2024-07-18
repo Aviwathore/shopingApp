@@ -15,6 +15,7 @@
         android:max="100"
         android:progressDrawable="@drawable/seek_bar"
         android:thumb="@drawable/seek_bar_thumb"
+
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView

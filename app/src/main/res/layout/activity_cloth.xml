@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/commentList"
         android:text="Comment List"
+
         android:textStyle="bold"
         android:textColor="#E91E63"
         android:textSize="20sp"

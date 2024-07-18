@@ -22,6 +22,7 @@ class ProductDB(context: Context) :
 
     override fun onCreate(db: SQLiteDatabase?) {
 
+
         val createTable = "create table $TABLE_NAME" +
                 "($KEY_ID INTEGER PRIMARY KEY AUTOINCREMENT ," +
                 "$KEY_NAME TEXT ," +

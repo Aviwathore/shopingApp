@@ -33,6 +33,7 @@ class ColorPickerFragment : Fragment() {
 
         defaultColor=0
 
+
         pickColor.setOnClickListener(
             object : OnClickListener {
                 override fun onClick(v: View?) {

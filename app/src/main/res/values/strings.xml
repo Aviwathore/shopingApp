@@ -31,6 +31,7 @@
     <string name="time">Time</string>
 
 
+
     <!--    spinner code-->
 
     <string name="img_url">Images</string>
@@ -371,6 +372,7 @@
     <string name="enter_delivery_details">Enter Delivery Details</string>
     <string name="add_new_adress">Add New Address</string>
     <string name="payment_details">Payment Details</string>
+    <string name="checkout">Checkout</string>
     <string name="pending">Pending</string>
     <string name="inv_97710037">INV <b># </b>97710037</string>
     <string name="due_07_28_2024">Due: 07/28/2024</string>
@@ -421,6 +423,12 @@
     <string name="transication_details">Transaction Details</string>
     <string name="done">Done</string>
     <string name="rohini">Rohini</string>
+    <string name="my_orders">My Orders</string>
+    <string name="cancelled_order">Cancelled Order</string>
+    <string name="active">Active</string>
+    <string name="d">Completed</string>
+    <string name="ll">|</string>
+    <string name="qty">Qty :</string>
     <!--    hereby confirm that I have reviewed the all details and confirm their accuracy-->
     <!--    spinner state-->
 

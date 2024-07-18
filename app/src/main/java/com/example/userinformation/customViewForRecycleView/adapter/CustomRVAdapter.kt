@@ -1,6 +1,5 @@
 package com.example.userinformation.customViewForRecycleView.adapter
 
-import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.userinformation.R
-import com.example.userinformation.customViewForRecycleView.CARVActivity
 import com.example.userinformation.customViewForRecycleView.modal.Data
-import com.example.userinformation.customViewForRecycleView.modal.UserResponse
 
 class CustomRVAdapter(private val context: Context, private val customDataList: ArrayList<Data>): RecyclerView.Adapter<CustomRVAdapter.DataViewHolder>
     () {
@@ -30,6 +27,7 @@ class CustomRVAdapter(private val context: Context, private val customDataList: 
             lastName =view.findViewById(R.id.carv_last_name)
             email =view.findViewById(R.id.carv_email)
             avatar = view.findViewById(R.id.avatar_img)
+
 
         }
 

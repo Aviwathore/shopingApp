@@ -19,6 +19,7 @@ fun dotStyle(view: TextView, color: Int, size: Float) {
         SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE
     )
     spannableString.setSpan(
+
         RelativeSizeSpan(size),
         0,
         parts[0].length,

@@ -19,6 +19,7 @@ class SingleActivity : AppCompatActivity(), PassDataFragmentToFragmentActivity {
 
         // create a fragment object
 
+
         val fragment1 =FirstFragment()
 
         supportFragmentManager.beginTransaction().replace(R.id.container, fragment1).commit()

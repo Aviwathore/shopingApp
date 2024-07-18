@@ -105,6 +105,7 @@ class AddToCartAdapter(
 
             holder.productCount.text = newCountProduct.toString()
 
+
             addToCartList[position].productCount = newCountProduct
             val currentPrice = totalPrice
 

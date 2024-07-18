@@ -13,6 +13,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/idInput"
         android:text="Input Field"
+
         android:textStyle="bold"
         android:textSize="25sp"
         android:layout_gravity="center"

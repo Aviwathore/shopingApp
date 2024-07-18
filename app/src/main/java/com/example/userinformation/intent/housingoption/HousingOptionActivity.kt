@@ -29,6 +29,7 @@ class HousingOptionActivity : AppCompatActivity() {
 
         "cbs_code": null,
 
+
         "ordering": 1,
 
         "sub_description": "Inheritance/not under mortgage"
